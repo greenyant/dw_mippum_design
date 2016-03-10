@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Untitled Document</title>
+    
+    <!-- Bootstrap -->
+	<link href="../css/bootstrap.css" rel="stylesheet">
+	<style type="text/css">
+	.question {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+    .reference {
+}
+    .col-centered {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+    .show_btn {
+	float: right;
+}
+    .check-btns {
+	padding-top: 0px;
+}
+    .choices {
+	margin-bottom: 30px;
+}
+.check-btn   {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.answer-correct-mention {
+	float: right;
+	color: #858FFF;
+	margin-right: 5px;
+}
+    .answer-incorrect-mention {
+	color: #FF8486;
+	float: right;
+	margin-right: 5px;
+}
+    .status-bar {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+    .status-point {
+	text-align: right;
+	color: #8CA28B;	/*vertical-align: middle;*/
+}
+    .status-index {
+	text-align: center;
+	margin-bottom: 0px;
+	color: #959595;
+}
+    </style>
+	
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+        
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="../js/jquery-1.11.3.min.js"></script>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="../js/bootstrap.js"></script>
+    
+  </head>
+  <body>
+  	<nav class="navbar navbar-inverse">
+  	  <div class="container-fluid">
+  	    <!-- Brand and toggle get grouped for better mobile display -->
+  	    <div class="navbar-header">
+  	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#inverseNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+  	      <a class="navbar-brand" href="#">구약시험예제</a></div>
+  	    <!-- Collect the nav links, forms, and other content for toggling -->
+  	    <div class="collapse navbar-collapse" id="inverseNavbar1">
+<ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Stop </a></li>
+  	        <li><a href="#">Logout</a></li>
+  	        
+  	        <li class="dropdown">
+  	          <ul class="dropdown-menu">
+  	            <li><a href="#">Action</a></li>
+  	            <li><a href="#">Another action</a></li>
+  	            <li><a href="#">Something else here</a></li>
+  	            <li role="separator" class="divider"></li>
+  	            <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+  	    <!-- /.navbar-collapse -->
+      </div>
+  	  <!-- /.container-fluid -->
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-centered col-xs-12 col-sm-10 col-md-8 status-bar">
+          <div class="col-xs-4">
+            <button type="button" class="btn btn-default btn-sm">
+            	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="col-xs-4 status-index">50/65</div>
+          <div class="col-xs-4 status-point">2점</div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="reference col-centered col-xs-12 col-sm-10 col-md-8">
+            <b>[49~50. 다음은 예레미야 22:15~16로써 유다의 한 왕을 
+            꾸짖는 말씀이다.]</b><br />"네가 백향목을 많이 사용하여 왕이 될 
+            수 있겠느냐 네 아버지가 먹거나 마시지 아니하였으며 정의와 
+            공의를 행하 지 아니하였느냐 그 때에 그가 형통하였었느니라 그는 가난한 
+            자와 궁핍한 자를 변호하고 형통하였나니 이것이 나 를 앎이 아니냐 여호와의 
+            말씀이니라."
+         </div>
+    </div>
+    <div class="row">
+      <div class="question col-centered col-xs-12 col-sm-10 col-md-8">
+        	<b>50. </b>무엇에 관하여 꾸짖고 있는가?
+        </div>
+    </div>
+    <div class="row">
+      <div class="choices text-center">
+          <div class="btn-group-vertical col-centered" role="group" aria-label="Vertical button group">
+              <button type="button" class="btn btn-default">영토 확장을 게을리 한 일</button>
+              <button type="button" class="btn btn-default">건축 역사를 소홀히 한 일</button>
+              <button type="button" class="btn btn-default">나라를 정의롭게 다스리지 않은 일</button>
+              <button type="button" class="btn btn-default">율법 공부를 소홀히 한 일</button>
+          </div>
+        </div>
+    </div>
+    
+    <div class="row">
+   	  <div class="check-btns col-centered col-xs-12 col-sm-10 col-md-8 text-center">
+        <button type="button" class="check-btn btn btn-md btn-default">이전</button>
+        <button type="button" class="check-btn btn btn-md btn-primary">확인</button>
+        <button type="button" class="check-btn btn btn-md btn-default">다음</button>
+      </div>
+    </div>
+    
+    <div class="row"> 
+	    <div class="answer col-centered col-xs-12 col-sm-10 col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                정답
+                <button type="button" class="btn btn-xs btn-default show_btn">보기</button>
+              <span class="answer-incorrect-mention">틀렸습니다!</span>
+              <span class="answer-correct-mention">맞았습니다!</span>
+            </div>
+            <div class="panel-body ">3</div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="solution col-centered col-xs-12 col-sm-10 col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                해설
+                <button type="button" class="btn btn-xs btn-default show_btn">보기</button>
+            </div>
+            <div class="panel-body ">없음</div>
+          </div>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>
