@@ -120,7 +120,7 @@
 			}
 			$scope.trustAsHtml = $sce.trustAsHtml;
 			
-			$scope.index = 4;
+			$scope.index = 5;
 			
 			$http.get("quiz_ex_simple.json").success(function(data){
 				var jsonString = angular.toJson(data);
@@ -206,6 +206,7 @@
         	ng-bind-html="trustAsHtml(quiz.references[quiz.items[index].reference].content)">
          </div>
     </div>
+        
     <div class="row">
       <div class="question col-centered col-xs-12 col-sm-10 col-md-8">
         	<b>{{quiz.items[index].order}}. </b>

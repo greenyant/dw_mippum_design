@@ -57,7 +57,7 @@
 				{ "order":3, "html":"여호야김"}
 			],
 			"answer" : 3,
-			"references":0,
+			"reference":0,
 			"point" : 2
  		},
  		{  
@@ -71,7 +71,7 @@
 				{ "order":3, "html":"율법 공부를 소홀히 한 일"}
 			],
 			"answer" : 2,
-			"references":0,
+			"reference":0,
 			"point" : 2
  		}
  	],
