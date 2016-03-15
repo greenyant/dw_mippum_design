@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>무제 문서</title>
+	<link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+    <script src="../js/angular.js"></script>
+    <script type="text/javascript" language="javascript">
+	function checkfile(sender) {
+		var fileExt = sender.value;
+		var file = document.querySelector('input[type=file]').files[0]
+		var reader = new FileReader();
+		reader.onload = function(progressEvent){
+			//console.log(this.result);
+			$('#mpqz').text(this.result);
+		  };
+		  reader.readAsText(file);
+		  
+	}
+	</script>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+  	  <div class="container-fluid">
+  	    <!-- Brand and toggle get grouped for better mobile display -->
+  	    <div class="navbar-header">
+  	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#inverseNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+  	      <a class="navbar-brand" href="#">퀴즈 파일 열기</a></div>
+  	    <!-- Collect the nav links, forms, and other content for toggling -->
+  	    <div class="collapse navbar-collapse" id="inverseNavbar1">
+<ul class="nav navbar-nav navbar-right">
+           <li><a href="#">Logout</a></li>
+  	        
+  	        <li class="dropdown">
+  	          <ul class="dropdown-menu">
+  	            <li><a href="#">Action</a></li>
+  	            <li><a href="#">Another action</a></li>
+  	            <li><a href="#">Something else here</a></li>
+  	            <li role="separator" class="divider"></li>
+  	            <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+  	    <!-- /.navbar-collapse -->
+      </div>
+  	  <!-- /.container-fluid -->
+  </nav>
+<div class="container-fluid">
+    <input type="file" id="file" onchange="checkfile(this);" >
+  <textarea id="mpqz">여기에  id "mpqz"의 내용 입력</textarea>
+  </div>
+  </body>
+</body>
+</html>
