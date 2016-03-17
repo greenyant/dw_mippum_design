@@ -1,6 +1,5 @@
 // JavaScript Document
 angular.module("solve_quiz")
-	.constant("const_str", '텍스트 입력')
 	.controller("jsonTextNabvarCtrl", function Ctrl($scope, quiz){
 		$scope.name = const_str_jsontext.input_text;
 	});

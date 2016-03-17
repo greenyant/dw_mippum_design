@@ -1,10 +1,17 @@
 // JavaScript Document
 angular.module("solve_quiz")
 	.controller("solvingNabvarCtrl", function Ctrl($scope, quiz){
-		$scope.name = quiz.quizData.name;
+		//console.log(quiz.quizData);
+		if(quiz.quizData != undefined){
+			$scope.name = quiz.quizData.name;
+		}
 	});
 angular.module("solve_quiz")
 	.controller("solvingCtrl", function Ctrl($scope, $sce, $http, quiz){
+		if(quiz.quizData == undefined){
+			location.replace("#");
+			return;
+		}
 		$scope.quiz = quiz.quizData;
 		if($scope.quiz.usr_index == undefined) {
 			$scope.quiz.usr_index = 0;
