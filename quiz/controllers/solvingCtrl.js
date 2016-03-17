@@ -10,6 +10,7 @@ angular.module("solve_quiz")
 			$scope.quiz.usr_index = 0;
 		}
 		
+		$scope.const_str = const_str_solving;
 		
 		function reset(){
 			$scope.response = "";
@@ -26,9 +27,8 @@ angular.module("solve_quiz")
 			$scope.sol_show_flag = false;
 			$scope.sol_btn_show_str = $scope.const_str.btn_show_str[0];
 		};
-		
-		$scope.const_str = const_str;
 		reset();
+		
 		$scope.makePointStr = function(point){
 			return $scope.const_str.point_str.replace('{p}', point);
 		};
