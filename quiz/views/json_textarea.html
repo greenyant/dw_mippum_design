@@ -1,4 +1,5 @@
-<div class="container-fluid" ng-controller="jsonTextCtrl">
+  <ng-include src="'views/nabvar.html'" ng-controller="jsonTextNabvarCtrl"></ng-include>
+  <div class="container-fluid" ng-controller="jsonTextCtrl">
 	<div class="row">
 	    <div class="jsontext col-centered col-xs-12 col-sm-10 col-md-8 input-group">
 	        <textarea class="form-control" rows="10" wrap="off" ng-model="quiz_json"></textarea>
@@ -9,4 +10,4 @@
 	        </div>
 	    </div>
 	</div>
-</div>
+  </div>

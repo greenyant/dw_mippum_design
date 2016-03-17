@@ -1,11 +1,26 @@
 // JavaScript Document
 angular.module("solve_quiz")
+	.controller("solvingNabvarCtrl", function Ctrl($scope, quiz){
+		$scope.name = quiz.quizData.name;
+	});
+angular.module("solve_quiz")
 	.controller("solvingCtrl", function Ctrl($scope, $sce, $http, quiz){
 		$scope.quiz = quiz.quizData;
+		if($scope.quiz.usr_index == undefined) {
+			$scope.quiz.usr_index = 0;
+		}
+		
 		
 		function reset(){
 			$scope.response = "";
-			$scope.response_flag = false;
+			
+			//$scope.quiz.items[$scope.quiz.usr_index].response
+			if($scope.quiz.items[$scope.quiz.usr_index].response == undefined){
+				$scope.response_flag = false;
+			} else {
+				$scope.response_flag = true;
+			}
+			
 			$scope.ans_show_flag = false;
 			$scope.ans_btn_show_str = $scope.const_str.btn_show_str[0];
 			$scope.sol_show_flag = false;
@@ -16,10 +31,10 @@ angular.module("solve_quiz")
 		reset();
 		$scope.makePointStr = function(point){
 			return $scope.const_str.point_str.replace('{p}', point);
-		}
+		};
 		$scope.trustAsHtml = $sce.trustAsHtml;
 		
-		$scope.index = 5;
+		
 		/*
 		$http.get("quiz_ex_simple.json").success(function(data){
 			var jsonString = angular.toJson(data);
@@ -28,10 +43,11 @@ angular.module("solve_quiz")
 		
 		$scope.selectResponse = function(choice_order) {
 			$scope.response = choice_order;
-		}
+			$scope.quiz.items[$scope.quiz.usr_index].response = choice_order;
+		};
 		$scope.clickSubmit = function(){
 			$scope.response_flag = true;
-		}
+		};
 		$scope.clickShowAns = function(){
 			$scope.ans_show_flag = !$scope.ans_show_flag;
 			if($scope.ans_show_flag){
@@ -39,7 +55,7 @@ angular.module("solve_quiz")
 			} else {
 				$scope.ans_btn_show_str = $scope.const_str.btn_show_str[0];
 			}
-		}
+		};
 		$scope.clickShowSol = function(){
 			$scope.sol_show_flag = !$scope.sol_show_flag;
 			if($scope.sol_show_flag){
@@ -47,13 +63,13 @@ angular.module("solve_quiz")
 			} else {
 				$scope.sol_btn_show_str = $scope.const_str.btn_show_str[0];
 			}
-		}
+		};
 		$scope.clickNextBtn = function(){
-			$scope.index += 1;
+			$scope.quiz.usr_index += 1;
 			reset();
-		}
+		};
 		$scope.clickPrevBtn = function(){
-			$scope.index -= 1;
+			$scope.quiz.usr_index -= 1;
 			reset();
-		}
+		};
 	});

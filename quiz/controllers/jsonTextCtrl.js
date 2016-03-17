@@ -1,5 +1,10 @@
 // JavaScript Document
 angular.module("solve_quiz")
+	.controller("jsonTextNabvarCtrl", function Ctrl($scope, quiz){
+		$scope.name = "file";
+	});
+	
+angular.module("solve_quiz")
 	.controller("jsonTextCtrl", function Ctrl($scope, quiz){
 		/*
 		$scope.clickGetQuizJsonBtn = function(){
