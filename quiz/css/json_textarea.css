@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.jsonntext textarea {
+}
+    .jsontext  .input-group-addon {
+	vertical-align: top;
+}
+    .input-group-addon .err-msg {
+	color: #FF0004;
+}
