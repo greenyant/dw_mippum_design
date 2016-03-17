@@ -30,7 +30,7 @@
 	            aria-label="Vertical button group" data-toggle="buttons">
 	        <label data-ng-repeat="choice in quiz.items[quiz.usr_index].choices"
 	                ng-click="selectResponse(choice.order)"  class="btn btn-default"
-	                ng-class="{'display-only':response_flag, 'active':quiz.items[quiz.usr_index].response==choice.order}">
+	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag, 'active':quiz.items[quiz.usr_index].response==choice.order}">
 	            <input type="radio" name="options" autocomplete="off" />
 	            <span ng-bind-html="trustAsHtml(choice.html)"></span>
 	        </label>
@@ -44,7 +44,7 @@
 	            aria-label="Horizontal button group" data-toggle="buttons">
 	        <label data-ng-repeat="choice in quiz.items[quiz.usr_index].choices"
 	                ng-click="selectResponse(choice.html)"  class="btn btn-default btn-lg"
-	                ng-class="{'display-only':response_flag}">
+	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}">
 	            <input type="radio" name="options" autocomplete="off" />
 	            <span ng-bind-html="trustAsHtml(choice.html)"></span>
 	        </label>
@@ -56,7 +56,7 @@
 	    <div class="shortStringResponse col-centered col-xs-8 col-sm-5 col-md-4 input-group input-group-sm">
 	        <span class="input-group-addon">{{const_str.input_ans}}</span>
 	        <input type="text" class="form-control" ng-model="quiz.items[quiz.usr_index].response"
-	                ng-class="{'display-only':response_flag}" />
+	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}" />
 	    </div>
 	</div>
 	
@@ -64,7 +64,7 @@
 	    <div class="numberResponse col-centered col-xs-8 col-sm-5 col-md-4 input-group input-group-sm">
 	        <span class="input-group-addon">{{const_str.input_ans}}</span>
 	        <input type="number" class="form-control" ng-model="quiz.items[quiz.usr_index].response" 
-	                ng-class="{'display-only':response_flag}" />
+	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}" />
 	    </div>
 	</div>
 	
@@ -72,7 +72,7 @@
 	    <div class="essayResponse col-centered col-xs-11 col-sm-9 col-md-7 input-group">
 	        <span class="input-group-addon">{{const_str.input_essay}}</span>
 	        <textarea class="form-control" ng-model="quiz.items[quiz.usr_index].response" rows="5"
-	            ng-class="{'display-only':response_flag}"></textarea>
+	            ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}"></textarea>
 	    </div>
 	</div>
 	
@@ -80,14 +80,14 @@
 	  <div class="check-btns col-centered col-xs-12 col-sm-10 col-md-8 text-center">
 	    <button type="button" ng-click="clickPrevBtn()" ng-disabled="quiz.usr_index <= 0"
 	            class="check-btn btn btn-md btn-default">{{const_str.prev}}</button>
-	    <button type="button" ng-disabled="response_flag" ng-click="clickSubmit()"
+	    <button type="button" ng-disabled="quiz.items[quiz.usr_index].complete_flag" ng-click="clickSubmit()"
 	            class="check-btn btn btn-md btn-primary">{{const_str.submit}}</button>
 	    <button type="button" ng-click="clickNextBtn()" ng-disabled="quiz.usr_index >= quiz.items.length-1"
 	            class="check-btn btn btn-md btn-default">{{const_str.next}}</button>
 	  </div>
 	</div>
 	
-	<div class="row" ng-show="response_flag && quiz.items[quiz.usr_index].answerType !='essay'"> 
+	<div class="row" ng-show="quiz.items[quiz.usr_index].complete_flag && quiz.items[quiz.usr_index].answerType !='essay'"> 
 	    <div class="answer col-centered col-xs-12 col-sm-10 col-md-8">
 	      <div class="panel panel-default">
 	        <div class="panel-heading">
@@ -111,7 +111,7 @@
 	      </div>
 	    </div>
 	</div>
-	<div class="row" ng-show="response_flag && quiz.items[quiz.usr_index].solution!=undefined">
+	<div class="row" ng-show="quiz.items[quiz.usr_index].complete_flag && quiz.items[quiz.usr_index].solution!=undefined">
 	    <div class="solution col-centered col-xs-12 col-sm-10 col-md-8">
 	      <div class="panel panel-default">
 	        <div class="panel-heading">

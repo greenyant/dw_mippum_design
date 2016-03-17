@@ -16,10 +16,14 @@ angular.module("solve_quiz")
 			$scope.response = "";
 			
 			//$scope.quiz.items[$scope.quiz.usr_index].response
-			if($scope.quiz.items[$scope.quiz.usr_index].response == undefined){
-				$scope.response_flag = false;
-			} else {
-				$scope.response_flag = true;
+			//if($scope.quiz.items[$scope.quiz.usr_index].response == undefined){
+			//	$scope.response_flag = false;
+			//} else {
+			//	$scope.response_flag = true;
+			//}
+			
+			if ($scope.quiz.items[$scope.quiz.usr_index].complete_flag == undefined){
+				$scope.quiz.items[$scope.quiz.usr_index].complete_flag =false;
 			}
 			
 			$scope.ans_show_flag = false;
@@ -46,7 +50,8 @@ angular.module("solve_quiz")
 			$scope.quiz.items[$scope.quiz.usr_index].response = choice_order;
 		};
 		$scope.clickSubmit = function(){
-			$scope.response_flag = true;
+			//$scope.response_flag = true;
+			$scope.quiz.items[$scope.quiz.usr_index].complete_flag = true;
 		};
 		$scope.clickShowAns = function(){
 			$scope.ans_show_flag = !$scope.ans_show_flag;
