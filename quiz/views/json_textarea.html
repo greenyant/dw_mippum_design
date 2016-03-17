@@ -1,0 +1,12 @@
+<div class="container-fluid" ng-controller="jsonTextCtrl">
+	<div class="row">
+	    <div class="jsontext col-centered col-xs-12 col-sm-10 col-md-8 input-group">
+	        <textarea class="form-control" rows="10" wrap="off" ng-model="quiz_json"></textarea>
+	        <div class="input-group-addon">
+	            <!--button class="btn btn-default btn-sm" ng-click="clickGetQuizJsonBtn()">가져오기</button><br /-->
+	            <button class="btn btn-default btn-sm" ng-click="clickApplyQuizJsonBtn()">시작하기</button>
+	            <div class="err-msg">{{err_msg_apply_quiz_json}}</div>
+	        </div>
+	    </div>
+	</div>
+</div>

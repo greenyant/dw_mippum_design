@@ -1,0 +1,59 @@
+@charset "UTF-8";
+    .reference {
+}
+    .show_btn {
+	float: right;
+}
+    .check-btns {
+	padding-top: 0px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+    .choices {
+}
+.check-btn   {
+	margin-right: 10px;
+	margin-left: 10px;
+	padding-top: 2px;
+}
+.answer-correct-mention {
+	float: right;
+	color: #858FFF;
+	margin-right: 5px;
+}
+    .answer-incorrect-mention {
+	color: #FF8486;
+	float: right;
+	margin-right: 5px;
+}
+    .status-bar {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+    .status-point {
+	text-align: right;
+	color: #8CA28B;	/*vertical-align: middle;*/
+}
+    .status-index {
+	text-align: center;
+	margin-bottom: 0px;
+	color: #959595;
+}
+
+.display-only {
+    pointer-events: none;
+}
+.essayResnponse  {
+}
+.essayResnponse textarea {
+}
+    	.question {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+    .col-centered {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}

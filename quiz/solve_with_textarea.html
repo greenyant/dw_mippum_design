@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="quiz_solve">
+<html lang="en" ng-app="solve_quiz">
   <head>
     <meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,74 +10,19 @@
     
     <!-- Bootstrap -->
 	<link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="css/solving.css" rel="stylesheet">
+    
 	<style type="text/css">
-	.question {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	
+	.jsonntext textarea {
 }
-    .reference {
-}
-    .col-centered {
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-}
-    .show_btn {
-	float: right;
-}
-    .check-btns {
-	padding-top: 0px;
-	margin-top: 30px;
-	margin-bottom: 30px;
-}
-    .choices {
-}
-.check-btn   {
-	margin-right: 10px;
-	margin-left: 10px;
-	padding-top: 2px;
-}
-.answer-correct-mention {
-	float: right;
-	color: #858FFF;
-	margin-right: 5px;
-}
-    .answer-incorrect-mention {
-	color: #FF8486;
-	float: right;
-	margin-right: 5px;
-}
-    .status-bar {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-    .status-point {
-	text-align: right;
-	color: #8CA28B;	/*vertical-align: middle;*/
-}
-    .status-index {
-	text-align: center;
-	margin-bottom: 0px;
-	color: #959595;
-}
-
-.display-only {
-    pointer-events: none;
-}
-.essayResnponse  {
-}
-.essayResnponse textarea {
-}
-.row .josntext textarea {
-}
-    .josntext  .input-group-addon {
+    .jsontext  .input-group-addon {
 	vertical-align: top;
 }
-    .err-msg {
+    .input-group-addon .err-msg {
 	color: #FF0004;
 }
-    </style>
+</style>
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -110,82 +55,24 @@
 		};
 		
 		var test_dat;
-		var myApp = angular.module("quiz_solve", []);
-		myApp.controller("solveCtrl", function Ctrl($scope, $sce, $http){
-			function reset(){
-				$scope.response = "";
-				$scope.response_flag = false;
-				$scope.ans_show_flag = false;
-				$scope.ans_btn_show_str = $scope.const_str.btn_show_str[0];
-				$scope.sol_show_flag = false;
-				$scope.sol_btn_show_str = $scope.const_str.btn_show_str[0];
-			};
-			
-			$scope.const_str = const_str;
-			reset();
-			$scope.makePointStr = function(point){
-				return $scope.const_str.point_str.replace('{p}', point);
-			}
-			$scope.trustAsHtml = $sce.trustAsHtml;
-			
-			$scope.index = 5;
-			
-			$http.get("quiz_ex_simple.json").success(function(data){
-				var jsonString = angular.toJson(data);
-				$scope.quiz = angular.fromJson(jsonString);
+		var myApp = angular.module("solve_quiz", ["quiz", "ngRoute"]);
+		myApp.config(function($routeProvider){
+			$routeProvider.when("/solving",{
+				templateUrl:"views/solving.html"
 			});
-			
-			$scope.selectResponse = function(choice_order) {
-				$scope.response = choice_order;
-			}
-			$scope.clickSubmit = function(){
-				$scope.response_flag = true;
-			}
-			$scope.clickShowAns = function(){
-				$scope.ans_show_flag = !$scope.ans_show_flag;
-				if($scope.ans_show_flag){
-					$scope.ans_btn_show_str = $scope.const_str.btn_show_str[1];
-				} else {
-					$scope.ans_btn_show_str = $scope.const_str.btn_show_str[0];
-				}
-			}
-			$scope.clickShowSol = function(){
-				$scope.sol_show_flag = !$scope.sol_show_flag;
-				if($scope.sol_show_flag){
-					$scope.sol_btn_show_str = $scope.const_str.btn_show_str[1];
-				} else {
-					$scope.sol_btn_show_str = $scope.const_str.btn_show_str[0];
-				}
-			}
-			$scope.clickNextBtn = function(){
-				$scope.index += 1;
-				reset();
-			}
-			$scope.clickPrevBtn = function(){
-				$scope.index -= 1;
-				reset();
-			}
-			$scope.clickGetQuizJsonBtn = function(){
-				$scope.quiz_json = JSON.stringify($scope.quiz, null, 4);
-				$scope.err_msg_apply_quiz_json = "";
-			}
-			$scope.clickApplyQuizJsonBtn = function(){
-				try { 
-					$scope.quiz = JSON.parse($scope.quiz_json); 
-					$scope.err_msg_apply_quiz_json = "";
-				} 
-				catch (e) { 
-					console.log(e); 
-					//test_dat =e;
-					$scope.err_msg_apply_quiz_json = "Error!";
-				}
-			}
-			
+			$routeProvider.otherwise({
+				templateUrl:"views/json_textarea.html"
+			});
 		});
-		
 	</script>
+    <script src="controllers/solvingCtrl.js"></script>
+    <script src="controllers/jsonTextCtrl.js"></script>
+    
+    <script src="components/quiz/quiz.js"></script>
+    
+    <script src="../js/angular-route.js"></script>
   </head>
-  <body ng-controller="solveCtrl">
+  <body>
   	<nav class="navbar navbar-inverse">
   	  <div class="container-fluid">
   	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -214,141 +101,8 @@
   	  <!-- /.container-fluid -->
   </nav>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-centered col-xs-12 col-sm-10 col-md-8 status-bar">
-          <div class="col-xs-4">
-            <!--button type="button" class="btn btn-default btn-sm" onClick="window.location.reload()">
-            	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-            </button-->
-          </div>
-          <div class="col-xs-4 status-index">{{index+1}}/{{quiz.items.length}}</div>
-          <div class="col-xs-4 status-point" ng-hide="quiz.items[index].point == undefined">{{makePointStr(quiz.items[index].point)}}</div>
-      </div>
-    </div>
-    <div class="row" ng-show="quiz.items[index].reference!=undefined">
-    	<div class="reference col-centered col-xs-12 col-sm-10 col-md-8"
-        	ng-bind-html="trustAsHtml(quiz.references[quiz.items[index].reference].content)">
-         </div>
-    </div>
-        
-    <div class="row">
-      <div class="question col-centered col-xs-12 col-sm-10 col-md-8">
-        	<b>{{quiz.items[index].order}}. </b>
-            <span ng-bind-html="trustAsHtml(quiz.items[index].question)"></span>
-        </div>
-    </div>
-    
-    <div class="row" ng-show="quiz.items[index].answerType=='choiceNumber'">
-      <div class="choices text-center">
-          <div class="btn-group-vertical col-centered" role="group" 
-          		aria-label="Vertical button group" data-toggle="buttons">
-            <label data-ng-repeat="choice in quiz.items[index].choices"
-            		ng-click="selectResponse(choice.order)"  class="btn btn-default"
-                    ng-class="{'display-only':response_flag}">
-            	<input type="radio" name="options" autocomplete="off" />
-                <span ng-bind-html="trustAsHtml(choice.html)"></span>
-            </label>
-          </div>
-        </div>
-    </div>
-    
-    <div class="row" ng-show="quiz.items[index].answerType=='OX'">
-      <div class="OXResponse text-center">
-      	<div class="btn-group col-centered" role="group" 
-          		aria-label="Horizontal button group" data-toggle="buttons">
-        	<label data-ng-repeat="choice in quiz.items[index].choices"
-            		ng-click="selectResponse(choice.html)"  class="btn btn-default btn-lg"
-                    ng-class="{'display-only':response_flag}">
-            	<input type="radio" name="options" autocomplete="off" />
-                <span ng-bind-html="trustAsHtml(choice.html)"></span>
-            </label>
-        </div>   
-      </div> 
-    </div>
-    
-    <div class="row" ng-show="quiz.items[index].answerType=='shortString'">
-	    <div class="shortStringResponse col-centered col-xs-8 col-sm-5 col-md-4 input-group input-group-sm">
-        	<span class="input-group-addon">{{const_str.input_ans}}</span>
- 			<input type="text" class="form-control" ng-model="response"
-            		ng-class="{'display-only':response_flag}" />
-    	</div>
-    </div>
-    
-    <div class="row" ng-show="quiz.items[index].answerType=='number'">
-	    <div class="numberResponse col-centered col-xs-8 col-sm-5 col-md-4 input-group input-group-sm">
-        	<span class="input-group-addon">{{const_str.input_ans}}</span>
- 			<input type="number" class="form-control" ng-model="response" 
-            		ng-class="{'display-only':response_flag}" />
-    	</div>
-    </div>
-    
-    <div class="row" ng-show="quiz.items[index].answerType=='essay'">
-	    <div class="essayResponse col-centered col-xs-11 col-sm-9 col-md-7 input-group">
-        	<span class="input-group-addon">{{const_str.input_essay}}</span>
-            <textarea class="form-control" ng-model="response" rows="5"
-            	ng-class="{'display-only':response_flag}"></textarea>
-    	</div>
-    </div>
-    
-    <div class="row">
-   	  <div class="check-btns col-centered col-xs-12 col-sm-10 col-md-8 text-center">
-        <button type="button" ng-click="clickPrevBtn()" ng-disabled="index <= 0"
-       			class="check-btn btn btn-md btn-default">{{const_str.prev}}</button>
-        <button type="button" ng-disabled="response_flag" ng-click="clickSubmit()"
-        		class="check-btn btn btn-md btn-primary">{{const_str.submit}}</button>
-        <button type="button" ng-click="clickNextBtn()" ng-disabled="index >= quiz.items.length-1"
-        		class="check-btn btn btn-md btn-default">{{const_str.next}}</button>
-      </div>
-    </div>
-    
-    <div class="row" ng-show="response_flag && quiz.items[index].answerType !='essay'"> 
-	    <div class="answer col-centered col-xs-12 col-sm-10 col-md-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                {{const_str.ans}}
-                <button type="button" ng-click="clickShowAns()"
-                		class="btn btn-xs btn-default show_btn">{{ans_btn_show_str}}</button>
-              <span class="answer-incorrect-mention" ng-hide="quiz.items[index].answer == response">
-              			{{const_str.incorrect}}</span>
-              <span class="answer-correct-mention" ng-show="quiz.items[index].answer == response">
-              			{{const_str.correct}}</span>
-            </div>
-            <div class="panel-body" ng-show="ans_show_flag && quiz.items[index].answerType=='choiceNumber'"
-            	ng-bind-html="trustAsHtml(quiz.items[index].choices[quiz.items[index].answer].html)"></div>
-            <div class="panel-body" ng-show="ans_show_flag && quiz.items[index].answerType=='shortString'">
-            		{{quiz.items[index].answer}}</div>
-            <div class="panel-body" ng-show="ans_show_flag && quiz.items[index].answerType=='number'">
-            		{{quiz.items[index].answer}}</div>
-            <div class="panel-body" ng-show="ans_show_flag && quiz.items[index].answerType=='OX'">
-            		{{quiz.items[index].answer}}</div>
-            
-          </div>
-        </div>
-    </div>
-    <div class="row" ng-show="response_flag && quiz.items[index].solution!=undefined">
-        <div class="solution col-centered col-xs-12 col-sm-10 col-md-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-                {{const_str.solution}}
-                <button ng-click="clickShowSol()"
-                		type="button" class="btn btn-xs btn-default show_btn">{{sol_btn_show_str}}</button>
-            </div>
-            <div class="panel-body " ng-show="sol_show_flag"
-	            ng-bind-html="trustAsHtml(quiz.items[index].solution)"></div>
-          </div>
-        </div>
-    </div>
-  </div>
-  
-  <div class="row">
-  		<div class="josntext col-centered col-xs-12 col-sm-10 col-md-8 input-group">
-        	<textarea class="form-control" rows="10" wrap="off" ng-model="quiz_json"></textarea>
-            <div class="input-group-addon">
-            	<button class="btn btn-default btn-sm" ng-click="clickGetQuizJsonBtn()">가져오기</button><br />
-            	<button class="btn btn-default btn-sm" ng-click="clickApplyQuizJsonBtn()">적용하기</button>
-                <div class="err-msg">{{err_msg_apply_quiz_json}}</div>
-            </div>
-        </div>
+  	<ng-view />
+  	
   </div>
   </body>
 </html>
