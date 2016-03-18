@@ -15,7 +15,7 @@ angular.module("solve_quiz")
 		}
 		$scope.download_flag = true;
 		//var text = 'helo';
-		$scope.down_dat = 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(quiz.quizData), null, 4);
+		$scope.down_dat = 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(quiz.quizData, null, 4));
 		
 		
 	});
