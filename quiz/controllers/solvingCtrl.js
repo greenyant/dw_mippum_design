@@ -1,10 +1,23 @@
 // JavaScript Document
 angular.module("solve_quiz")
+	.config( [
+	    '$compileProvider',
+	    function( $compileProvider )
+	    {   
+	        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|data|chrome-extension):/);
+	        // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+	    }
+	])
 	.controller("solvingNabvarCtrl", function Ctrl($scope, quiz){
 		//console.log(quiz.quizData);
 		if(quiz.quizData != undefined){
 			$scope.name = quiz.quizData.name;
 		}
+		$scope.download_flag = true;
+		//var text = 'helo';
+		$scope.down_dat = 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(quiz.quizData), null, 4);
+		
+		
 	});
 angular.module("solve_quiz")
 	.controller("solvingCtrl", function Ctrl($scope, $sce, $http, quiz){
