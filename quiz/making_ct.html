@@ -13,72 +13,14 @@
 	<script src="../js/bootstrap.js" type="text/javascript"></script>
     <script src="../js/angular.js"></script>
     <script src="../js/bootstrap-filestyle.js"></script>
+    
+    <link href="css/making_ct.css" rel="stylesheet">
 
 	<style type="text/css">
-	#ct_name {
-}
-    .fst-line {
-	margin-bottom: 20px;
-}
-    .each-ct-set {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 10px;
-	border: 1px solid #7D86FF;
-}
- 	.col-centered {
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-}
-.each-ct-set select   {
-	width: 100%;
-	margin-bottom: 5px;
-	background-color: undefined;
-}
-    .up-down-arrow {
-	padding-left: 0px;
-}
-    .ct-contents {
-	padding-right: 2px;
-}
-    .scnd-line {
-	margin-bottom: 20px;
-}
-	.dropdown-menu > li > b{
-	padding: 3px 20px;
-	background-color: undefined;
-	}
-    .ct-level-0 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.15);
-}
-    .ct-level-1 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.3);
-}
-    .ct-level-2 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.4);
-}
-    .ct-level-3 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.55);
-}
-    .ct-level-4 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.6);
-}
-    .ct-level-5 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.75);
-}
-    .ct-level-6 {
-	border-style: solid;
-	background-color: rgba(156,158,239,0.9);
-}
+	
     </style>
     <script>
+        //var model = 
 		var model = {
 			"name" : "성경",
 			"level_label" :  [{ 
@@ -91,7 +33,6 @@
 				"mark" : "None"
 			},{ 
 				"depth" : 2, 
-				"name" : "장수", 
 				"mark" : "none"
 			}],
 			
@@ -125,7 +66,7 @@
 					}]
 				}] 
 			},{
-				"order" : 0, 
+				"order" : 1, 
 				"name" : "신약성서",
 				
 				"sub_contents" : [{
@@ -157,16 +98,30 @@
 				}] 
 			}]
 		};
+        var test_dat;
 		var myApp = angular.module("makingCT", []);
-		myApp.controller("MakingCTCtrl", function ($scope){
+		myApp.controller("MakingCTCtrl", function ($scope, $http){
+                        
 			$scope.ct = model;
 			$scope.level_candidates = [1,2,3,4,5,6,7];
 			//$scope.level_length = model.level_label.length;
-			$scope.selected_contents = [
-				model.contents,
-				model.contents[0].sub_contents,
-				model.contents[0].sub_contents[0].sub_contents
-			];
+            $scope.select_order = [0];
+            $scope.selected_contents = [model.contents];
+            var selected_one = model.contents;
+            for(var i=0; i<model.level_label.length-1; i++){
+                selected_one = selected_one[0].sub_contents;
+                $scope.select_order.push(0)
+                $scope.selected_contents.push(selected_one);
+            }
+            $scope.change_ct_select = function (depth){
+                
+                if(depth < $scope.select_order.length-1){
+                    $scope.selected_contents[depth+1] = $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents;
+                    $scope.change_ct_select(depth+1);
+                }
+                
+            }
+            
 		});
 	</script>
 </head>
@@ -228,6 +183,7 @@
               <div class="col-md-3 col-sm-3 col-xs-3">분류</div>
               <div class="col-md-8 col-sm-9 col-xs-9">
                   <select>
+                    <option ng-if="ct.level_label[label.depth].name!=undefined">{{ct.level_label[label.depth].name}}</option>
                   	<option>없음</option>
                     <option>대단원</option>
                     <option>중단원</option>
@@ -241,15 +197,20 @@
               <div class="col-md-8 col-sm-9 col-xs-9">
               	<select>
                 	<option>없음</option>
-                    <option>I. II. III.</option>
+                    <option class="selected">I. II. III.</option>
                     <option>1. 2. 3.</option>
                 </select>
               </div>
             </div>
             <div class="row">
                 <div class="ct-contents col-md-10 col-sm-10 col-xs-10">
-                    <select size="5">
-                        <option ng-repeat="content in selected_contents[label.depth]">{{ content.name }}</option>
+                    <select size="5" ng-model="select_order[label.depth]"
+                            ng-change="change_ct_select(label.depth)">
+                        <option ng-repeat="content in selected_contents[label.depth]"
+                                ng-selected="content.order==select_order[label.depth]"
+                                value="{{content.order}}">
+                            {{ content.name }}
+                        </option>
                     </select>
                 </div>
                 <div class="up-down-arrow col-md-2 col-sm-2 col-xs-1">
