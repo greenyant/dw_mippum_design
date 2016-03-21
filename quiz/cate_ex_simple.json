@@ -3,15 +3,15 @@
     "level_label" :  [{ 
         "depth" : 0, 
         "name" : "신구약 구분", 
-        "mark" : ["I.", "II."]
+        "mark_type" : "BRPO"
     },{ 
         "depth" : 1, 
         "name" : "경서이름", 
-        "mark" : "None"
+        "mark_type" : "None"
     },{ 
         "depth" : 2, 
         "name" : "장수", 
-        "mark" : "none"
+        "mark_type" : "None"
     }],
 
     "contents" : [{ 
