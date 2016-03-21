@@ -69,3 +69,7 @@
 	border-style: solid;
 	background-color: rgba(156,158,239,0.9);
 }
+
+.modal_warning{
+    color:red;
+}

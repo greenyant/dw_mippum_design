@@ -190,8 +190,7 @@ angular.module("makingCT")
             }
             
             $scope.change_ct_select = function (depth){
-                
-                if(depth < $scope.select_order.length-1){
+                if(depth < $scope.ct.level_label.length-1){
                     $scope.selected_contents[depth+1] = $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents;
                     $scope.change_ct_select(depth+1);
                 }
@@ -199,11 +198,7 @@ angular.module("makingCT")
             }
             
             $scope.showModal = false;
-            $scope.toggleModal = function(){
-                $scope.showModal = !$scope.showModal;
-            };
-            
-            $scope.modal_title ="ta";
+            $scope.modal_title ="dummy";
             $scope.modal_warning_flag = false;
             $scope.submitModal = function(){
                 console.log("submit");
@@ -211,40 +206,65 @@ angular.module("makingCT")
             $scope.modal_warning_msg="waring msg";
             
             $scope.change_depth = function(depth){
-                roots = $scope.ct.contents;
+                //roots = $scope.ct.contents;
                 if(depth > $scope.ct.level_label.length){
-                    /*
-                    //var add_num = depth-$scope.ct.level_label.length;
-                    var nodes = roots;
-                    var terminal_nodes = [];
-                    for(var i=0;i<$scope.ct.level_label.length; i++ ){
-                        var next_nodes = [];
-                        for (var j=0; j<nodes.length; j++){
-                            if(nodes.sub_contetns != undefined){
-                                for(var k=0; k<nodes.sub_contetns.length;k++){
-                                    next_nodes.push(nodes.sub_contetns[k]);
-                                }
-                            }
-                            
-                        }
-                        nodes = next_nodes;
-                    }
-                    terminal_nodes = nodes;
-                    */
                     for(var i=$scope.ct.level_label.length; i<depth; i++){
-                        
                         $scope.ct.level_label.push({
                             "depth":i, "name":"", 
                             "mark_type":mark_types[0].keyword, 
                             "mark_example":mark_types[0].example
                         });
-                        
-                        
+                        $scope.select_order.push(0);
                     }
                     
                 }
-                c = $scope.ct.contents;
-                c.push({"order":2,"name":"a"});
+                if(depth < $scope.ct.level_label.length){
+                    $scope.modal_title ="레벨 수를 "+ depth +"개로 줄이시겠습니까?";
+                    $scope.modal_warning_msg = depth + "레벨 이상의 카테고리는 삭제됩니다.";
+                    $scope.submit_btn_txt = "삭제";
+                    $scope.modal_warning_flag = true;
+                    $scope.changed_depth = depth;
+                    
+                    $scope.submitModal = function() {
+                        var nodes = $scope.ct.contents;
+                        for(var i=0;i<$scope.changed_depth-1; i++ ){
+                            var next_nodes = [];
+                            for (var j=0; j<nodes.length; j++){
+                                if(nodes[j].sub_contents != undefined){
+                                    //console.log(nodes[j].sub_contents);
+                                    for(var k=0; k<nodes[j].sub_contents.length;k++){
+                                        next_nodes.push(nodes[j].sub_contents[k]);
+                                    }
+                                }
+                            }
+                            nodes = next_nodes;
+                        }
+                        //test_dat = nodes;
+                        for (var i=0; i<nodes.length; i++){
+                            nodes[i].sub_contents = undefined;
+                        }
+
+                        $scope.ct.level_label = $scope.ct.level_label.slice(0,$scope.changed_depth);
+                        $scope.select_order = $scope.select_order.slice(0,$scope.changed_depth);
+                        
+                        $scope.showModal = false;
+                    }
+                    
+                    $scope.showModal = true;
+                }
             }
-            
+            $scope.change_marktype = function (depth, mark_type) {
+                $scope.ct.level_label[depth].mark_type = mark_type;
+                //$scope.ct.level_label[depth].mark_type = mark_type.keyword;
+                //$scope.ct.level_label[depth].mark_example = mark_type.example;
+                //test_dat = $scope.ct.level_label[depth];
+                
+                for(var i=0; i<$scope.mark_types.length; i++) {
+                    if($scope.mark_types[i].keyword == mark_type){
+                        $scope.ct.level_label[depth].mark_example = $scope.mark_types[i].example;
+                        return;
+                    }
+                }
+            }
+            //test_dat = $scope;
 		});
