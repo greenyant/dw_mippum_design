@@ -78,3 +78,7 @@
     min-width:20px;
     height:20px;
 }
+
+.each-ct-set select option:empty { 
+    display:none 
+}

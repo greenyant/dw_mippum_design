@@ -119,17 +119,81 @@ angular.module("makingCT")
             $scope.modal_warning_msg="waring msg";
             
             $scope.change_ct_select = function (depth){
-                test_dat = $scope.select_order;
+                //test_dat = $scope.select_order;
                 for(var i=depth+1; i<$scope.select_order.length; i++){
                     $scope.select_order[i] = 0;
                 }
-                if(depth < $scope.ct.level_label.length-1 &&
-                //if(depth < $scope.select_order.length-1  
-                    $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents != undefined){
-                    $scope.selected_contents[depth+1] = $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents;
+                //test_dat = $scope.select_order[depth];
+                    
+                if($scope.selected_contents[depth][$scope.select_order[depth]].sub_contents == undefined) {
+                    for(var i=depth+1;i<$scope.ct.level_label.length; i++){
+                        $scope.selected_contents[i] = [];
+                    }
+                }else if(depth < $scope.ct.level_label.length-1){
+                    $scope.selected_contents[depth+1] = $scope.selected_contents[depth][$scope.select_order[depth]].sub_contents;
                     $scope.change_ct_select(depth+1);
                 }
                 
+            }
+            $scope.add_ct_select = function (depth) {
+                $scope.modal_title = "새 카테고리 이름을 입력하십시오.";
+                $scope.submit_btn_txt = "확인";
+                $scope.modal_warning_flag = false;
+                $scope.changed_depth = depth;
+                $scope.modal_input = "";
+                
+                
+                $scope.submitModal = function() {
+                    if($scope.changed_depth > 0 &&
+                        $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents === undefined){
+                        
+                        $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents = [];
+                        $scope.selected_contents[$scope.changed_depth] = $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents;
+                    }
+                    
+                    $scope.selected_contents[$scope.changed_depth].push({
+                        "order":$scope.selected_contents[$scope.changed_depth].length,
+                        "name":$scope.modal_input
+                    });
+                    $scope.showModal = false;
+                }
+                $scope.showModal = true;
+            }
+            $scope.modify_ct_select = function(depth) {
+                $scope.modal_title = "수정할 카테고리의 이름을 입력하십시오.";
+                $scope.submit_btn_txt = "확인";
+                $scope.modal_warning_flag = false;
+                $scope.changed_depth = depth;
+                $scope.modal_input = "";
+                $scope.submitModal = function() {
+                    $scope.selected_contents[$scope.changed_depth][$scope.select_order[$scope.changed_depth]].name = $scope.modal_input;
+                    
+                    $scope.showModal = false;
+                }
+                $scope.showModal = true;
+            }
+            
+            $scope.del_ct_select = function(depth){
+                $scope.modal_title = "해당 카테고리를 삭제하시겠습니까?";
+                $scope.modal_warning_msg = "하위 카테고리도 모두 삭제됩니다.";
+                $scope.submit_btn_txt = "삭제";
+                $scope.modal_warning_flag = true;
+                $scope.changed_depth = depth;
+                
+                $scope.submitModal = function() {
+                    $scope.selected_contents[$scope.changed_depth].splice($scope.select_order[$scope.changed_depth], 1);
+                    
+                    for(var i=$scope.select_order[$scope.changed_depth]; i<$scope.selected_contents[$scope.changed_depth].length;i++) {
+                        $scope.selected_contents[$scope.changed_depth][i].order = i;
+                    }
+                    
+                    for(var i=$scope.changed_depth; i<$scope.select_order.length; i++){
+                        $scope.select_order[i] = undefined;
+                        if (i != $scope.changed_depth) $scope.selected_contents[i] = [];
+                    }
+                    $scope.showModal = false;
+                }
+                $scope.showModal = true;
             }
             
             $scope.change_depth = function(depth){
@@ -143,6 +207,8 @@ angular.module("makingCT")
                         });
                         $scope.select_order.push(0);
                         $scope.selected_contents.push([]);
+                        
+                        //$scope.change_ct_select(0); //for update;
                     }
                     
                 }
@@ -180,6 +246,7 @@ angular.module("makingCT")
                     
                     $scope.showModal = true;
                 }
+                //test_dat = $scope.selected_contents;
             }
             
             $scope.change_class = function(depth, type, text){
@@ -191,11 +258,13 @@ angular.module("makingCT")
                     $scope.submit_btn_txt = "확인";
                     $scope.modal_warning_flag = false;
                     $scope.changed_depth = depth;
-                    //$scope.modal_input = "";
-                    $("#modal_input").val(""); //fix me
+                    $scope.modal_input = "";
+                    
+                    
                     
                     $scope.submitModal = function() {
-                        $scope.ct.level_label[$scope.changed_depth].name = $("#modal_input").val(); //fix me
+                        
+                        $scope.ct.level_label[$scope.changed_depth].name = $scope.modal_input;
                         $scope.showModal = false;
                     }
                     $scope.showModal = true;
@@ -213,12 +282,12 @@ angular.module("makingCT")
                     $scope.submit_btn_txt = "확인";
                     $scope.modal_warning_flag = false;
                     $scope.changed_depth = depth;
-                    //$scope.modal_input = "";
-                    $("#modal_input").val(""); //fix me
+                    $scope.modal_input = "";
+                    
                     
                     $scope.submitModal = function() {
-                        $scope.ct.level_label[$scope.changed_depth].mark_example = $("#modal_input").val(); //fix me
-                        $scope.ct.level_label[$scope.changed_depth].mark_text = $("#modal_input").val(); //fix me
+                        $scope.ct.level_label[$scope.changed_depth].mark_example = $scope.modal_input;
+                        $scope.ct.level_label[$scope.changed_depth].mark_text = $scope.modal_input;
                         $scope.showModal = false;
                     }
                     $scope.showModal = true;
