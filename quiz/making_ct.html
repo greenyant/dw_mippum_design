@@ -21,6 +21,106 @@
     </style>
     <script>
         
+        var mark_types = [ {
+                "keyword":"None",//'It has no type.'
+                "example":"없음"
+            },
+            {
+                "keyword":"NOOR",//'Not ordered.'
+                "example":"직접입력(무순서)"
+            },
+            {
+                "keyword":"BRPO",//'Big Rome letters with a point'
+                "example":"I. II. III."
+            },
+            {
+                "keyword":"SRPO",//'Small Rome letters with a point'
+                "example":"ⅰ. ⅱ. ⅲ."
+            },
+            {
+                "keyword":"NMPO",//Numbers with a point'
+                "example":"1. 2. 3."
+            },
+            {
+                "keyword":"NMAC",//Numbers in a circle
+                "example":"① ② ③"
+            },
+            {
+                "keyword":"NMAR",//Numbers with a round bracket
+                "example":"1) 2) 3)"
+            },
+            {
+                "keyword":"NMRB",//Numbers in round brackets
+                "example":"(1) (2) (3)"
+            },
+            {
+                "keyword":"NMSB",//Numbers in square brackets
+                "example":"[1] [2] [3]"
+            },
+            {
+                "keyword":"NMBR",//Numbers in braces
+                "example":"{1} {2} {3}"
+            },
+            {
+                "keyword":"KCRB",//Korean Consonant in round brackets
+                "example":"㈀㈁㈂"
+            },
+            {
+                "keyword":"KCAC",//Korean Consonant in a circle
+                "example":"㉠㉡㉢"
+            },
+            {
+                "keyword":"KLAC",//Korean letter in a circle
+                "example":"㉮㉯㉰"
+            },
+            {
+                "keyword":"BEPO",
+                "example":"A. B. C."
+            },
+            {
+                "keyword":"BEAR",
+                "example":"A) B) C)"
+            },
+            {
+                "keyword":"BERB",
+                "example":"(A) (B) (C)"
+            },
+            {
+                "keyword":"SEPO",
+                "example":"a. b. c."
+            },
+            {
+                "keyword":"SEAR",
+                "example":"a) b) c)"
+            },
+            {
+                "keyword":"SERB",//Small english letter in round brackets
+                "example":"(a) (b) (c)"
+            },
+            {
+                "keyword":"SEAC",//Small english letter in a circle
+                "example":"ⓐⓑⓒ"
+            }];
+        
+        var classifications = [{
+            'type':'None',
+            'text':'없음'
+        },{
+            'type':'domain',
+            'contents':'대단원',
+            'text':'대단원'
+        },{
+            'type':'middle unit',
+            'contents':'중단원',
+            'text':'중단원'
+        },{
+            'type':'cluster',
+            'contents':'소단원',
+            'text':'소단원'
+        },{
+            'type':'etc',
+            'text':'직접입력'
+        }]
         
         var test_dat;
 		var myApp = angular.module("makingCT", []);
@@ -46,7 +146,6 @@
                 attrs.$observe('title', function(){
                     scope.title = attrs.title;
                 });
-                  
                 scope.$watch(attrs.visible, function(value){
                   if(value == true)
                     $(element).modal('show');
@@ -55,6 +154,7 @@
                 });
 
                 $(element).on('shown.bs.modal', function(){
+                    //test_dat = attrs;
                   scope.$apply(function(){
                     scope.$parent[attrs.visible] = true;
                   });
@@ -132,15 +232,20 @@
             
               <div class="col-md-3 col-sm-3 col-xs-3">분류</div>
               <div class="col-md-8 col-sm-9 col-xs-9">
-                  <select>
-                    <option ng-if="ct.level_label[label.depth].name!=undefined">{{ct.level_label[label.depth].name}}</option>
-                    <option disabled>----------</option>
-                  	<option>없음</option>
-                    <option>대단원</option>
-                    <option>중단원</option>
-                    <option>소단원</option>
-                    <option>직접입력</option>
-                   </select>
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ct.level_label[label.depth].name}} <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                          <li ng-repeat="classification in classifications">
+                              <a href="#" 
+                                 ng-click="change_class(label.depth, classification.type, classification.text)">
+                                {{classification.text}}
+                              </a>
+                          </li>
+                      </ul>
+                    </div>
+                  
               </div>
             </div>
             <div class="row">
@@ -157,7 +262,6 @@
                                 {{mark_type.example}}
                               </a>
                           </li>
-                          
                       </ul>
                     </div>
               </div>
@@ -197,20 +301,20 @@
       </div>
       </div>
 </div>
-    
+1{{modal_input}}2
 <modal title="{{modal_title}}" visible="showModal">
-    <!--form role="form"-->
-    <div class="form-group">
-        <span class="modal_warning" ng-show="modal_warning_flag">{{modal_warning_msg}}</span>
-        <input type="email" class="form-control" ng-hide="modal_warning_flag"/>
-    </div>
-    <div class="text-right">
-        <button class="btn" ng-class="{'btn-danger' : modal_warning_flag, 'btn-primary':!modal_warning_flag}" ng-click="submitModal()">{{submit_btn_txt}}</button>
-        <button type="cancle" class="btn btn-default" data-dismiss="modal">취소</button>
-    </div>
-    <!--/form-->
+    <form role="form" name="form">
+        <div class="form-group">
+            <span class="modal_warning" ng-show="modal_warning_flag">{{modal_warning_msg}}</span>
+            <input type="text" class="form-control" ng-hide="modal_warning_flag" name="text" id="modal_input" />
+        </div>
+        <div class="text-right">
+            <button class="btn" ng-class="{'btn-danger' : modal_warning_flag, 'btn-primary':!modal_warning_flag}" ng-click="submitModal()">{{submit_btn_txt}}</button>
+            <button type="cancle" class="btn btn-default" data-dismiss="modal">취소</button>
+        </div>
+    </form>
 </modal>
-
+{{modal_input}}
 </body>
 
 

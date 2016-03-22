@@ -1,161 +1,81 @@
-//var model = 
-		var model = {
-			"name" : "성경",
-			"level_label" :  [{ 
-				"depth" : 0, 
-				"name" : "신구약 구분", 
-				"mark_type" : "BRPO"
-			},{ 
-				"depth" : 1, 
-				"name" : "경서이름", 
-				"mark_type" : "None"
-			},{ 
-				"depth" : 2, 
-				"mark_type" : "None"
-			}],
-			
-			"contents" : [{ 
-				"order" : 0, 
-				"name" : "구약성서",
-				
-				"sub_contents" : [{
-					"order" : 0,
-					"name" : "창세기",
-					
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					},{
-						"order":2,
-						"name":"제3장",
-					}]
-				},{
-					"order" : 1,
-					"name" : "출애굽기",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					}]
-				}] 
-			},{
-				"order" : 1, 
-				"name" : "신약성서",
-				
-				"sub_contents" : [{
-					"order" : 0,
-					"name" : "마태복음",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					}]
-				},{
-					"order" : 1,
-					"name" : "마가복음",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					},{
-						"order":2,
-						"name":"제3장",
-					},{
-						"order":3,
-						"name":"제4장",
-					}]
-				}] 
-			}]
-		};
-        var mark_types = [ {
-                "keyword":"None",//'It has no type.'
-                "example":"없음"
-            },
-            {
-                "keyword":"NOOR",//'Not ordered.'
-                "example":"직접입력(무순서)"
-            },
-            {
-                "keyword":"BRPO",//'Big Rome letters with a point'
-                "example":"I. II. III."
-            },
-            {
-                "keyword":"SRPO",//'Small Rome letters with a point'
-                "example":"ⅰ. ⅱ. ⅲ."
-            },
-            {
-                "keyword":"NMPO",//Numbers with a point'
-                "example":"1. 2. 3."
-            },
-            {
-                "keyword":"NMAC",//Numbers in a circle
-                "example":"① ② ③"
-            },
-            {
-                "keyword":"NMAR",//Numbers with a round bracket
-                "example":"1) 2) 3)"
-            },
-            {
-                "keyword":"NMRB",//Numbers in round brackets
-                "example":"(1) (2) (3)"
-            },
-            {
-                "keyword":"NMSB",//Numbers in square brackets
-                "example":"[1] [2] [3]"
-            },
-            {
-                "keyword":"NMBR",//Numbers in braces
-                "example":"{1} {2} {3}"
-            },
-            {
-                "keyword":"KCRB",//Korean Consonant in round brackets
-                "example":"㈀㈁㈂"
-            },
-            {
-                "keyword":"KCAC",//Korean Consonant in a circle
-                "example":"㉠㉡㉢"
-            },
-            {
-                "keyword":"KLAC",//Korean letter in a circle
-                "example":"㉮㉯㉰"
-            },
-            {
-                "keyword":"BEPO",
-                "example":"A. B. C."
-            },
-            {
-                "keyword":"BEAR",
-                "example":"A) B) C)"
-            },
-            {
-                "keyword":"BERB",
-                "example":"(A) (B) (C)"
-            },
-            {
-                "keyword":"SEPO",
-                "example":"a. b. c."
-            },
-            {
-                "keyword":"SEAR",
-                "example":"a) b) c)"
-            },
-            {
-                "keyword":"SERB",//Small english letter in round brackets
-                "example":"(a) (b) (c)"
-            },
-            {
-                "keyword":"SEAC",//Small english letter in a circle
-                "example":"ⓐⓑⓒ"
-            }];
+var model = {
+    "name" : "성경",
+    "level_label" :  [{ 
+        "depth" : 0, 
+        "name" : "신구약 구분", 
+        "mark_type" : "BRPO"
+    },{ 
+        "depth" : 1, 
+        "name" : "경서이름", 
+        "mark_type" : "None"
+    },{ 
+        "depth" : 2, 
+        "mark_type" : "None"
+    }],
+
+    "contents" : [{ 
+        "order" : 0, 
+        "name" : "구약성서",
+
+        "sub_contents" : [{
+            "order" : 0,
+            "name" : "창세기",
+
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장",
+            },{
+                "order":1,
+                "name":"제2장",
+            },{
+                "order":2,
+                "name":"제3장",
+            }]
+        },{
+            "order" : 1,
+            "name" : "출애굽기",
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장",
+            },{
+                "order":1,
+                "name":"제2장",
+            }]
+        }] 
+    },{
+        "order" : 1, 
+        "name" : "신약성서",
+
+        "sub_contents" : [{
+            "order" : 0,
+            "name" : "마태복음",
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장",
+            },{
+                "order":1,
+                "name":"제2장",
+            }]
+        },{
+            "order" : 1,
+            "name" : "마가복음",
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장",
+            },{
+                "order":1,
+                "name":"제2장",
+            },{
+                "order":2,
+                "name":"제3장",
+            },{
+                "order":3,
+                "name":"제4장",
+            }]
+        }] 
+    }]
+};
+        
         
 
 angular.module("makingCT")
@@ -163,6 +83,7 @@ angular.module("makingCT")
                         
 			$scope.ct = model;
             $scope.mark_types = mark_types;
+            $scope.classifications = classifications;
             
 			$scope.level_candidates = [1,2,3,4,5,6,7];
 			//$scope.level_length = model.level_label.length;
@@ -253,18 +174,56 @@ angular.module("makingCT")
                     $scope.showModal = true;
                 }
             }
+            
+            $scope.change_class = function(depth, type, text){
+                console.log(depth, type, text);
+                if(type == 'None'){
+                    $scope.ct.level_label[depth].name = undefined;
+                } else if(type == 'etc'){
+                    $scope.modal_title ="분류 제목을 입력하십시오.";
+                    $scope.submit_btn_txt = "확인";
+                    $scope.modal_warning_flag = false;
+                    $scope.changed_depth = depth;
+                    //$scope.modal_input = "";
+                    $("#modal_input").val(""); //fix me
+                    
+                    $scope.submitModal = function() {
+                        $scope.ct.level_label[$scope.changed_depth].name = $("#modal_input").val(); //fix me
+                        $scope.showModal = false;
+                    }
+                    $scope.showModal = true;
+                    
+                } else {
+                    $scope.ct.level_label[depth].name = text;
+                }
+            }
+            
             $scope.change_marktype = function (depth, mark_type) {
                 $scope.ct.level_label[depth].mark_type = mark_type;
-                //$scope.ct.level_label[depth].mark_type = mark_type.keyword;
-                //$scope.ct.level_label[depth].mark_example = mark_type.example;
-                //test_dat = $scope.ct.level_label[depth];
                 
-                for(var i=0; i<$scope.mark_types.length; i++) {
-                    if($scope.mark_types[i].keyword == mark_type){
-                        $scope.ct.level_label[depth].mark_example = $scope.mark_types[i].example;
-                        return;
+                if(mark_type == 'NOOR'){
+                    $scope.modal_title ="기호를 입력하십시오.";
+                    $scope.submit_btn_txt = "확인";
+                    $scope.modal_warning_flag = false;
+                    $scope.changed_depth = depth;
+                    //$scope.modal_input = "";
+                    $("#modal_input").val(""); //fix me
+                    
+                    $scope.submitModal = function() {
+                        $scope.ct.level_label[$scope.changed_depth].mark_example = $("#modal_input").val(); //fix me
+                        $scope.ct.level_label[$scope.changed_depth].mark_text = $("#modal_input").val(); //fix me
+                        $scope.showModal = false;
+                    }
+                    $scope.showModal = true;
+                } else {
+                    for(var i=0; i<$scope.mark_types.length; i++) {
+                        if($scope.mark_types[i].keyword == mark_type) {
+                            $scope.ct.level_label[depth].mark_example = $scope.mark_types[i].example;
+                            return;
+                        }
                     }
                 }
             }
-            //test_dat = $scope;
+            
+            
 		});
