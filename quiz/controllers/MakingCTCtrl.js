@@ -110,14 +110,6 @@ angular.module("makingCT")
                 }
             }
             
-            $scope.change_ct_select = function (depth){
-                if(depth < $scope.ct.level_label.length-1){
-                    $scope.selected_contents[depth+1] = $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents;
-                    $scope.change_ct_select(depth+1);
-                }
-                
-            }
-            
             $scope.showModal = false;
             $scope.modal_title ="dummy";
             $scope.modal_warning_flag = false;
@@ -125,6 +117,20 @@ angular.module("makingCT")
                 console.log("submit");
             };
             $scope.modal_warning_msg="waring msg";
+            
+            $scope.change_ct_select = function (depth){
+                test_dat = $scope.select_order;
+                for(var i=depth+1; i<$scope.select_order.length; i++){
+                    $scope.select_order[i] = 0;
+                }
+                if(depth < $scope.ct.level_label.length-1 &&
+                //if(depth < $scope.select_order.length-1  
+                    $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents != undefined){
+                    $scope.selected_contents[depth+1] = $scope.selected_contents[depth][Number($scope.select_order[depth])].sub_contents;
+                    $scope.change_ct_select(depth+1);
+                }
+                
+            }
             
             $scope.change_depth = function(depth){
                 //roots = $scope.ct.contents;
@@ -136,6 +142,7 @@ angular.module("makingCT")
                             "mark_example":mark_types[0].example
                         });
                         $scope.select_order.push(0);
+                        $scope.selected_contents.push([]);
                     }
                     
                 }
@@ -176,7 +183,7 @@ angular.module("makingCT")
             }
             
             $scope.change_class = function(depth, type, text){
-                console.log(depth, type, text);
+                //console.log(depth, type, text);
                 if(type == 'None'){
                     $scope.ct.level_label[depth].name = undefined;
                 } else if(type == 'etc'){

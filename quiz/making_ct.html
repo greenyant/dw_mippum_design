@@ -270,7 +270,8 @@
                 <div class="ct-contents col-md-10 col-sm-10 col-xs-10">
                     <select size="5" ng-model="select_order[label.depth]"
                             ng-change="change_ct_select(label.depth)">
-                        <option ng-repeat="content in selected_contents[label.depth]"
+                        
+                        <option ng-repeat="content in selected_contents[label.depth] | filter:values"
                                 ng-selected="content.order==select_order[label.depth]"
                                 value="{{content.order}}">
                             {{ content.name }}
