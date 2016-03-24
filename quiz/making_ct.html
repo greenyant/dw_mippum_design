@@ -160,9 +160,19 @@
         }]
         
         var test_dat;
-		var myApp = angular.module("makingCT", []);
+		var app = angular.module("makingCT", []);
         
-        myApp.directive('modal', function () {
+        app.directive('customOnChange', function() {
+          return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+              var onChangeHandler = scope.$eval(attrs.customOnChange);
+              element.bind('change', onChangeHandler);
+            }
+          };
+        });
+        
+        app.directive('modal', function () {
             return {
               template: '<div class="modal fade">' + 
                   '<div class="modal-dialog">' + 
@@ -224,7 +234,9 @@
 <div class="container-fluid">
   <div class="row fst-line">
   	<div class="col-md-5 col-sm-4">
-  	 	<input id="input-1" type="file" class="file filestyle" data-buttonText="{{ const_str.open_file }}">
+  	 	<input id="input_mpct_file" type="file" class="file filestyle"
+            custom-on-change="open_mpct_file"  
+            data-buttonText="{{ const_str.open_file }}">
      </div>
     <div class="col-md-4 col-sm-4 col-xs-7">
      	<button class="btn btn-default">{{ const_str.apply }}</button>
@@ -239,7 +251,8 @@
      
          <div class="input-group">
           <span class="input-group-addon" id="ct-name-addon">{{ const_str.cagetory_file_name}}</span>
-          <input type="text" class="form-control" aria-describedby="ct-name-addon" ng-model="ct.name">
+          <input type="text" class="form-control" 
+                 id="mpctfile_input" aria-describedby="ct-name-addon" ng-model="ct.name">
         </div>
      </div>
     <div class="col-md-2">

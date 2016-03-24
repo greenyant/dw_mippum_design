@@ -3,19 +3,21 @@ angular.module("makingCT")
     $scope.const_str = const_str;
     $scope.mark_types = mark_types;
 
+    $scope.classifications = classifications;
+    $scope.level_candidates = [1,2,3,4,5,6,7];
+    
+    
     //$scope.ct = model;
+    /*
     $http.get("cate_ex_simple.json").success(function(data){
         var jsonString = angular.toJson(data);
         test_dat = jsonString;
         $scope.ct = angular.fromJson(jsonString);
 
-
-        $scope.classifications = classifications;
-
-        $scope.level_candidates = [1,2,3,4,5,6,7];
         $scope.select_order = [];
         $scope.selected_contents = [];
 
+        
         //console.log($scope.ct);
         for(var i=0; i<$scope.ct.level_label.length; i++){
             if(i==0){
@@ -35,7 +37,38 @@ angular.module("makingCT")
 
             }
         }
-    });
+    });*/
+    
+    $scope.open_mpct_file = function(event){
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(progressEvent){
+            // Entire file
+            $scope.ct = angular.fromJson(this.result);
+            
+            $scope.select_order = [];
+            $scope.selected_contents = [];
+
+            for(var i=0; i<$scope.ct.level_label.length; i++){
+                if(i==0){
+                    var selected_one = $scope.ct.contents;
+                    $scope.select_order.push(0);
+                    $scope.selected_contents.push(selected_one);
+                } else {
+                    var selected_one = selected_one[$scope.select_order[i-1]].sub_contents;
+                    $scope.select_order.push(0);
+                    $scope.selected_contents.push(selected_one);
+                }
+                for(var j=0; j<$scope.mark_types.length; j++){
+                    if($scope.mark_types[j].keyword == $scope.ct.level_label[i].mark_type){
+                        $scope.ct.level_label[i].mark_example = $scope.mark_types[j].example;
+                    }
+                }
+            }
+            $scope.$apply();
+        };
+        reader.readAsText(file);
+    }
 
     $scope.showModal = false;
     $scope.modal_title ="dummy";

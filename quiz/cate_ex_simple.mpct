@@ -1,77 +1,77 @@
-			"name" : "성경",
-			"level_label" :  [{ 
-				"depth" : 0, 
-				"name" : "신구약 구분", 
-				"mark" : ["I.", "II."]
-			},{ 
-				"depth" : 1, 
-				"name" : "경서이름", 
-				"mark" : "None"
-			},{ 
-				"depth" : 2, 
-				"name" : "장수", 
-				"mark" : "none"
-			}],
-			
-			"contents" : [{ 
-				"order" : 0, 
-				"name" : "구약성서",
-				
-				"sub_contents" : [{
-					"order" : 0,
-					"name" : "창세기",
-					
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					},{
-						"order":2,
-						"name":"제3장",
-					}]
-				},{
-					"order" : 1,
-					"name" : "출애굽기",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					}]
-				}] 
-			},{
-				"order" : 0, 
-				"name" : "신약성서",
-				
-				"sub_contents" : [{
-					"order" : 0,
-					"name" : "마태복음",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					}]
-				},{
-					"order" : 1,
-					"name" : "마가복음",
-					"sub_contents" : [{
-						"order":0,
-						"name":"제1장",
-					},{
-						"order":1,
-						"name":"제2장",
-					},{
-						"order":2,
-						"name":"제3장",
-					},{
-						"order":3,
-						"name":"제4장",
-					}]
-				}] 
-			}]
-		};
+{
+    "name" : "성경",
+    "level_label": [{
+        "depth" : 0,
+        "name" : "신구약 구분",
+        "mark_type" : "BRPO"
+    }, {
+        "depth" : 1, 
+        "name" : "경서이름", 
+        "mark_type" : "None"
+    },{ 
+        "depth" : 2, 
+        "mark_type" : "None"
+    }],
+
+    "contents":[{ 
+        "order" : 0, 
+        "name" : "구약성서",
+
+        "sub_contents" : [ {
+            "order" : 0,
+            "name" : "창세기",
+
+            "sub_contents" : [ {
+                "order":0,
+                "name":"제1장"
+            },{
+                "order":1,
+                "name":"제2장"
+            },{
+                "order":2,
+                "name":"제3장"
+            } ]
+        }, {
+            "order" : 1,
+            "name" : "출애굽기",
+            "sub_contents" : [ {
+                "order":0,
+                "name":"제1장"
+            },{
+                "order":1,
+                "name":"제2장"
+            }]
+        }] 
+    },{
+        "order" : 1, 
+        "name" : "신약성서",
+
+        "sub_contents" : [{
+            "order" : 0,
+            "name" : "마태복음",
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장"
+            },{
+                "order":1,
+                "name":"제2장"
+            }]
+        },{
+            "order" : 1,
+            "name" : "마가복음",
+            "sub_contents" : [{
+                "order":0,
+                "name":"제1장"
+            },{
+                "order":1,
+                "name":"제2장"
+            },{
+                "order":2,
+                "name":"제3장"
+            },{
+                "order":3,
+                "name":"제4장"
+            }]
+        }] 
+    }]
+}
