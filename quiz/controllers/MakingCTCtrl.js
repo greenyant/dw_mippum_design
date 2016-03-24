@@ -1,6 +1,6 @@
 angular.module("makingCT")
 .controller("MakingCTCtrl", function ($scope, $http){
-    
+    $scope.const_str = const_str;
     $scope.mark_types = mark_types;
 
     //$scope.ct = model;

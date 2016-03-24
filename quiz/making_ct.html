@@ -20,14 +20,32 @@
 	
     </style>
     <script>
+        var const_str = {
+    		'None':'없음',
+            'mark_type_NOOR':"직접입력(무순서)",
+            'class_domain':'대단원',
+            'class_middle_unit':'중단원',
+            'class_cluster':'소단원',
+            'class_etc':'직접입력',
+            
+            'making_cate':'카테고리 만들기',
+            'open_file':'파일 열기',
+            'apply':'적용',
+            'download':'다운로드',
+            'save_as':'변경 내용 저장',
+            
+            'cagetory_file_name' : '카테고리 파일 이름',
+            
+            
+    	};
         
         var mark_types = [ {
                 "keyword":"None",//'It has no type.'
-                "example":"없음"
+                "example":const_str.None
             },
             {
                 "keyword":"NOOR",//'Not ordered.'
-                "example":"직접입력(무순서)"
+                "example":const_str.mark_type_NOOR
             },
             {
                 "keyword":"BRPO",//'Big Rome letters with a point'
@@ -104,22 +122,22 @@
         
         var classifications = [{
             'type':'None',
-            'text':'없음'
+            'text':const_str
         },{
             'type':'domain',
-            'contents':'대단원',
-            'text':'대단원'
+            'contents':const_str.class_domain,
+            'text':const_str.class_domain
         },{
             'type':'middle unit',
-            'contents':'중단원',
-            'text':'중단원'
+            'contents':const_str.class_middle_unit,
+            'text':const_str.class_middle_unit
         },{
             'type':'cluster',
-            'contents':'소단원',
-            'text':'소단원'
+            'contents':const_str.class_cluster,
+            'text':const_str.class_cluster
         },{
             'type':'etc',
-            'text':'직접입력'
+            'text':const_str.class_etc
         }]
         
         var test_dat;
@@ -178,7 +196,7 @@
   <div class="container-fluid">
         <div class="navbar-header">
           
-          <a class="navbar-brand" href="#">카테고리 만들기</a></div>
+          <a class="navbar-brand" href="#">{{ const_str.making_cate }}</a></div>
         <div class="collapse navbar-collapse" id="inverseNavbar1">
                 
         </div>
@@ -187,21 +205,21 @@
 <div class="container-fluid">
   <div class="row fst-line">
   	<div class="col-md-5 col-sm-4">
-  	 	<input id="input-1" type="file" class="file filestyle" data-buttonText="파일 열기">
+  	 	<input id="input-1" type="file" class="file filestyle" data-buttonText="{{ const_str.open_file }}">
      </div>
     <div class="col-md-4 col-sm-4 col-xs-7">
-     	<button class="btn btn-default">적용</button>
-        <button class="btn btn-default">다운로드</button>
+     	<button class="btn btn-default">{{ const_str.apply }}</button>
+        <button class="btn btn-default">{{ const_str.download }}</button>
      </div>
      <div class="text-right col-md-3 col-sm-4">
-	    <button class="btn btn-danger">변경 내용 저장</button>
+	    <button class="btn btn-danger">{{ const_str.save_as }}</button>
      </div>
   </div>
   <div class="row scnd-line">
      <div class="col-md-6 col-sm-6 col-xs-6">
      
          <div class="input-group">
-          <span class="input-group-addon" id="ct-name-addon">카테고리 파일 이름</span>
+          <span class="input-group-addon" id="ct-name-addon">{{ const_str.cagetory_file_name}}</span>
           <input type="text" class="form-control" aria-describedby="ct-name-addon" ng-model="ct.name">
         </div>
      </div>
