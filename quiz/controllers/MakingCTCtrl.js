@@ -16,7 +16,7 @@ angular.module("makingCT")
         $scope.select_order = [];
         $scope.selected_contents = [];
 
-        console.log($scope.ct);
+        //console.log($scope.ct);
         for(var i=0; i<$scope.ct.level_label.length; i++){
             if(i==0){
                 var selected_one = $scope.ct.contents;
@@ -63,8 +63,8 @@ angular.module("makingCT")
 
     }
     $scope.add_ct_select = function (depth) {
-        $scope.modal_title = "새 카테고리 이름을 입력하십시오.";
-        $scope.submit_btn_txt = "확인";
+        $scope.modal_title = const_str.add_ct_modal_title;
+        $scope.submit_btn_txt = const_str.okay;
         $scope.modal_warning_flag = false;
         $scope.changed_depth = depth;
         $scope.modal_input = "";
@@ -87,8 +87,8 @@ angular.module("makingCT")
         $scope.showModal = true;
     }
     $scope.modify_ct_select = function(depth) {
-        $scope.modal_title = "수정할 카테고리의 이름을 입력하십시오.";
-        $scope.submit_btn_txt = "확인";
+        $scope.modal_title = const_str.modify_ct_modal_title;
+        $scope.submit_btn_txt = const_str.okay;
         $scope.modal_warning_flag = false;
         $scope.changed_depth = depth;
         $scope.modal_input = "";
@@ -101,9 +101,9 @@ angular.module("makingCT")
     }
 
     $scope.del_ct_select = function(depth){
-        $scope.modal_title = "해당 카테고리를 삭제하시겠습니까?";
-        $scope.modal_warning_msg = "하위 카테고리도 모두 삭제됩니다.";
-        $scope.submit_btn_txt = "삭제";
+        $scope.modal_title = const_str.del_ct_modal_title;
+        $scope.modal_warning_msg = const_str.del_ct_warning_msg;
+        $scope.submit_btn_txt = const_str.delete;
         $scope.modal_warning_flag = true;
         $scope.changed_depth = depth;
 
@@ -139,10 +139,12 @@ angular.module("makingCT")
             }
 
         }
+        //console.log(depth);
+        //console.log($scope.ct.level_label.length);
         if(depth < $scope.ct.level_label.length){
-            $scope.modal_title ="레벨 수를 "+ depth +"개로 줄이시겠습니까?";
-            $scope.modal_warning_msg = depth + "레벨 이상의 카테고리는 삭제됩니다.";
-            $scope.submit_btn_txt = "삭제";
+            $scope.modal_title = const_str.change_depth_modal_title.replace('{d}',depth);
+            $scope.modal_warning_msg = const_str.change_depth_warning_msg.replace('{d}',depth+1);
+            $scope.submit_btn_txt = const_str.delete;
             $scope.modal_warning_flag = true;
             $scope.changed_depth = depth;
 
@@ -181,8 +183,8 @@ angular.module("makingCT")
         if(type == 'None'){
             $scope.ct.level_label[depth].name = undefined;
         } else if(type == 'etc'){
-            $scope.modal_title ="분류 제목을 입력하십시오.";
-            $scope.submit_btn_txt = "확인";
+            $scope.modal_title = const_str.change_class_modal_title;
+            $scope.submit_btn_txt = const_str.okay;
             $scope.modal_warning_flag = false;
             $scope.changed_depth = depth;
             $scope.modal_input = "";
@@ -205,8 +207,8 @@ angular.module("makingCT")
         $scope.ct.level_label[depth].mark_type = mark_type;
 
         if(mark_type == 'NOOR'){
-            $scope.modal_title ="기호를 입력하십시오.";
-            $scope.submit_btn_txt = "확인";
+            $scope.modal_title = const_str.change_marktype_modal_title;
+            $scope.submit_btn_txt = const_str.okay;
             $scope.modal_warning_flag = false;
             $scope.changed_depth = depth;
             $scope.modal_input = "";

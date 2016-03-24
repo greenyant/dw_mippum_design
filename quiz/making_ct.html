@@ -35,7 +35,26 @@
             'save_as':'변경 내용 저장',
             
             'cagetory_file_name' : '카테고리 파일 이름',
+            'number_of_levels':'레벨 수',
+            'classification':'분류',
+            'mark_type':'부호',
+            'add':'추가',
+            'modify':'수정',
+            'delete':'삭제',
             
+            'add_ct_modal_title':'새 카테고리 이름을 입력하십시오.',
+            'modify_ct_modal_title':'수정할 카테고리의 이름을 입력하십시오.',
+            'del_ct_modal_title':'해당 카테고리를 삭제하시겠습니까?',
+            'del_ct_warning_msg':'하위 카테고리도 모두 삭제됩니다.',
+            
+            'change_depth_modal_title':'레벨 수를 {d}개로 줄이시겠습니까?',
+            'change_depth_warning_msg':'{d} 레벨 이상의 카테고리는 삭제됩니다.',
+            
+            'change_class_modal_title':'분류 제목을 입력하십시오.',
+            'change_marktype_modal_title' : '기호를 입력하십시오.',
+            
+            'okay':'확인',
+            'delete':'삭제',
             
     	};
         
@@ -226,7 +245,7 @@
     <div class="col-md-2">
      	<div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            레벨 수 <span class="caret"></span>
+            {{ const_str.number_of_levels }} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
           	<li ng-repeat="candidate in level_candidates">
@@ -248,7 +267,7 @@
           	class="col-sm-5 col-md-3 each-ct-set ct-level-{{label.depth}}">
             <div class="row">
             
-              <div class="col-md-3 col-sm-3 col-xs-3">분류</div>
+              <div class="col-md-3 col-sm-3 col-xs-3">{{ const_str.classification }}</div>
               <div class="col-md-8 col-sm-9 col-xs-9">
                   <div class="btn-group">
                       <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -267,7 +286,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-3">부호</div>
+              <div class="col-md-3 col-sm-3 col-xs-3">{{ const_str.mark_type }}</div>
               <div class="col-md-8 col-sm-9 col-xs-9">
                   <div class="btn-group">
                       <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -314,17 +333,17 @@
                         <button type="button" class="btn btn-default btn-xs"
                                 ng-click="add_ct_select(label.depth)"
                                 ng-disabled="label.depth>0 && selected_contents[label.depth-1].length==0">
-                              추가
+                              {{ const_str.add }}
                         </button>
                         <button type="button" class="btn btn-default btn-xs"
                                 ng-click="modify_ct_select(label.depth)"
                                 ng-disabled="selected_contents[label.depth].length==0 || select_order[label.depth] == undefined">
-                            수정
+                            {{ const_str.modify }}
                         </button>
                         <button type="button" class="btn btn-default btn-xs"
                                 ng-click="del_ct_select(label.depth)"
                                 ng-disabled="selected_contents[label.depth].length==0 || select_order[label.depth] == undefined">
-                            삭제
+                            {{ const_str.delete }}
                         </button>
                     </div>
               	</div>
