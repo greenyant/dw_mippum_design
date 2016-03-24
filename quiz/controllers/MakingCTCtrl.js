@@ -1,10 +1,10 @@
 var model = {
     "name" : "성경",
-    "level_label" :  [{ 
-        "depth" : 0, 
-        "name" : "신구약 구분", 
+    "level_label": [{
+        "depth" : 0,
+        "name" : "신구약 구분",
         "mark_type" : "BRPO"
-    },{ 
+    }, {
         "depth" : 1, 
         "name" : "경서이름", 
         "mark_type" : "None"
@@ -13,15 +13,15 @@ var model = {
         "mark_type" : "None"
     }],
 
-    "contents" : [{ 
+    "contents":[{ 
         "order" : 0, 
         "name" : "구약성서",
 
-        "sub_contents" : [{
+        "sub_contents" : [ {
             "order" : 0,
             "name" : "창세기",
 
-            "sub_contents" : [{
+            "sub_contents" : [ {
                 "order":0,
                 "name":"제1장",
             },{
@@ -30,11 +30,11 @@ var model = {
             },{
                 "order":2,
                 "name":"제3장",
-            }]
-        },{
+            } ]
+        }, {
             "order" : 1,
             "name" : "출애굽기",
-            "sub_contents" : [{
+            "sub_contents" : [ {
                 "order":0,
                 "name":"제1장",
             },{
@@ -301,5 +301,39 @@ angular.module("makingCT")
                 }
             }
             
+            $scope.change_order_up = function(depth) {
+                if($scope.select_order[depth] > 0 ){
+                    var tmp;
+                    var from = $scope.selected_contents[depth][$scope.select_order[depth]];
+                    var to = $scope.selected_contents[depth][$scope.select_order[depth]-1];
+                    
+                    tmp = from.name;
+                    from.name = to.name;
+                    to.name = tmp;
+                    
+                    tmp = from.sub_contents;
+                    from.sub_contents = to.sub_contents;
+                    to.sub_contents = tmp;
+                    
+                    $scope.select_order[depth] -= 1;
+                }         
+            }
             
+            $scope.change_order_down = function(depth) {
+                if($scope.select_order[depth] < $scope.selected_contents[depth].length-1 ){
+                    var tmp;
+                    var from = $scope.selected_contents[depth][$scope.select_order[depth]];
+                    var to = $scope.selected_contents[depth][$scope.select_order[depth]-1+2];
+                    
+                    tmp = from.name;
+                    from.name = to.name;
+                    to.name = tmp;
+                    
+                    tmp = from.sub_contents;
+                    from.sub_contents = to.sub_contents;
+                    to.sub_contents = tmp;
+                    
+                    $scope.select_order[depth] = $scope.select_order[depth]-1+2;
+                }         
+            }
 		});
