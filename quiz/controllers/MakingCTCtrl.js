@@ -48,6 +48,10 @@ angular.module("makingCT")
             
             $scope.select_order = [];
             $scope.selected_contents = [];
+            
+            //$scope.download_flag = true;
+            //var text = 'helo';
+            //$scope.down_dat = 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify($scope.ct, null, 4));
 
             for(var i=0; i<$scope.ct.level_label.length; i++){
                 if(i==0){
@@ -69,7 +73,11 @@ angular.module("makingCT")
         };
         reader.readAsText(file);
     }
-
+    $scope.down_mpct_file = function(){
+        download($scope.down_dat = angular.toJson($scope.ct, true), 
+                 $scope.ct.name+".mpct", "text/plain");
+    }
+    
     $scope.showModal = false;
     $scope.modal_title ="dummy";
     $scope.modal_warning_flag = false;
