@@ -1,0 +1,227 @@
+<html ng-app="makingQZ">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mippum Edu</title>
+    
+    <!--editor : wogud86@gmail.com -->
+    
+    <!-- Bootstrap -->
+	<link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+	<script src="../js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/angular.js"></script>
+    <script src="../js/bootstrap-filestyle.js"></script>
+    <script src="../js/download.js"></script>
+    
+    <link href="css/making_ct.css" rel="stylesheet">
+
+	<style type="text/css">
+        .btn-us{
+            padding: 0px;
+            font-size: 10px;
+            line-height: 1;
+            border-radius: 0px;
+        }
+    </style>
+    <script>
+        
+        var const_str = {
+    		'None':'없음',
+            'mark_type_NOOR':"직접입력(무순서)",
+            'class_domain':'대단원',
+            'class_middle_unit':'중단원',
+            'class_cluster':'소단원',
+            'class_etc':'직접입력',
+            
+            'making_cate':'카테고리 만들기',
+            'open_file':'파일 열기',
+            'apply':'적용',
+            'download':'다운로드',
+            'save_as':'변경 내용 저장',
+            
+            'cagetory_file_name' : '카테고리 파일 이름',
+            'number_of_levels':'레벨 수',
+            'classification':'분류',
+            'mark_type':'부호',
+            'add':'추가',
+            'modify':'수정',
+            'delete':'삭제',
+            
+            'okay':'확인',
+            'delete':'삭제',
+            
+    	};
+        var test_dat;
+		var app = angular.module("makingQZ", []);
+        
+        app.controller("MakingQZCtrl", function($scope) {
+            $scope.const_str = const_str;
+        });
+        
+        
+	</script>
+</head>
+<body ng-controller="MakingQZCtrl">
+<nav class="navbar navbar-inverse">
+
+  <div class="container-fluid">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="#">퀴즈 만들기</a></div>
+        <div class="collapse navbar-collapse" id="inverseNavbar1">
+                
+        </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row fst-line">
+  	<div class="col-md-5 col-sm-4">
+  	 	<input id="input_mpct_file" type="file" class="file filestyle"
+            custom-on-change="open_mpct_file"  
+            data-buttonText="{{ const_str.open_file }}">
+     </div>
+    <div class="col-md-4 col-sm-4 col-xs-7">
+     	<!--button class="btn btn-default">{{ const_str.apply }}</button-->
+        <button class="btn btn-default" ng-click="down_mpct_file()">{{ const_str.download }}</button>
+        
+     </div>
+     <div class="text-right col-md-3 col-sm-4">
+	    <button class="btn btn-danger">{{ const_str.save_as }}</button>
+     </div>
+  </div>
+  <div class="row scnd-line">
+     <div class="col-md-6 col-sm-6 col-xs-6">
+     
+         <div class="input-group">
+          <span class="input-group-addon" id="ct-name-addon">퀴즈파일 이름</span>
+          <input type="text" class="form-control" 
+                 id="mpctfile_input" aria-describedby="ct-name-addon" ng-model="ct.name">
+        </div>
+     </div>
+    <div class="col-md-2">
+     	<div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ const_str.number_of_levels }} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+          	<li ng-repeat="candidate in level_candidates">
+            	<a href="#" ng-if="candidate != ct.level_label.length"
+                   ng-click="change_depth(candidate)">
+                    {{candidate}}
+                </a>
+                <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
+            </li>
+          </ul>
+        </div>
+     </div>
+  </div>
+    
+    <div class="well well-sm">
+        <h4>카테고리</h4>
+        <div>
+            추가된 카테고리 : 
+            성서단원
+            <button class="btn btn-success btn-us">다운로드</button>
+            <button class="btn btn-danger btn-us">삭제</button>, 
+            난이도
+            <button class="btn btn-success btn-us">다운로드</button>
+            <button class="btn btn-danger btn-us">삭제</button>
+        </div>
+        <div>
+            기본 분석 카테고리 : 
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                이름 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="candidate in level_candidates">
+                    <a href="#" ng-if="candidate != ct.level_label.length"
+                       ng-click="change_depth(candidate)">
+                        {{candidate}}
+                    </a>
+                    <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
+                </li>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                분류 <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li ng-repeat="candidate in level_candidates">
+                    <a href="#" ng-if="candidate != ct.level_label.length"
+                       ng-click="change_depth(candidate)">
+                        {{candidate}}
+                    </a>
+                    <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <input id="input_mpct_file" type="file" class="file filestyle"
+            custom-on-change="open_mpct_file"  data-input="false" data-size="xs"
+            data-buttonText="카테고리 파일 추가">
+        
+    </div>
+</div>`
+    
+	<div class="container-fluid">
+      <div class="row">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        
+        
+        다음 중 아모스서 2장에서 하나님이 이스라엘을 꾸짖으신 내용이 <u>아닌</u> 것은?
+          
+        
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+</div>
+    aa
+
+</body>
+
+
+</html>
