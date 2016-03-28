@@ -22,7 +22,8 @@ angular.module("makingQZ")
         var reader = new FileReader();
         reader.onload = function(progressEvent){
             // Entire file
-            $scope.ct = angular.fromJson(this.result);
+            
+            //$scope.qz.ct = angular.fromJson(this.result);
             /*
             $scope.select_order = [];
             $scope.selected_contents = [];
