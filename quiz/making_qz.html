@@ -24,6 +24,23 @@
             line-height: 1;
             border-radius: 0px;
         }
+        .dropdown-menu > li > label{
+            
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.42857143;
+            color: #333333;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .dropdown-menu > li > label:hover,
+        .dropdown-menu > li > label:focus {
+          text-decoration: none;
+          color: #262626;
+          background-color: #f5f5f5;
+        }
     </style>
     <script>
         
@@ -36,7 +53,7 @@
             'class_etc':'직접입력',
             
             'making_cate':'카테고리 만들기',
-            'open_file':'파일 열기',
+            'quiz_open_file':'퀴즈 파일 열기',
             'apply':'적용',
             'download':'다운로드',
             'save_as':'변경 내용 저장',
@@ -56,12 +73,61 @@
         var test_dat;
 		var app = angular.module("makingQZ", []);
         
-        app.controller("MakingQZCtrl", function($scope) {
-            $scope.const_str = const_str;
+        app.directive('customOnChange', function() {
+          return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+              var onChangeHandler = scope.$eval(attrs.customOnChange);
+              element.bind('change', onChangeHandler);
+            }
+          };
         });
         
-        
-	</script>
+         app.directive('modal', function () {
+            return {
+              template: '<div class="modal fade">' + 
+                  '<div class="modal-dialog">' + 
+                    '<div class="modal-content">' + 
+                      '<div class="modal-header">' + 
+                        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
+                        '<h4 class="modal-title">{{ title }}</h4>' + 
+                      '</div>' + 
+                      '<div class="modal-body" ng-transclude></div>' + 
+                    '</div>' + 
+                  '</div>' + 
+                '</div>',
+              restrict: 'E',
+              transclude: true,
+              replace:true,
+              scope:true,
+              link: function postLink(scope, element, attrs) {
+                attrs.$observe('title', function(){
+                    scope.title = attrs.title;
+                });
+                scope.$watch(attrs.visible, function(value){
+                  if(value == true)
+                    $(element).modal('show');
+                  else
+                    $(element).modal('hide');
+                });
+
+                $(element).on('shown.bs.modal', function(){
+                    //test_dat = attrs;
+                  scope.$apply(function(){
+                    scope.$parent[attrs.visible] = true;
+                  });
+                });
+
+                $(element).on('hidden.bs.modal', function(){
+                  scope.$apply(function(){
+                    scope.$parent[attrs.visible] = false;
+                  });
+                });
+              }
+            };
+          });
+    </script>
+    <script src="controllers/MakingQZCtrl.js"></script>
 </head>
 <body ng-controller="MakingQZCtrl">
 <nav class="navbar navbar-inverse">
@@ -78,48 +144,55 @@
 <div class="container-fluid">
   <div class="row fst-line">
   	<div class="col-md-5 col-sm-4">
-  	 	<input id="input_mpct_file" type="file" class="file filestyle"
-            custom-on-change="open_mpct_file"  
-            data-buttonText="{{ const_str.open_file }}">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            파일열기 <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              <li>
+                  <label for="input_mpqz_file">{{ const_str.quiz_open_file }}</label>
+              </li>
+              <li ng-hide="qz == undefined">
+                  <label for="add_mpct_file">카테고리 파일 추가</label>
+              </li>
+          </ul>
+          <div hidden>
+            <input id="input_mpqz_file" type="file"
+                custom-on-change="open_mpqz_file"  accept=".mpqz" data-input="false"
+                data-buttonText="{{ const_str.quiz_open_file }}">
+            <input id="add_mpct_file" type="file" class="file filestyle"
+                custom-on-change=""  accept=".mpct" data-input="false"
+                data-buttonText="카테고리 파일 추가">
+          </div>
+        </div>
+  	 	<button class="btn btn-default" ng-click="down_mpct_file()">
+            {{ const_str.download }}
+        </button>
      </div>
     <div class="col-md-4 col-sm-4 col-xs-7">
      	<!--button class="btn btn-default">{{ const_str.apply }}</button-->
-        <button class="btn btn-default" ng-click="down_mpct_file()">{{ const_str.download }}</button>
+        
         
      </div>
      <div class="text-right col-md-3 col-sm-4">
 	    <button class="btn btn-danger">{{ const_str.save_as }}</button>
      </div>
   </div>
-  <div class="row scnd-line">
+  <div class="row scnd-line" ng-hide="qz == undefined">
      <div class="col-md-6 col-sm-6 col-xs-6">
      
          <div class="input-group">
-          <span class="input-group-addon" id="ct-name-addon">퀴즈파일 이름</span>
+          <span class="input-group-addon" id="ct-name-addon">퀴즈 파일 이름</span>
           <input type="text" class="form-control" 
-                 id="mpctfile_input" aria-describedby="ct-name-addon" ng-model="ct.name">
+                 id="mpctfile_input" aria-describedby="ct-name-addon" ng-model="qz.name">
         </div>
      </div>
-    <div class="col-md-2">
-     	<div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ const_str.number_of_levels }} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-          	<li ng-repeat="candidate in level_candidates">
-            	<a href="#" ng-if="candidate != ct.level_label.length"
-                   ng-click="change_depth(candidate)">
-                    {{candidate}}
-                </a>
-                <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
-            </li>
-          </ul>
-        </div>
-     </div>
+    
   </div>
     
     <div class="well well-sm">
-        <h4>카테고리</h4>
+        <h4>카테고리<button class="btn btn-primary btn-us">편집기 열기</button></h4>
+        
         <div>
             추가된 카테고리 : 
             성서단원
@@ -160,9 +233,6 @@
               </ul>
             </div>
         </div>
-        <input id="input_mpct_file" type="file" class="file filestyle"
-            custom-on-change="open_mpct_file"  data-input="false" data-size="xs"
-            data-buttonText="카테고리 파일 추가">
         
     </div>
 </div>`
@@ -219,7 +289,19 @@
 </div>
       </div>
 </div>
-    aa
+<modal title="{{modal_title}}" visible="showModal">
+    <!--form role="form" name="form"-->
+        <div class="form-group">
+            <span class="modal_warning" ng-show="modal_warning_flag">{{modal_warning_msg}}</span>
+            <input type="text" class="form-control" ng-hide="modal_warning_flag" 
+                   name="text" id="modal_input" ng-model="$parent.modal_input"/>
+        </div>
+        <div class="text-right">
+            <button class="btn" ng-class="{'btn-danger' : modal_warning_flag, 'btn-primary':!modal_warning_flag}" ng-click="submitModal()">{{submit_btn_txt}}</button>
+            <button type="cancle" class="btn btn-default" data-dismiss="modal">취소</button>
+        </div>
+    <!--/form-->
+</modal>
 
 </body>
 
