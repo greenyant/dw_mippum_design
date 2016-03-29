@@ -41,6 +41,42 @@
           color: #262626;
           background-color: #f5f5f5;
         }
+        
+        .panel-title > .btns {
+            float: right;
+        }
+        .panel-body textarea {
+            border:1px solid #999999;
+            width:100%;
+            margin:5px 0;
+            padding:3px;
+        }
+        .choices table{
+            
+            width:100%;
+        }
+        .choices table tr>td{
+            /*border:solid 1px black;*/
+            font-size: 14px;
+            /*text-align: center;*/
+        }
+        .choices table td:nth-child(1),
+        .choices table td:nth-child(2){
+            /*background-color:red;*/
+            width:50px;
+        }
+        .choices table td:nth-child(3) input {
+            width:100%;
+        }
+        
+        .well h4{
+            color:cadetblue;
+        }
+        .well label{
+            margin-bottom: 0px;
+            font-weight:normal;
+            cursor: pointer;
+        }
     </style>
     <script>
         
@@ -152,7 +188,7 @@
               <li>
                   <label for="input_mpqz_file">{{ const_str.quiz_open_file }}</label>
               </li>
-              <li ng-hide="qz == undefined">
+              <li>
                   <label for="add_mpct_file">카테고리 파일 추가</label>
               </li>
           </ul>
@@ -161,8 +197,8 @@
                 custom-on-change="open_mpqz_file"  accept=".mpqz" data-input="false"
                 data-buttonText="{{ const_str.quiz_open_file }}">
             <input id="add_mpct_file" type="file" class="file filestyle"
-                custom-on-change=""  accept=".mpct" data-input="false"
-                data-buttonText="카테고리 파일 추가">
+                        custom-on-change="open_mpct_file"  accept=".mpct" data-input="false" size="sm"
+                        data-buttonText="카테고리 파일 추가">
           </div>
         </div>
   	 	<button class="btn btn-default" ng-click="down_mpct_file()">
@@ -171,11 +207,9 @@
      </div>
     <div class="col-md-4 col-sm-4 col-xs-7">
      	<!--button class="btn btn-default">{{ const_str.apply }}</button-->
-        
-        
      </div>
      <div class="text-right col-md-3 col-sm-4">
-	    <button class="btn btn-danger">{{ const_str.save_as }}</button>
+	    <!--button class="btn btn-danger">{{ const_str.save_as }}</button-->
      </div>
   </div>
   <div class="row scnd-line" ng-hide="qz == undefined">
@@ -191,103 +225,202 @@
   </div>
     
     <div class="well well-sm">
-        <h4>카테고리<button class="btn btn-primary btn-us">편집기 열기</button></h4>
-        
-        <div>
-            추가된 카테고리 : 
-            성서단원
-            <button class="btn btn-success btn-us">다운로드</button>
-            <button class="btn btn-danger btn-us">삭제</button>, 
-            난이도
-            <button class="btn btn-success btn-us">다운로드</button>
-            <button class="btn btn-danger btn-us">삭제</button>
-        </div>
-        <div>
-            기본 분석 카테고리 : 
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                이름 <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li ng-repeat="candidate in level_candidates">
-                    <a href="#" ng-if="candidate != ct.level_label.length"
-                       ng-click="change_depth(candidate)">
-                        {{candidate}}
-                    </a>
-                    <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
-                </li>
-              </ul>
+        <div class="row">
+            <div class="col-sm-6">
+
+                <h4>
+                    도우미
+                </h4>
+                <div>
+                    <a href="#" class="btn btn-default btn-sm">사용방법</a>
+                    <a href="#" class="btn btn-default btn-sm">수식 쓰기</a>
+                    <a href="#" class="btn btn-default btn-sm">이미지 입력</a>
+                </div>
             </div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                분류 <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li ng-repeat="candidate in level_candidates">
-                    <a href="#" ng-if="candidate != ct.level_label.length"
-                       ng-click="change_depth(candidate)">
-                        {{candidate}}
+
+            <div class="col-sm-6">
+                <h4>
+                    카테고리
+                    <button class="btn btn-default btn-us"><label for="add_mpct_file">추가</label></button>
+                    <a href="/quiz/making_ct.html" target="_blank" class="btn btn-default btn-us">
+                        편집기 열기
                     </a>
-                    <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
-                </li>
-              </ul>
+                    
+                </h4>
+
+                <p>
+                    <b>추가된 카테고리 : </b><br />
+                    <span ng-repeat="ct in qz.ct">
+                        {{ct.name}}
+                        <button class="btn btn-success btn-us" ng-click="down_mpct_file(ct.order)">
+                            다운로드
+                        </button>
+                        <button class="btn btn-danger btn-us" ng-click="del_ct(ct.order)">삭제</button>
+                        <span ng-hide="ct.order == qz.ct.length-1">,</span>
+                    </span>
+                    
+                </p>
+                <div>
+                    <b>기본 분석 카테고리 : </b><br />
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        이름 <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                          
+                        <li ng-repeat="ct in qz.ct">
+                            <a href="#">
+                                {{ct.name}}
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        분류 <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li ng-repeat="candidate in level_candidates">
+                            <a href="#" ng-if="candidate != ct.level_label.length"
+                               ng-click="change_depth(candidate)">
+                                {{candidate}}
+                            </a>
+                            <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4>
+                    객관식 문항 설정
+                </h4>
+                <div>
+                    객관식 번호 유형
+                    <select>
+                    <option>1.2.3.</option>
+                    </select><br />
+
+                    기본 객관식 문항 수
+                    <select>
+                    <option>4</option></select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4>
+                    기타 설정
+                </h4>
+                <div>
+                    수식 사용 : 
+                </div>
             </div>
         </div>
-        
     </div>
-</div>`
-    
-	<div class="container-fluid">
-      <div class="row">
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </a>
-      </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        
-        
-        다음 중 아모스서 2장에서 하나님이 이스라엘을 꾸짖으신 내용이 <u>아닌</u> 것은?
-          
-        
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
 </div>
-      </div>
+    
+<div class="container-fluid">
+    <h3>문항</h3>
+  <div class="row">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <div class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                     1.
+                    </a>
+                    <div class="btns">
+                        적용안됨!!
+                        <button class="btn btn-danger btn-xs">삭제</button>
+                        <button class="btn btn-default btn-xs">위로</button>    
+                        <button class="btn btn-default btn-xs">아래</button>    
+                        <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">닫기</a>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="col-sm-6 col-md-6">
+                    문제 유형 : 
+                    <select>
+                        <option>단답형</option>
+                        <option>에세이</option>
+                        <option>숫자</option>
+                        <option>객관식</option>
+                        <option>OX</option>
+                    </select><br />
+                    질문 : <br />
+                    <textarea width="100%"></textarea><br />
+                    <div class="choices">
+                        <table class="text-center">
+                            <tr>
+                                <td>정답</td>
+                                <td>번호</td>
+                                <td>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        보기 수 <span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">
+                                                2
+                                            </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        한 줄 보기 수 <span class="badge">1</span><span class="caret"></span>
+                                      </button>
+                                      <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#">
+                                                1
+                                            </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" /></td>
+                                <td>A.</td>
+                                <td><input type="text" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="answer">
+                        답 : 
+                        <input type="text" />
+                    </div>
+                    해설 :<br />
+                    <textarea width="100%"></textarea><br />
+                    <p> 
+                        카테고리 <br />
+                        단 원 : <select><option></option></select><br />
+                        난이도 : <select><option></option></select>
+                    </p>
+                </div>
+                
+                <div class="col-md-6">
+                    <button class="btn btn-default">편집 닫기</button>
+                    <button class="btn btn-primary">적용</button>
+                    <!--button class="btn btn-default">편집 활성화</button-->
+                    <div class="preview">
+                        
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+  </div>
+    <button class="btn btn-default">문항 추가</button>
+    <h3>참조글</h3>
+    <button class="btn btn-default">참조글 추가</button>
+    
 </div>
 <modal title="{{modal_title}}" visible="showModal">
     <!--form role="form" name="form"-->
