@@ -106,6 +106,15 @@
             'delete':'삭제',
             
     	};
+    	var choice_mark_types = [ {
+    	    "keyword":"BEPO",
+            "example":"A. B. C.",
+            "marks":["A.","B.","C.","D.","E.","F.","G.","H.","I.","J.","K.","L.","M.","N.","O."]
+        },{
+        	"keyword":"NMAC",//Numbers in a circle
+            "example":"① ② ③",
+            "marks":["①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫","⑬","⑭","⑮"]
+        }];
         var test_dat;
 		var app = angular.module("makingQZ", []);
         
@@ -299,13 +308,14 @@
                 </h4>
                 <div>
                     객관식 번호 유형
-                    <select>
-                    <option>1.2.3.</option>
+                    <select ng-model="choice_mark_type"
+                    	ng-options="mark_type.example for mark_type in choice_mark_types">
                     </select><br />
 
                     기본 객관식 문항 수
-                    <select>
-                    <option>4</option></select>
+                    <select ng-model="default_num_of_choices"
+                    	ng-options="candidate for candidate in candidates_for_num_of_choices">
+                   </select>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -314,6 +324,17 @@
                 </h4>
                 <div>
                     수식 사용 : 
+                    <div class="btn-group" data-toggle="buttons">
+					  <label class="btn btn-default btn-xs"
+					  	ng-class="{active:using_math_flag == true}" ng-click="using_math_flag = true">
+					    <input type="radio" name="using_math_flag_options" autocomplete="off">on
+					  </label>
+					  <label class="btn btn-default btn-xs active"
+					  		ng-class="{active:using_math_flag == false}" ng-click="using_math_flag = false">
+					    <input type="radio" name="using_math_flag_options" autocomplete="off">off
+					  </label>
+					</div>
+					
                 </div>
             </div>
         </div>

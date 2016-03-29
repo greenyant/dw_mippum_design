@@ -1,6 +1,18 @@
 angular.module("makingQZ")
 .controller("MakingQZCtrl", function ($scope){
     $scope.const_str = const_str;
+    $scope.choice_mark_types = choice_mark_types;
+    $scope.choice_mark_type = choice_mark_types[1];
+    
+    $scope.default_num_of_choices = 5;
+    $scope.candidates_for_num_of_choices = []; 
+    
+    $scope.using_math_flag = false;
+    
+	for (var i = 2; i <= 15; i++) {
+	    $scope.candidates_for_num_of_choices.push(i);
+	}
+    
     $scope.qz = {
         "name":"",
         "itmes": []
