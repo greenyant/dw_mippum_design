@@ -6,38 +6,20 @@ angular.module("makingCT")
     $scope.classifications = classifications;
     $scope.level_candidates = [1,2,3,4,5,6,7];
     
-    
-    //$scope.ct = model;
-    /*
-    $http.get("cate_ex_simple.json").success(function(data){
-        var jsonString = angular.toJson(data);
-        test_dat = jsonString;
-        $scope.ct = angular.fromJson(jsonString);
-
-        $scope.select_order = [];
-        $scope.selected_contents = [];
-
-        
-        //console.log($scope.ct);
-        for(var i=0; i<$scope.ct.level_label.length; i++){
-            if(i==0){
-                var selected_one = $scope.ct.contents;
-                $scope.select_order.push(0);
-                //selected_one = model.contents;
-                $scope.selected_contents.push(selected_one);
-            } else {
-                var selected_one = selected_one[$scope.select_order[i-1]].sub_contents;
-                $scope.select_order.push(0);
-                $scope.selected_contents.push(selected_one);
-            }
-            for(var j=0; j<$scope.mark_types.length; j++){
-                if($scope.mark_types[j].keyword == $scope.ct.level_label[i].mark_type){
-                    $scope.ct.level_label[i].mark_example = $scope.mark_types[j].example;
-                }
-
-            }
-        }
-    });*/
+    $scope.ct = {
+        "name":"",
+        "level_label":[{
+            "depth":0,
+            "name":"",
+            "mark_type":"None",
+            "mark_example":"없음"
+        }],
+        "contents":[]
+    };
+            
+    $scope.select_order = [];
+    $scope.selected_contents = [];
+            
     
     $scope.open_mpct_file = function(event){
         var file = event.target.files[0];
@@ -92,7 +74,7 @@ angular.module("makingCT")
             $scope.select_order[i] = 0;
         }
         //test_dat = $scope.select_order[depth];
-
+        
         if($scope.selected_contents[depth][$scope.select_order[depth]].sub_contents == undefined) {
             for(var i=depth+1;i<$scope.ct.level_label.length; i++){
                 $scope.selected_contents[i] = [];
@@ -117,12 +99,27 @@ angular.module("makingCT")
 
                 $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents = [];
                 $scope.selected_contents[$scope.changed_depth] = $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents;
+                
+                $scope.selected_contents[$scope.changed_depth].push({
+                    "order":$scope.selected_contents[$scope.changed_depth].length,
+                    "name":$scope.modal_input
+                });
+            } else if($scope.changed_depth == 0 &&
+               $scope.selected_contents[$scope.changed_depth] == undefined){
+                $scope.selected_contents[$scope.changed_depth] = [];
+                $scope.ct.contents.push({
+                    "order":$scope.selected_contents[$scope.changed_depth].length,
+                    "name":$scope.modal_input
+                });
+                $scope.selected_contents[$scope.changed_depth] = $scope.ct.contents;
+                
+            } else {
+                $scope.selected_contents[$scope.changed_depth].push({
+                    "order":$scope.selected_contents[$scope.changed_depth].length,
+                    "name":$scope.modal_input
+                });
             }
-
-            $scope.selected_contents[$scope.changed_depth].push({
-                "order":$scope.selected_contents[$scope.changed_depth].length,
-                "name":$scope.modal_input
-            });
+            
             $scope.showModal = false;
         }
         $scope.showModal = true;
