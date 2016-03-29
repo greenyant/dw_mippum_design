@@ -1,0 +1,84 @@
+{
+	"id" : null,
+	"name" : "구약시험예제",
+	"usr_index" : 1,
+	"items" : [
+		{  
+			"order" : 1,
+			"question" :  "다음 중 아모스서 2장에서 하나님이 이스라엘을 꾸짖으신 내용이 <u>아닌</u> 것은?",
+			"answerType" : "choiceNumber",
+			"choices" : [ 
+				{ "order":0, "html":"단과 벧엘에 금송아지를 세운 것"}, 
+				{ "order":1, "html":"약자를 착취한 것"},
+				{ "order":2, "html":"나실 사람으로(the nazirites) 포도주를 마시게 한 것"},
+				{ "order":3, "html":"은을 받고 의인을 판 것"}
+			],
+			"answer" : 0,
+			"point" : 2
+ 		},
+		{  
+			"order" : 2,
+			"question" :  "하나님을 \"은혜로우시며 자비로우시며 노하기를 더디하시며 인애가 크신 분\" 이라고 묘사한 선지자는 다음 중 누구인가",
+			"answerType" : "shortString",
+			"answer" : "요나"
+ 		},
+ 		{  
+			"order" : 3,
+			"question" :  "다음 말씀은 로마서 몇 장에 나오는 말씀인가?<br />\"죄의 삯은 사망이요 하나님의 은사는 그리스도 예수 우리 주 안에 있는 영생이니라.\"",
+			"answerType" : "number",
+			"answer" : 6,
+			"point" : 2
+ 		},
+ 		{  
+			"order" : 4,
+			"question" :  "스바냐에 대한 설명으로 옳고 그름을 판별하여라.<br /> \"므낫세와 아몬 시대의 타락을 지나며 침묵했던 이스라엘의 고대 예언을 부활시킨 사람이다\"",
+			"answerType" : "OX",
+			"choices" : [ 
+				{ "order":0, "html":"O"}, 
+				{ "order":1, "html":"X"}
+			],
+			"answer" : "X",
+			"point" : 3
+ 		},
+ 		{  
+			"order" : 5,
+			"question" :  "\"이는 힘으로 되지 아니하며 능으로 되지 아니하고 오직 나의 신으로 되느니라\"는 말씀은 스가랴의 여덟 환상 중 어느 환상과 관련되어 나오는 것인지 설명하여라.",
+			"answerType" : "essay",
+			"answer" : "순금등대와 두 감람나무",
+			"solution" : "이것은 순금등대와 두 감람나무 환상과 관련이 있다."
+ 		},
+ 		{  
+			"order" : 49,
+			"question" :  "어느 왕에게 하신 말씀인가?",
+			"answerType" : "choiceNumber",
+			"choices" : [ 
+				{ "order":0, "html":"여호아하스"},
+				{ "order":1, "html":"시드기야"},
+				{ "order":2, "html":"여호야긴"},
+				{ "order":3, "html":"여호야김"}
+			],
+			"answer" : 3,
+			"reference":0,
+			"point" : 2
+ 		},
+ 		{  
+			"order" : 50,
+			"question" :  "무엇에 관하여 꾸짖고 있는가?",
+			"answerType" : "choiceNumber",
+			"choices" : [ 
+				{ "order":0, "html":"영토 확장을 게을리 한 일"},
+				{ "order":1, "html":"건축 역사를 소홀히 한 일"},
+				{ "order":2, "html":"나라를 정의롭게 다스리지 않은 일"},
+				{ "order":3, "html":"율법 공부를 소홀히 한 일"}
+			],
+			"answer" : 2,
+			"reference":0,
+			"point" : 2
+ 		}
+ 	],
+ 	"references" : [
+ 		{
+ 			"content":"<b>[49~50. 다음은 예레미야 22:15~16로써 유다의 한 왕을 꾸짖는 말씀이다.]</b><br />\"네가 백향목을 많이 사용하여 왕이 될 수 있겠느냐 네 아버지가 먹거나 마시지 아니하였으며 정의와 공의를 행하지 아니하였느냐 그 때에 그가 형통하였었느니라 그는 가난한 자와 궁핍한 자를 변호하고 형통하였나니 이것이 나 를 앎이 아니냐 여호와의 말씀이니라.\""
+ 		}
+ 	]
+}

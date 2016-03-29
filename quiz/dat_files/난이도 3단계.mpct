@@ -1,0 +1,25 @@
+{
+  "name": "난이도 3단계",
+  "level_label": [
+    {
+      "depth": 0,
+      "name": "",
+      "mark_type": "None",
+      "mark_example": "없음"
+    }
+  ],
+  "contents": [
+    {
+      "order": 0,
+      "name": "하"
+    },
+    {
+      "order": 1,
+      "name": "중"
+    },
+    {
+      "order": 2,
+      "name": "상"
+    }
+  ]
+}
