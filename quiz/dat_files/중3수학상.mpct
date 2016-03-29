@@ -1,0 +1,18 @@
+{
+  "name": "중3수학상",
+  "level_label": [
+    {
+      "depth": 0,
+      "name": "대단원",
+      "mark_type": "BRPO",
+      "mark_example": "I. II. III."
+    },
+    {
+      "depth": 1,
+      "name": "중단원",
+      "mark_type": "NMPO",
+      "mark_example": "1. 2. 3."
+    }
+  ],
+  "contents": []
+}
