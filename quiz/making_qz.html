@@ -264,12 +264,14 @@
                     <b>기본 분석 카테고리 : </b><br />
                     <div class="btn-group">
                       <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        이름 <span class="caret"></span>
+                        <span ng-if="qz.basic_ct.order == undefined">이름 선택</span> 
+                        <span ng-if="qz.basic_ct.order != undefined">{{qz.ct[qz.basic_ct.order].name}}</span> 
+                        <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
                           
                         <li ng-repeat="ct in qz.ct">
-                            <a href="#">
+                            <a href="#" ng-click="select_basic_ct_name(ct.order)">
                                 {{ct.name}}
                             </a>
                         </li>
@@ -277,15 +279,15 @@
                     </div>
                     <div class="btn-group">
                       <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        분류 <span class="caret"></span>
+                        <span ng-if="qz.basic_ct.depth == undefined">분류 선택</span> 
+                        <span ng-if="qz.basic_ct.depth != undefined">{{qz.ct[qz.basic_ct.order].level_label[qz.basic_ct.depth].name}}</span> 
+                        <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu">
-                        <li ng-repeat="candidate in level_candidates">
-                            <a href="#" ng-if="candidate != ct.level_label.length"
-                               ng-click="change_depth(candidate)">
-                                {{candidate}}
+                        <li ng-repeat="candidate in basic_ct_candidates">
+                            <a href="#" ng-click="select_basic_ct_depth(candidate.depth)">
+                                {{candidate.name}}
                             </a>
-                            <b ng-if="candidate == ct.level_label.length">{{candidate}}</b>
                         </li>
                       </ul>
                     </div>

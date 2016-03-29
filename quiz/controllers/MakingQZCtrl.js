@@ -20,6 +20,8 @@ angular.module("makingQZ")
     };
     
     //start of area for ct
+    $scope.basic_ct_candidates = [];
+    
     $scope.open_mpct_file = function(event){
         var file = event.target.files[0];
         var reader = new FileReader();
@@ -48,6 +50,16 @@ angular.module("makingQZ")
         for(var i=order; i<$scope.qz.ct.length; i++){
         	$scope.qz.ct[i].order = i;
         }
+    };
+    $scope.select_basic_ct_name = function(order){
+    	//console.log($scope.qz.ct[order].level_label);
+    	$scope.basic_ct_candidates = $scope.qz.ct[order].level_label;
+    	$scope.qz.basic_ct = {};
+    	$scope.qz.basic_ct.order = order;
+    };
+    
+    $scope.select_basic_ct_depth = function(depth){
+    	$scope.qz.basic_ct.depth = depth;
     };
     //end of area for ct
      
