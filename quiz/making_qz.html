@@ -342,14 +342,14 @@
 </div>
     
 <div class="container-fluid">
-    <h3>문항</h3>
+    <h3>문항 <button class="btn btn-default btn-xs">모두 열기</button> <button class="btn btn-default btn-xs">모두 닫기</button></h3>
   <div class="row">
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" ng-repeat="item in qz.items">
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
                 <div class="panel-title">
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                     1.
+                     {{item.order+1}}. {{ item.edit.question | limitTo:8 }}
                     </a>
                     <div class="btns">
                         적용안됨!!
@@ -365,15 +365,11 @@
               <div class="panel-body">
                 <div class="col-sm-6 col-md-6">
                     문제 유형 : 
-                    <select>
-                        <option>단답형</option>
-                        <option>에세이</option>
-                        <option>숫자</option>
-                        <option>객관식</option>
-                        <option>OX</option>
+                    <select ng-model="item.edit.answerType">
+                    	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
                     </select><br />
                     질문 : <br />
-                    <textarea width="100%"></textarea><br />
+                    <textarea width="100%" ng-model="item.edit.question"></textarea><br />
                     <div class="choices">
                         <table class="text-center">
                             <tr>
@@ -385,31 +381,27 @@
                                         보기 수 <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">
-                                                2
-                                            </a>
+                                        <li ng-repeat="candidate in candidates_for_num_of_choices">
+                                            <a href="" ng-click="change_num_of_choices(item, candidate)">{{candidate}}</a>
                                         </li>
                                       </ul>
                                     </div>
                                     <div class="btn-group">
                                       <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        한 줄 보기 수 <span class="badge">1</span><span class="caret"></span>
+                                        한 줄 보기 수 <span class="badge">{{item.edit.numOfChoicesEachRow}}</span><span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">
-                                                1
-                                            </a>
+                                        <li ng-repeat="candidate in item.edit.numOfChoicesEachRow_candidates">
+                                            <a href="" ng-click="item.edit.numOfChoicesEachRow = candidate">{{candidate}}</a>
                                         </li>
                                       </ul>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>A.</td>
-                                <td><input type="text" /></td>
+                            <tr ng-repeat="choice in item.edit.choices">
+                                <td><input type="checkbox" ng-model="choice.answer" /></td>
+                                <td>{{choice_mark_type.marks[choice.order]}}</td>
+                                <td><input type="text" ng-model="choice.value"/></td>
                             </tr>
                         </table>
                     </div>
@@ -440,7 +432,7 @@
 
         </div>
   </div>
-    <button class="btn btn-default">문항 추가</button>
+    <button class="btn btn-default" ng-click="add_item()">문항 추가</button>
     <h3>참조글</h3>
     <button class="btn btn-default">참조글 추가</button>
     

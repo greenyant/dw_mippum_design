@@ -1,21 +1,39 @@
+var answer_type_candidates = [{
+	'name':'choiceNumber',
+	'text':'객관식'
+},{
+	'name':'shortString',
+	'text':'문자단답형'
+},{
+	'name':'number',
+	'text':'숫자단답형'
+},{
+	'name':'OX',
+	'text':'OX퀴즈'
+},{
+	'name':'essay',
+	'text':'서술형'
+}];
+
 angular.module("makingQZ")
 .controller("MakingQZCtrl", function ($scope){
     $scope.const_str = const_str;
     $scope.choice_mark_types = choice_mark_types;
     $scope.choice_mark_type = choice_mark_types[1];
     
+    $scope.answer_type_candidates = answer_type_candidates;
+    
     $scope.default_num_of_choices = 5;
     $scope.candidates_for_num_of_choices = []; 
-    
-    $scope.using_math_flag = false;
-    
-	for (var i = 2; i <= 15; i++) {
+    for (var i = 2; i <= 15; i++) {
 	    $scope.candidates_for_num_of_choices.push(i);
 	}
     
+    $scope.using_math_flag = false;
+    
     $scope.qz = {
         "name":"",
-        "itmes": []
+        "items": []
     };
     
     $scope.open_mpqz_file = function(event){
@@ -75,9 +93,45 @@ angular.module("makingQZ")
     };
     //end of area for ct
      
-    $scope.down_mpqz_file = function(){
+    $scope.down_mpqz_file = function(){ //fix me
         //download($scope.down_dat = angular.toJson($scope.qz, true), 
         //        $scope.ct.name+".mpct", "text/plain");
     };
     
+    $scope.add_item = function(){
+    	//console.log("add itmes");
+    	//:$scope.default_num_of_choices
+    	var default_choices = [];
+    	for(var i=0; i<$scope.default_num_of_choices; i++){
+    		default_choices.push({ order:i, value:"", answer:false});
+    		
+    	}
+    	$scope.qz.items.push({
+    		order:$scope.qz.items.length,
+    		question:"",
+    		
+    		edit:{
+    			answerType:"choiceNumber",
+    			choices:default_choices,
+    			numOfChoicesEachRow:1,
+    			numOfChoicesEachRow_candidates:[1].concat($scope.candidates_for_num_of_choices).slice(0, default_choices.length)
+    		}
+    	});
+    };
+    $scope.add_item(); //fixme
+    
+    $scope.change_num_of_choices = function(item, num){
+    	if(num < item.edit.choices.length) {
+    		item.edit.choices = item.edit.choices.slice(0,num);
+    	} else {
+    		for(var i=item.edit.choices.length; i<num; i++){
+    			item.edit.choices.push({order:i,value:"", answer:false});
+    		}
+    	} 
+    	item.edit.numOfChoicesEachRow = 1;
+    	item.edit.numOfChoicesEachRow_candidates = [1].concat($scope.candidates_for_num_of_choices).slice(0, item.edit.choices.length);
+    };
+
+
 });
+
