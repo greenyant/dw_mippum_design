@@ -409,8 +409,20 @@
                         답 : 
                         <input type="text" />
                     </div>
-                    해설 :<br />
-                    <textarea width="100%"></textarea><br />
+                    <div class="solution">
+	                    해설 : 
+	                    <div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default btn-xs"
+						  	ng-class="{active:item.edit.using_solution == true}" ng-click="item.edit.using_solution = true">
+						    <input type="radio" autocomplete="off">on
+						  </label>
+						  <label class="btn btn-default btn-xs active"
+						  		ng-class="{active:item.edit.using_solution == false}" ng-click="item.edit.using_solution = false">
+						    <input type="radio" autocomplete="off">off
+						  </label>
+						</div>
+						<textarea width="100%" ng-show="item.edit.using_solution" ng-model="item.edit.solution"></textarea>
+					</div>
                     <p> 
                         카테고리 <br />
                         단 원 : <select><option></option></select><br />

@@ -114,7 +114,8 @@ angular.module("makingQZ")
     			answerType:"choiceNumber",
     			choices:default_choices,
     			numOfChoicesEachRow:1,
-    			numOfChoicesEachRow_candidates:[1].concat($scope.candidates_for_num_of_choices).slice(0, default_choices.length)
+    			numOfChoicesEachRow_candidates:[1].concat($scope.candidates_for_num_of_choices).slice(0, default_choices.length),
+    			using_solution:false
     		}
     	});
     };
