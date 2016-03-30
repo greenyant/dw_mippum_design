@@ -378,6 +378,10 @@
                     문제 유형 : 
                     <select ng-model="item.edit.answerType" ng-disabled="!item.edit.editting_flag">
                     	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
+                    </select>
+                    참조글 번호 : 
+                    <select>
+                    	<option>사용안함</option>
                     </select><br />
                     질문 : <br />
                     <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
@@ -452,7 +456,6 @@
 					</div>
                     <div> 
                         카테고리 <br />
-                        
                         <div ng-repeat="category in item.edit.categories">
                             {{qz.ct[category.order].name}} : 
                             <span ng-repeat="contents in category.selected_contents">
@@ -489,12 +492,18 @@
                         		
                         	</div>
                         </div>
-                        정답 : 
-                		해설 : 
+                        <div class="preview-answer">
+                        	정답 : {{item.answerText}}
+                        </div>
+                        <div class="preview-solution">
+                        	해설 : 
+                        	<div ng-bind-html="trustAsHtml(item.solution)"></div>
+                		</div>
                 		카테고리
-                		단원 :
-                		난이도 : 
-                    </div>
+                		<div ng-repeat="ct_text in item.category_texts">
+                            {{ct_text}} 
+                        </div>
+                	</div>
                 </div>
               </div>
             </div>

@@ -150,6 +150,7 @@ angular.module("makingQZ")
     		question:"",
     		numOfChoicesEachRow:1,
     		edit:{
+    			question:"",
     			answerType:"choiceNumber",
     			choices:default_choices,
     			numOfChoicesEachRow:1,
@@ -208,17 +209,51 @@ angular.module("makingQZ")
 		
 		if(item.answerType =="choiceNumber"){
 			item.numOfChoicesEachRow = item.edit.numOfChoicesEachRow;
+			
 			item.choices = [];
 			
-			
+			item.answer = [];
 			for(var i=0; i<item.edit.choices.length; i++){
 				item.choices.push(item.edit.choices[i].value);
-				
+				if(item.edit.choices[i].answer == true){
+					item.answer.push(i);
+				}
+			}
+			if(item.answer.length==1){
+				item.answer = item.answer[0];
+				item.answerText = $scope.choice_mark_type.marks[item.answer];
+			} else {
+				item.answerText = '';
+				for(var i=0;i<item.answer.length;i++){
+					item.answerText += $scope.choice_mark_type.marks[item.answer[i]];
+				}
+			}
+			
+			if(item.edit.using_solution){
+				item.solution = item.edit.solution;
+			} else {
+				item.solution = undefined;
+			}
+			item.categories = [];
+			item.category_texts = [];
+			for(var i=0;i<item.edit.categories.length;i++){
+				item.categories.push(item.edit.categories[i].select_order);
+				var content = $scope.qz.ct[i].contents;
+				var category_text = $scope.qz.ct[i].name + " : ";
+				for(var j=0; j<item.edit.categories[i].select_order.length; j++){
+					if(item.edit.categories[i].select_order[j] == -1) break;
+					if(j != 0) category_text += " > ";
+					category_text += content[item.edit.categories[i].select_order[j]].name;
+					if(content[item.edit.categories[i].select_order[j]].sub_contents !== undefined) 
+						content = content[item.edit.categories[i].select_order[j]].sub_contents;
+					else break;
+				}
+				item.category_texts.push(category_text);
 			}
 		}
 		
-		console.log(item.question);
-		console.log(item);
+		//console.log(item.question);
+		//console.log(item);
 		
 	};
 });
