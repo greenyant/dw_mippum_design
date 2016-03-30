@@ -77,6 +77,14 @@
             font-weight:normal;
             cursor: pointer;
         }
+        
+        .printed_version {
+            border:solid 1px black;
+            background-color:white;
+            min-height:100px;
+            width:466px;
+            padding:3px;
+        }
     </style>
     <script>
         
@@ -363,13 +371,13 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-6 col-md-6 edit-section" ng-show="item.edit.show_flag">
                     문제 유형 : 
-                    <select ng-model="item.edit.answerType">
+                    <select ng-model="item.edit.answerType" ng-disabled="!item.edit.editting_flag">
                     	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
                     </select><br />
                     질문 : <br />
-                    <textarea width="100%" ng-model="item.edit.question"></textarea><br />
+                    <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
                     <div class="choices">
                         <table class="text-center">
                             <tr>
@@ -377,7 +385,8 @@
                                 <td>번호</td>
                                 <td>
                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" ng-disabled="!item.edit.editting_flag" 
+                                      	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         보기 수 <span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu">
@@ -387,7 +396,8 @@
                                       </ul>
                                     </div>
                                     <div class="btn-group">
-                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <button type="button" class="btn btn-default dropdown-toggle btn-xs"  ng-disabled="!item.edit.editting_flag"
+                                      	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         한 줄 보기 수 <span class="badge">{{item.edit.numOfChoicesEachRow}}</span><span class="caret"></span>
                                       </button>
                                       <ul class="dropdown-menu">
@@ -399,43 +409,66 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="choice in item.edit.choices">
-                                <td><input type="checkbox" ng-model="choice.answer" /></td>
+                                <td><input type="checkbox" ng-model="choice.answer" ng-disabled="!item.edit.editting_flag" /></td>
                                 <td>{{choice_mark_type.marks[choice.order]}}</td>
-                                <td><input type="text" ng-model="choice.value"/></td>
+                                <td><input type="text" ng-model="choice.value" ng-disabled="!item.edit.editting_flag"/></td>
                             </tr>
                         </table>
                     </div>
                     <div class="answer">
                         답 : 
-                        <input type="text" />
+                        <input type="text" ng-disabled="!item.edit.editting_flag" />
+                        <input type="number" ng-disabled="!item.edit.editting_flag" />
                     </div>
                     <div class="solution">
 	                    해설 : 
 	                    <div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default btn-xs"
-						  	ng-class="{active:item.edit.using_solution == true}" ng-click="item.edit.using_solution = true">
+						  <label class="btn btn-default btn-xs" ng-click="use_solution(item, true)"
+						  		ng-class="{active:item.edit.using_solution == true, disabled:!item.edit.editting_flag}" >
 						    <input type="radio" autocomplete="off">on
 						  </label>
-						  <label class="btn btn-default btn-xs active"
-						  		ng-class="{active:item.edit.using_solution == false}" ng-click="item.edit.using_solution = false">
-						    <input type="radio" autocomplete="off">off
+						  <label class="btn btn-default btn-xs" ng-click="use_solution(item, false)"
+						  		ng-class="{active:item.edit.using_solution == false, disabled:!item.edit.editting_flag}">
+						    <input type="radio" autocomplete="off" disabled>off
 						  </label>
 						</div>
-						<textarea width="100%" ng-show="item.edit.using_solution" ng-model="item.edit.solution"></textarea>
+						
+						<textarea width="100%" ng-show="item.edit.using_solution" ng-model="item.edit.solution" ng-disabled="!item.edit.editting_flag"></textarea>
 					</div>
                     <p> 
                         카테고리 <br />
-                        단 원 : <select><option></option></select><br />
-                        난이도 : <select><option></option></select>
+                        단 원 : <select ng-disabled="!item.edit.editting_flag"><option></option></select><br />
+                        난이도 : <select ng-disabled="!item.edit.editting_flag"><option></option></select>
                     </p>
                 </div>
                 
                 <div class="col-md-6">
-                    <button class="btn btn-default">편집 닫기</button>
-                    <button class="btn btn-primary">적용</button>
+                    <button class="btn btn-default btn-sm">편집 닫기</button>
+                    <button class="btn btn-default btn-sm">편집 취소</button>
+                    
+                    <button class="btn btn-primary btn-sm" ng-click="apply_item(item)">적용</button>
                     <!--button class="btn btn-default">편집 활성화</button-->
                     <div class="preview">
-                        
+                        <div class="printed_version" >
+                        	{{item.order + 1}}. 
+                        	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
+                        		
+                        	</span>
+                        	<div class="printed_choices row">
+                        		<div class="col-xs-{{12/item.numOfChoicesEachRow}}"
+                        			ng-repeat="choice in item.finished.choices">
+                        			{{choice_mark_type.marks[choice.order]}}
+                        			<span ng-bind-html="trustAsHtml(item.choices[choice.order])"></span>
+                        		</div>
+                        		
+                        		
+                        	</div>
+                        </div>
+                        정답 : 
+                		해설 : 
+                		카테고리
+                		단원 :
+                		난이도 : 
                     </div>
                 </div>
               </div>

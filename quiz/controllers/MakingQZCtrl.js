@@ -16,7 +16,9 @@ var answer_type_candidates = [{
 }];
 
 angular.module("makingQZ")
-.controller("MakingQZCtrl", function ($scope){
+.controller("MakingQZCtrl", function ($scope, $sce){
+	$scope.trustAsHtml = $sce.trustAsHtml;
+	
     $scope.const_str = const_str;
     $scope.choice_mark_types = choice_mark_types;
     $scope.choice_mark_type = choice_mark_types[1];
@@ -109,13 +111,18 @@ angular.module("makingQZ")
     	$scope.qz.items.push({
     		order:$scope.qz.items.length,
     		question:"",
-    		
+    		numOfChoicesEachRow:1,
     		edit:{
     			answerType:"choiceNumber",
     			choices:default_choices,
     			numOfChoicesEachRow:1,
-    			numOfChoicesEachRow_candidates:[1].concat($scope.candidates_for_num_of_choices).slice(0, default_choices.length),
-    			using_solution:false
+    			numOfChoicesEachRow_candidates:[1,2,3,4,6],
+    			using_solution:false,
+    			show_flag:true,
+    			editting_flag:true
+    		},
+    		finished:{
+    			
     		}
     	});
     };
@@ -130,9 +137,37 @@ angular.module("makingQZ")
     		}
     	} 
     	item.edit.numOfChoicesEachRow = 1;
-    	item.edit.numOfChoicesEachRow_candidates = [1].concat($scope.candidates_for_num_of_choices).slice(0, item.edit.choices.length);
+    	//item.edit.numOfChoicesEachRow_candidates = [1].concat($scope.candidates_for_num_of_choices).slice(0, item.edit.choices.length);
     };
+	$(document).on('click','.btn-group .btn.disabled',function(event){
+		//console.log('de click');
+		event.stopPropagation();
+	});
+	$scope.use_solution = function(item, value){
+		if(item.edit.editting_flag){
+			item.edit.using_solution = value;
+		}
+	};
 
-
+	$scope.apply_item = function(item){
+		item.finished = angular.fromJson(angular.toJson(item.edit));
+		item.question = item.edit.question;
+		item.answerType = item.edit.answerType;
+		
+		if(item.answerType =="choiceNumber"){
+			item.numOfChoicesEachRow = item.edit.numOfChoicesEachRow;
+			item.choices = [];
+			
+			
+			for(var i=0; i<item.edit.choices.length; i++){
+				item.choices.push(item.edit.choices[i].value);
+				
+			}
+		}
+		
+		console.log(item.question);
+		console.log(item);
+		
+	};
 });
 
