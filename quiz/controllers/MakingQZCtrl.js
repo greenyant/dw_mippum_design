@@ -65,6 +65,26 @@ angular.module("makingQZ")
             new_ct.order = $scope.qz.ct.length;
             $scope.qz.ct.push(new_ct);
             
+            default_edit_category = {order:$scope.qz.ct.length-1, select_order:[], selected_contents:[]};
+            
+            for(var i=0;i<new_ct.level_label.length;i++){
+                default_edit_category.select_order.push(-1);
+                if(i==0){
+                   default_edit_category.selected_contents.push(new_ct.contents);
+                } else {
+                    default_edit_category.selected_contents.push([]);
+                }
+                default_edit_category.selected_contents[i].depth = i;
+            }
+	        //console.log(default_edit_category);
+	        
+	        for(var i=0;i<$scope.qz.items.length;i++){
+	        	if($scope.qz.items[i].edit.categories === undefined){
+	        		$scope.qz.items[i].edit.categories = [];
+	        	}
+	        	$scope.qz.items[i].edit.categories.push(default_edit_category);
+	        }
+            
             $scope.$apply();
         };
         reader.readAsText(file);
@@ -108,6 +128,23 @@ angular.module("makingQZ")
     		default_choices.push({ order:i, value:"", answer:false});
     		
     	}
+        default_edit_categories = [];
+        if($scope.qz.ct !== undefined){
+            for(var i=0;i<$scope.qz.ct.length;i++){
+                default_edit_categories.push({order:i, select_order:[], selected_contents:[]});
+                for(var j=0;j<$scope.qz.ct[i].level_label.length;j++){
+                    default_edit_categories[i].select_order.push(-1);
+                    if(j==0){
+                       default_edit_categories[i].selected_contents.push($scope.qz.ct[i].contents);
+                        
+                    } else {
+                        default_edit_categories[i].selected_contents.push([]);
+                    }
+                    default_edit_categories[i].selected_contents[j].depth = j;
+                }
+            }
+        }
+        
     	$scope.qz.items.push({
     		order:$scope.qz.items.length,
     		question:"",
@@ -119,7 +156,8 @@ angular.module("makingQZ")
     			numOfChoicesEachRow_candidates:[1,2,3,4,6],
     			using_solution:false,
     			show_flag:true,
-    			editting_flag:true
+    			editting_flag:true,
+                categories:default_edit_categories
     		},
     		finished:{
     			
@@ -148,7 +186,21 @@ angular.module("makingQZ")
 			item.edit.using_solution = value;
 		}
 	};
-
+	
+	$scope.change_item_ct = function(category, depth){
+		if(category.select_order[depth] == -1){
+			category.selected_contents[depth+1] = [];
+			category.selected_contents[depth+1].depth = depth+1;
+		} else if(depth < category.selected_contents.length-1){
+			category.selected_contents[depth+1] = category.selected_contents[depth][category.select_order[depth]].sub_contents;
+			category.selected_contents[depth+1].depth = depth+1;
+		}
+		for(var i=depth+2; i<category.select_order.length;i++){
+			category.selected_contents[i] = [];
+			category.selected_contents[i].depth = i;
+		}
+	};
+	
 	$scope.apply_item = function(item){
 		item.finished = angular.fromJson(angular.toJson(item.edit));
 		item.question = item.edit.question;

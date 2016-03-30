@@ -85,6 +85,9 @@
             width:466px;
             padding:3px;
         }
+        select option:empty { 
+            display:none 
+        }
     </style>
     <script>
         
@@ -348,7 +351,7 @@
         </div>
     </div>
 </div>
-    
+
 <div class="container-fluid">
     <h3>문항 <button class="btn btn-default btn-xs">모두 열기</button> <button class="btn btn-default btn-xs">모두 닫기</button></h3>
   <div class="row">
@@ -419,6 +422,18 @@
                         답 : 
                         <input type="text" ng-disabled="!item.edit.editting_flag" />
                         <input type="number" ng-disabled="!item.edit.editting_flag" />
+                        
+                        <div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default btn-sm" ng-click=""
+						  		ng-class="" >
+						    <input type="radio" autocomplete="off">O
+						  </label>
+						  <label class="btn btn-default btn-sm" ng-click=""
+						  		ng-class="">
+						    <input type="radio" autocomplete="off" disabled>X
+						  </label>
+						</div>
+						
                     </div>
                     <div class="solution">
 	                    해설 : 
@@ -435,11 +450,21 @@
 						
 						<textarea width="100%" ng-show="item.edit.using_solution" ng-model="item.edit.solution" ng-disabled="!item.edit.editting_flag"></textarea>
 					</div>
-                    <p> 
+                    <div> 
                         카테고리 <br />
-                        단 원 : <select ng-disabled="!item.edit.editting_flag"><option></option></select><br />
-                        난이도 : <select ng-disabled="!item.edit.editting_flag"><option></option></select>
-                    </p>
+                        
+                        <div ng-repeat="category in item.edit.categories">
+                            {{qz.ct[category.order].name}} : 
+                            <span ng-repeat="contents in category.selected_contents">
+                            	<select ng-model="category.select_order[contents.depth]"
+                                		ng-change="change_item_ct(category, contents.depth)">
+                                    <option value="-1"> </option>
+                                    <option ng-repeat="content in contents" value={{content.order}}>
+                                        {{content.name}}</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="col-md-6">
