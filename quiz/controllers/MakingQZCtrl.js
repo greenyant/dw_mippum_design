@@ -158,7 +158,9 @@ angular.module("makingQZ")
     			using_solution:false,
     			show_flag:true,
     			editting_flag:true,
-                categories:default_edit_categories
+                categories:default_edit_categories,
+                shortString_answer:'',
+                number_answer:'',
     		},
     		finished:{
     			
@@ -182,6 +184,13 @@ angular.module("makingQZ")
 		//console.log('de click');
 		event.stopPropagation();
 	});
+	
+	$scope.set_OX_answer = function(item, value){
+		if(item.edit.editting_flag){
+			item.edit.OX_answer = value;
+		}
+	};
+	
 	$scope.use_solution = function(item, value){
 		if(item.edit.editting_flag){
 			item.edit.using_solution = value;
@@ -203,11 +212,50 @@ angular.module("makingQZ")
 	};
 	
 	$scope.apply_item = function(item){
+		
 		item.finished = angular.fromJson(angular.toJson(item.edit));
+		
 		item.question = item.edit.question;
 		item.answerType = item.edit.answerType;
 		
-		if(item.answerType =="choiceNumber"){
+		if(item.edit.using_solution){
+			item.solution = item.edit.solution;
+		} else {
+			item.solution = undefined;
+		}
+		
+		item.categories = [];
+		item.category_texts = [];
+		for(var i=0;i<item.edit.categories.length;i++){
+			item.categories.push(item.edit.categories[i].select_order);
+			var content = $scope.qz.ct[i].contents;
+			var category_text = $scope.qz.ct[i].name + " : ";
+			for(var j=0; j<item.edit.categories[i].select_order.length; j++){
+				if(item.edit.categories[i].select_order[j] == -1) break;
+				if(j != 0) category_text += " > ";
+				category_text += content[item.edit.categories[i].select_order[j]].name;
+				if(content[item.edit.categories[i].select_order[j]].sub_contents !== undefined) 
+					content = content[item.edit.categories[i].select_order[j]].sub_contents;
+				else break;
+			}
+			item.category_texts.push(category_text);
+		}
+			
+		if(item.answerType =="shortString"){
+			item.answer = item.edit.shortString_answer;
+			item.answerText = item.edit.shortString_answer;
+			item.finished.choices = [];
+		} else if(item.answerType =="number"){
+			item.answer = item.edit.number_answer;
+			item.answerText = item.edit.number_answer;
+			item.finished.choices = [];
+		} else if(item.answerType =="OX"){
+			item.answer = item.edit.OX_answer;
+			item.answerText = item.edit.OX_answer;
+			item.finished.choices = [];
+		} else if(item.answerType =="essay"){
+			item.finished.choices = [];
+		} else if(item.answerType =="choiceNumber"){
 			item.numOfChoicesEachRow = item.edit.numOfChoicesEachRow;
 			
 			item.choices = [];
@@ -229,27 +277,8 @@ angular.module("makingQZ")
 				}
 			}
 			
-			if(item.edit.using_solution){
-				item.solution = item.edit.solution;
-			} else {
-				item.solution = undefined;
-			}
-			item.categories = [];
-			item.category_texts = [];
-			for(var i=0;i<item.edit.categories.length;i++){
-				item.categories.push(item.edit.categories[i].select_order);
-				var content = $scope.qz.ct[i].contents;
-				var category_text = $scope.qz.ct[i].name + " : ";
-				for(var j=0; j<item.edit.categories[i].select_order.length; j++){
-					if(item.edit.categories[i].select_order[j] == -1) break;
-					if(j != 0) category_text += " > ";
-					category_text += content[item.edit.categories[i].select_order[j]].name;
-					if(content[item.edit.categories[i].select_order[j]].sub_contents !== undefined) 
-						content = content[item.edit.categories[i].select_order[j]].sub_contents;
-					else break;
-				}
-				item.category_texts.push(category_text);
-			}
+			
+			
 		}
 		
 		//console.log(item.question);

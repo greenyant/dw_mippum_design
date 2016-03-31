@@ -385,7 +385,7 @@
                     </select><br />
                     질문 : <br />
                     <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
-                    <div class="choices">
+                    <div class="choices" ng-show="item.edit.answerType == 'choiceNumber'">
                         <table class="text-center">
                             <tr>
                                 <td>정답</td>
@@ -422,18 +422,20 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="answer">
-                        답 : 
-                        <input type="text" ng-disabled="!item.edit.editting_flag" />
-                        <input type="number" ng-disabled="!item.edit.editting_flag" />
+                    <div class="answer" ng-hide="item.edit.answerType == 'choiceNumber' || item.edit.answerType == 'essay'">
+                        답 :
+                        <input type="text" ng-disabled="!item.edit.editting_flag" ng-model="item.edit.shortString_answer" 
+                        		ng-show="item.edit.answerType == 'shortString'"/>
+                        <input type="number" ng-disabled="!item.edit.editting_flag" ng-model="item.edit.number_answer" 
+                        		ng-show="item.edit.answerType == 'number'"/>
                         
-                        <div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default btn-sm" ng-click=""
-						  		ng-class="" >
+                        <div class="btn-group" data-toggle="buttons" ng-show="item.edit.answerType == 'OX'">
+						  <label class="btn btn-default btn-sm" ng-click="set_OX_answer(item, 'O')"
+						  		ng-class="{active:item.edit.OX_answer == 'O', disabled:!item.edit.editting_flag}" >
 						    <input type="radio" autocomplete="off">O
 						  </label>
-						  <label class="btn btn-default btn-sm" ng-click=""
-						  		ng-class="">
+						  <label class="btn btn-default btn-sm" ng-click="set_OX_answer(item, 'X')"
+						  		ng-class="{active:item.edit.OX_answer == 'X', disabled:!item.edit.editting_flag}">
 						    <input type="radio" autocomplete="off" disabled>X
 						  </label>
 						</div>
@@ -482,14 +484,12 @@
                         	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
                         		
                         	</span>
-                        	<div class="printed_choices row">
+                        	<div class="printed_choices row" ng-hide="item.edit.answerType == 'choiceNumber'">
                         		<div class="col-xs-{{12/item.numOfChoicesEachRow}}"
                         			ng-repeat="choice in item.finished.choices">
                         			{{choice_mark_type.marks[choice.order]}}
                         			<span ng-bind-html="trustAsHtml(item.choices[choice.order])"></span>
                         		</div>
-                        		
-                        		
                         	</div>
                         </div>
                         <div class="preview-answer">
