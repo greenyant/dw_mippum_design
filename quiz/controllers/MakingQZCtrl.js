@@ -161,6 +161,8 @@ angular.module("makingQZ")
                 categories:default_edit_categories,
                 shortString_answer:'',
                 number_answer:'',
+                show_item_flag:true,
+                
     		},
     		finished:{
     			
