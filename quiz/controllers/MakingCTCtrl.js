@@ -54,11 +54,11 @@ angular.module("makingCT")
             $scope.$apply();
         };
         reader.readAsText(file);
-    }
+    };
     $scope.down_mpct_file = function(){
         download($scope.down_dat = angular.toJson($scope.ct, true), 
                  $scope.ct.name+".mpct", "text/plain");
-    }
+    };
     
     $scope.showModal = false;
     $scope.modal_title ="dummy";
@@ -84,7 +84,7 @@ angular.module("makingCT")
             $scope.change_ct_select(depth+1);
         }
 
-    }
+    };
     $scope.add_ct_select = function (depth) {
         $scope.modal_title = const_str.add_ct_modal_title;
         $scope.submit_btn_txt = const_str.okay;
@@ -121,9 +121,9 @@ angular.module("makingCT")
             }
             
             $scope.showModal = false;
-        }
+        };
         $scope.showModal = true;
-    }
+    };
     $scope.modify_ct_select = function(depth) {
         $scope.modal_title = const_str.modify_ct_modal_title;
         $scope.submit_btn_txt = const_str.okay;
@@ -134,9 +134,9 @@ angular.module("makingCT")
             $scope.selected_contents[$scope.changed_depth][$scope.select_order[$scope.changed_depth]].name = $scope.modal_input;
 
             $scope.showModal = false;
-        }
+        };
         $scope.showModal = true;
-    }
+    };
 
     $scope.del_ct_select = function(depth){
         $scope.modal_title = const_str.del_ct_modal_title;
@@ -157,9 +157,9 @@ angular.module("makingCT")
                 if (i != $scope.changed_depth) $scope.selected_contents[i] = [];
             }
             $scope.showModal = false;
-        }
+        };
         $scope.showModal = true;
-    }
+    };
 
     $scope.change_depth = function(depth){
         //roots = $scope.ct.contents;
@@ -209,12 +209,12 @@ angular.module("makingCT")
                 $scope.select_order = $scope.select_order.slice(0,$scope.changed_depth);
 
                 $scope.showModal = false;
-            }
+            };
 
             $scope.showModal = true;
         }
         //test_dat = $scope.selected_contents;
-    }
+    };
 
     $scope.change_class = function(depth, type, text){
         //console.log(depth, type, text);
@@ -233,13 +233,13 @@ angular.module("makingCT")
 
                 $scope.ct.level_label[$scope.changed_depth].name = $scope.modal_input;
                 $scope.showModal = false;
-            }
+            };
             $scope.showModal = true;
 
         } else {
             $scope.ct.level_label[depth].name = text;
         }
-    }
+    };
 
     $scope.change_marktype = function (depth, mark_type) {
         $scope.ct.level_label[depth].mark_type = mark_type;
@@ -256,7 +256,7 @@ angular.module("makingCT")
                 $scope.ct.level_label[$scope.changed_depth].mark_example = $scope.modal_input;
                 $scope.ct.level_label[$scope.changed_depth].mark_text = $scope.modal_input;
                 $scope.showModal = false;
-            }
+            };
             $scope.showModal = true;
         } else {
             for(var i=0; i<$scope.mark_types.length; i++) {
@@ -266,7 +266,7 @@ angular.module("makingCT")
                 }
             }
         }
-    }
+    };
 
     $scope.change_order_up = function(depth) {
         if($scope.select_order[depth] > 0 ){
@@ -284,7 +284,7 @@ angular.module("makingCT")
 
             $scope.select_order[depth] -= 1;
         }         
-    }
+    };
 
     $scope.change_order_down = function(depth) {
         if($scope.select_order[depth] < $scope.selected_contents[depth].length-1 ){
@@ -302,5 +302,5 @@ angular.module("makingCT")
 
             $scope.select_order[depth] = $scope.select_order[depth]-1+2;
         }         
-    }
+    };
 });
