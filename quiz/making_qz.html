@@ -84,6 +84,7 @@
             min-height:100px;
             width:466px;
             padding:3px;
+            margin-top:10px;
         }
         select option:empty { 
             display:none 
@@ -91,6 +92,12 @@
         .label {
             margin-left:10px;
             margin-right:10px;
+        }
+        .edit-section{
+            background-color:floralwhite;
+        }
+        .btn-apply{
+            margin:10px;
         }
     </style>
     <script>
@@ -400,7 +407,49 @@
             </div>
             <div id="collapse-{{item.order}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-{{item.order}}">
               <div class="panel-body" ng-show="item.edit.show_item_flag">
-                <div class="col-sm-6 col-md-6 edit-section" ng-show="item.edit.show_flag">
+                
+                
+                <div class="col-md-6">
+                	<!--button class="btn btn-default btn-sm" ng-click="item.edit.show_edit_flag = !item.edit.show_edit_flag">편집 닫기</button-->
+                    <button class="btn btn-default btn-sm" ng-show="item.edit.show_edit_flag" ng-click="cancle_edit_item(item)">
+                    	편집 취소
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-hide="item.edit.show_edit_flag" ng-click="enable_edit_item(item)">
+                    	편집 활성화
+                    </button>
+                    <!--button class="btn btn-primary btn-sm" ng-click="apply_item(item)">적용</button-->
+                    <!--button class="btn btn-default">편집 활성화</button-->
+                    
+                    
+                    <div class="preview">
+                        <div class="printed_version" >
+                        	{{item.order + 1}}. 
+                        	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
+                        		
+                        	</span>
+                        	<div class="printed_choices row" ng-show="item.answerType == 'choiceNumber'">
+                        		<div class="col-xs-{{12/item.numOfChoicesEachRow}}"
+                        			ng-repeat="choice in item.finished.choices">
+                        			{{choice_mark_type.marks[choice.order]}}
+                        			<span ng-bind-html="trustAsHtml(item.choices[choice.order])"></span>
+                        		</div>
+                        	</div>
+                        </div>
+                        <div class="preview-answer">
+                        	정답 : {{item.answerText}}
+                        </div>
+                        <div class="preview-solution">
+                        	해설 : 
+                        	<div ng-bind-html="trustAsHtml(item.solution)"></div>
+                		</div>
+                		카테고리
+                		<div ng-repeat="ct_text in item.category_texts">
+                            {{ct_text}} 
+                        </div>
+                	</div>
+                </div>
+                
+                <div class="col-sm-6 col-md-6 edit-section" ng-show="item.edit.show_edit_flag">
                     문제 유형 : 
                     <select ng-model="item.edit.answerType" ng-disabled="!item.edit.editting_flag">
                     	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
@@ -496,40 +545,9 @@
                             </span>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <button class="btn btn-default btn-sm">편집 닫기</button>
-                    <button class="btn btn-default btn-sm">편집 취소</button>
-                    
-                    <button class="btn btn-primary btn-sm" ng-click="apply_item(item)">적용</button>
-                    <!--button class="btn btn-default">편집 활성화</button-->
-                    <div class="preview">
-                        <div class="printed_version" >
-                        	{{item.order + 1}}. 
-                        	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
-                        		
-                        	</span>
-                        	<div class="printed_choices row" ng-hide="item.edit.answerType == 'choiceNumber'">
-                        		<div class="col-xs-{{12/item.numOfChoicesEachRow}}"
-                        			ng-repeat="choice in item.finished.choices">
-                        			{{choice_mark_type.marks[choice.order]}}
-                        			<span ng-bind-html="trustAsHtml(item.choices[choice.order])"></span>
-                        		</div>
-                        	</div>
-                        </div>
-                        <div class="preview-answer">
-                        	정답 : {{item.answerText}}
-                        </div>
-                        <div class="preview-solution">
-                        	해설 : 
-                        	<div ng-bind-html="trustAsHtml(item.solution)"></div>
-                		</div>
-                		카테고리
-                		<div ng-repeat="ct_text in item.category_texts">
-                            {{ct_text}} 
-                        </div>
-                	</div>
+                    <div class="row text-right">
+                    	<button class="btn btn-primary btn-md btn-apply" ng-click="apply_item(item)">적용</button>
+                    </div>
                 </div>
               </div>
             </div>

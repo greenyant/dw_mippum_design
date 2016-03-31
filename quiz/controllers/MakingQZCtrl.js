@@ -155,22 +155,28 @@ angular.module("makingQZ")
     			choices:default_choices,
     			numOfChoicesEachRow:1,
     			numOfChoicesEachRow_candidates:[1,2,3,4,6],
-    			using_solution:false,
-    			show_flag:true,
+    			categories:default_edit_categories,
+                using_solution:false,
     			editting_flag:true,
-                categories:default_edit_categories,
                 shortString_answer:'',
                 number_answer:'',
                 show_item_flag:true,
-                
-    		},
-    		finished:{
-    			
+                show_edit_flag:true,
     		}
     	});
+    	$scope.qz.items[$scope.qz.items.length-1].finished = $scope.qz.items[$scope.qz.items.length-1].edit;
     };
     $scope.add_item(); //fixme
     
+    $scope.cancle_edit_item = function(item){
+    	if(item.finished != undefined){
+    		item.edit = angular.fromJson(angular.toJson(item.finished));
+    	}
+    	item.edit.show_edit_flag = false;
+    };
+    $scope.enable_edit_item = function(item){
+    	item.edit.show_edit_flag = true;
+    };
     $scope.change_num_of_choices = function(item, num){
     	if(num < item.edit.choices.length) {
     		item.edit.choices = item.edit.choices.slice(0,num);
