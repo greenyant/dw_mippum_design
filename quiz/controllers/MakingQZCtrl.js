@@ -65,20 +65,19 @@ angular.module("makingQZ")
             new_ct.order = $scope.qz.ct.length;
             $scope.qz.ct.push(new_ct);
             
-            default_edit_category = {order:$scope.qz.ct.length-1, select_order:[], selected_contents:[]};
-            
-            for(var i=0;i<new_ct.level_label.length;i++){
-                default_edit_category.select_order.push(-1);
-                if(i==0){
-                   default_edit_category.selected_contents.push(new_ct.contents);
-                } else {
-                    default_edit_category.selected_contents.push([]);
-                }
-                default_edit_category.selected_contents[i].depth = i;
-            }
-	        //console.log(default_edit_category);
+            for(var i=0;i<$scope.qz.items.length;i++){
+	            var default_edit_category = {order:$scope.qz.ct.length-1, select_order:[], selected_contents:[]};
+	            
+	            for(var j=0;j<new_ct.level_label.length;j++){
+	                default_edit_category.select_order.push(-1);
+	                if(j==0){
+	                   default_edit_category.selected_contents.push(new_ct.contents);
+	                } else {
+	                    default_edit_category.selected_contents.push([]);
+	                }
+	                default_edit_category.selected_contents[j].depth = j;
+	            }
 	        
-	        for(var i=0;i<$scope.qz.items.length;i++){
 	        	if($scope.qz.items[i].edit.categories === undefined){
 	        		$scope.qz.items[i].edit.categories = [];
 	        	}
@@ -129,7 +128,7 @@ angular.module("makingQZ")
     		default_choices.push({ order:i, value:"", answer:false});
     		
     	}
-        default_edit_categories = [];
+        var default_edit_categories = [];
         if($scope.qz.ct !== undefined){
             for(var i=0;i<$scope.qz.ct.length;i++){
                 default_edit_categories.push({order:i, select_order:[], selected_contents:[]});
