@@ -364,7 +364,11 @@
 </div>
 
 <div class="container-fluid">
-    <h3>문항 <button class="btn btn-default btn-xs">모두 열기</button> <button class="btn btn-default btn-xs">모두 닫기</button></h3>
+    <h3>
+    	문항 
+    	<button class="btn btn-default btn-xs" ng-click="show_item_all()">모두 열기</button> 
+    	<button class="btn btn-default btn-xs" ng-click="close_item_all()">모두 닫기</button>
+    </h3>
   <div class="row">
   	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" >
           <div class="panel panel-default" ng-repeat="item in qz.items">
@@ -374,19 +378,19 @@
                      {{item.order+1}}. {{ item.question | limitTo:8 }}
                     </a>
                     <div class="btns">
-                        <button class="btn btn-danger btn-sm">
+                        <button class="btn btn-danger btn-sm" ng-click="del_item(item.order)">
                         	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </button>
-                        <div class="label label-success" ng-hide="item.edit.editting_flag">
+                        <div class="label label-success" ng-hide="item.edit.show_edit_flag">
                         	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </div>
-                        <div class="label label-warning" ng-show="item.edit.editting_flag">
+                        <div class="label label-warning" ng-show="item.edit.show_edit_flag">
                         	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                         </div>
-                        <button class="btn btn-default btn-sm">
+                        <button class="btn btn-default btn-sm" ng-click="move_item_up(item.order)">
                         	<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
                         </button>    
-                        <button class="btn btn-default btn-sm">
+                        <button class="btn btn-default btn-sm" ng-click="move_item_down(item.order)">
                         	<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
                         </button>    
                         <!--a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" 

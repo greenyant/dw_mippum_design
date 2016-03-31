@@ -120,6 +120,7 @@ angular.module("makingQZ")
         //        $scope.ct.name+".mpct", "text/plain");
     };
     
+    
     $scope.add_item = function(){
     	//console.log("add itmes");
     	//:$scope.default_num_of_choices
@@ -167,6 +168,54 @@ angular.module("makingQZ")
     	$scope.qz.items[$scope.qz.items.length-1].finished = $scope.qz.items[$scope.qz.items.length-1].edit;
     };
     $scope.add_item(); //fixme
+    $scope.add_item(); //fixme
+    $scope.add_item(); //fixme
+    $scope.add_item(); //fixme
+    
+    $scope.show_item_all = function (){
+    	for(var i=0; i<$scope.qz.items.length; i++){
+    		$scope.qz.items[i].edit.show_item_flag = true;
+    	}
+    };
+    $scope.close_item_all = function(){
+    	for(var i=0; i<$scope.qz.items.length; i++){
+    		$scope.qz.items[i].edit.show_item_flag = false;
+    	}
+    };
+    
+    $scope.move_item_up = function(order){
+    	if(order > 0){
+    		var temp = $scope.qz.items[order-1];
+    		$scope.qz.items[order-1] = $scope.qz.items[order];
+    		$scope.qz.items[order] = temp;
+    		$scope.qz.items[order-1].order = order-1;
+    		$scope.qz.items[order].order = order;
+    	}
+    };
+    $scope.move_item_down = function(order){
+    	if(order < $scope.qz.items.length-1){
+    		var temp = $scope.qz.items[order+1];
+    		$scope.qz.items[order+1] = $scope.qz.items[order];
+    		$scope.qz.items[order] = temp;
+    		$scope.qz.items[order+1].order = order+1;
+    		$scope.qz.items[order].order = order;
+    	}
+    };
+    $scope.del_item = function(order){
+    	$scope.modal_title = order+'번의 문항을 삭제하시겠습니까?';
+        $scope.modal_warning_msg = '해당 문항의 데이터는 모두 사라집니다.';
+        $scope.submit_btn_txt = const_str.delete;
+        $scope.modal_warning_flag = true;
+        
+        $scope.submitModal = function() {
+	        $scope.qz.items.splice(order,1);
+	    	for(var i=order; i<$scope.qz.items.length; i++){
+	    		$scope.qz.items[i].order = i;
+	    	}
+	    	$scope.showModal = false;
+        };
+    	$scope.showModal = true;
+    };
     
     $scope.cancle_edit_item = function(item){
     	if(item.finished != undefined){
@@ -288,7 +337,7 @@ angular.module("makingQZ")
 			
 			
 		}
-		
+		item.edit.show_edit_flag = false;
 		//console.log(item.question);
 		//console.log(item);
 		
