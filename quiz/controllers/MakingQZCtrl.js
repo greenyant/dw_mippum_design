@@ -126,25 +126,40 @@ angular.module("makingQZ")
     
     
     $scope.del_ct = function(order){
-        for(var i=0; i<$scope.qz.items.length; i++){
-	        if($scope.qz.items[i].categories != undefined){
-	        	$scope.qz.items[i].categories.splice(order, 1);
+    	$scope.modal_title = '카테고리를 삭제하시겠습니까?';
+        $scope.modal_warning_msg = '해당 카테고리와 관련된 데이터는 모두 사라집니다.';
+        $scope.submit_btn_txt = const_str.delete;
+        $scope.modal_warning_flag = true;
+        $scope.selected_order = order;
+        
+        $scope.submitModal = function() {
+        	var order = $scope.selected_order;
+			console.log(order);
+			if($scope.qz.basic_ct != undefined && $scope.qz.basic_ct.order == order){
+	    		$scope.basic_ct_candidates = [];
+	    		$scope.qz.basic_ct = {};
+	    		$scope.qz.basic_ct.order = undefined;
+	    	}
+	    	
+	        for(var i=0; i<$scope.qz.items.length; i++){
+		        if($scope.qz.items[i].categories != undefined){
+		        	$scope.qz.items[i].categories.splice(order, 1);
+		        }
+		        $scope.qz.items[i].edit.categories.splice(order, 1);
+		        $scope.qz.items[i].finished.categories.splice(order, 1);
 	        }
-	        $scope.qz.items[i].edit.categories.splice(order, 1);
-	        $scope.qz.items[i].finished.categories.splice(order, 1);
-        }
-        $scope.qz.ct.splice(order, 1);
-        
-        for(var i=order; i<$scope.qz.ct.length; i++){
-        	$scope.qz.ct[i].order = i;
-        	for(var j=0; j<$scope.qz.items.length; j++){
-        		$scope.qz.items[j].edit.categories[i].order = i;
-        		$scope.qz.items[j].finished.categories[i].order = i;
-        	}
-        }
-        //for(var i=0; i<$scope.qz.items[0].edit.categories;)
-        //$scope.qz.items[0].edit.categories;
-        
+	        $scope.qz.ct.splice(order, 1);
+	        
+	        for(var i=order; i<$scope.qz.ct.length; i++){
+	        	$scope.qz.ct[i].order = i;
+	        	for(var j=0; j<$scope.qz.items.length; j++){
+	        		$scope.qz.items[j].edit.categories[i].order = i;
+	        		$scope.qz.items[j].finished.categories[i].order = i;
+	        	}
+	        }
+	        $scope.showModal = false;
+        };
+    	$scope.showModal = true;
     };
     $scope.select_basic_ct_name = function(order){
     	//console.log($scope.qz.ct[order].level_label);
