@@ -38,6 +38,26 @@ angular.module("makingQZ")
         "items": []
     };
     
+    
+    function make_categories_from_edit(item){
+		item.categories = [];
+		item.category_texts = [];
+		for(var i=0;i<item.edit.categories.length;i++){
+			item.categories.push(item.edit.categories[i].select_order.slice());
+			var content = $scope.qz.ct[i].contents;
+			var category_text = $scope.qz.ct[i].name + " : ";
+			for(var j=0; j<item.edit.categories[i].select_order.length; j++){
+				if(item.edit.categories[i].select_order[j] == -1) break;
+				if(j != 0) category_text += " > ";
+				category_text += content[item.edit.categories[i].select_order[j]].name;
+				if(content[item.edit.categories[i].select_order[j]].sub_contents !== undefined) 
+					content = content[item.edit.categories[i].select_order[j]].sub_contents;
+				else break;
+			}
+			item.category_texts.push(category_text);
+		}
+	}
+	
     $scope.open_mpqz_file = function(event){
         var file = event.target.files[0];
         var reader = new FileReader();
@@ -81,13 +101,20 @@ angular.module("makingQZ")
 	        	if($scope.qz.items[i].edit.categories === undefined){
 	        		$scope.qz.items[i].edit.categories = [];
 	        	}
+	        	
 	        	$scope.qz.items[i].edit.categories.push(default_edit_category);
+	        	//$scope.qz.items[i].categories = $scope.qz.items[i].edit.categories.select_order;
+	        	$scope.qz.items[i].finished.categories.push(angular.fromJson(angular.toJson(default_edit_category)));
+	        	
+	        	make_categories_from_edit($scope.qz.items[i]);
 	        }
             
             $scope.$apply();
         };
         reader.readAsText(file);
     };
+    
+    
     
     $scope.down_mpct_file = function(order){
     	//copy and delete order before download.
@@ -96,11 +123,28 @@ angular.module("makingQZ")
         download(angular.toJson(down_ct, true), 
                  down_ct.name+".mpct", "text/plain");
     };
+    
+    
     $scope.del_ct = function(order){
+        for(var i=0; i<$scope.qz.items.length; i++){
+	        if($scope.qz.items[i].categories != undefined){
+	        	$scope.qz.items[i].categories.splice(order, 1);
+	        }
+	        $scope.qz.items[i].edit.categories.splice(order, 1);
+	        $scope.qz.items[i].finished.categories.splice(order, 1);
+        }
         $scope.qz.ct.splice(order, 1);
+        
         for(var i=order; i<$scope.qz.ct.length; i++){
         	$scope.qz.ct[i].order = i;
+        	for(var j=0; j<$scope.qz.items.length; j++){
+        		$scope.qz.items[j].edit.categories[i].order = i;
+        		$scope.qz.items[j].finished.categories[i].order = i;
+        	}
         }
+        //for(var i=0; i<$scope.qz.items[0].edit.categories;)
+        //$scope.qz.items[0].edit.categories;
+        
     };
     $scope.select_basic_ct_name = function(order){
     	//console.log($scope.qz.ct[order].level_label);
@@ -164,12 +208,15 @@ angular.module("makingQZ")
                 show_edit_flag:true,
     		}
     	});
-    	$scope.qz.items[$scope.qz.items.length-1].finished = $scope.qz.items[$scope.qz.items.length-1].edit;
+    	//$scope.qz.items[$scope.qz.items.length-1].finished = $scope.qz.items[$scope.qz.items.length-1].edit;
+    	$scope.qz.items[$scope.qz.items.length-1].finished = angular.fromJson(angular.toJson($scope.qz.items[$scope.qz.items.length-1].edit));
+    	
+    	make_categories_from_edit($scope.qz.items[$scope.qz.items.length-1]);
     };
     $scope.add_item(); //fixme
-    $scope.add_item(); //fixme
-    $scope.add_item(); //fixme
-    $scope.add_item(); //fixme
+    //$scope.add_item(); //fixme
+    //$scope.add_item(); //fixme
+    //$scope.add_item(); //fixme
     
     $scope.show_item_all = function (){
     	for(var i=0; i<$scope.qz.items.length; i++){
@@ -267,6 +314,8 @@ angular.module("makingQZ")
 		}
 	};
 	
+	
+	
 	$scope.apply_item = function(item){
 		
 		item.finished = angular.fromJson(angular.toJson(item.edit));
@@ -280,22 +329,7 @@ angular.module("makingQZ")
 			item.solution = undefined;
 		}
 		
-		item.categories = [];
-		item.category_texts = [];
-		for(var i=0;i<item.edit.categories.length;i++){
-			item.categories.push(item.edit.categories[i].select_order);
-			var content = $scope.qz.ct[i].contents;
-			var category_text = $scope.qz.ct[i].name + " : ";
-			for(var j=0; j<item.edit.categories[i].select_order.length; j++){
-				if(item.edit.categories[i].select_order[j] == -1) break;
-				if(j != 0) category_text += " > ";
-				category_text += content[item.edit.categories[i].select_order[j]].name;
-				if(content[item.edit.categories[i].select_order[j]].sub_contents !== undefined) 
-					content = content[item.edit.categories[i].select_order[j]].sub_contents;
-				else break;
-			}
-			item.category_texts.push(category_text);
-		}
+		make_categories_from_edit(item);
 			
 		if(item.answerType =="shortString"){
 			item.answer = item.edit.shortString_answer;
