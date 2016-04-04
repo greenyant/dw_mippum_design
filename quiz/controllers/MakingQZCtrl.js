@@ -174,9 +174,13 @@ angular.module("makingQZ")
     };
     //end of area for ct
      
-    $scope.down_mpqz_file = function(){ //fix me
-        //download($scope.down_dat = angular.toJson($scope.qz, true), 
-        //        $scope.ct.name+".mpct", "text/plain");
+    $scope.down_mpqz_file = function(){ 
+    	if($scope.qz.name.length == 0){
+    		download(angular.toJson($scope.qz, true), "empty.mpqz", "text/plain");
+    	} else {
+        	download(angular.toJson($scope.qz, true), $scope.qz.name+".mpqz", "text/plain");
+    	}
+        
     };
     
     // edit item sections
@@ -232,7 +236,7 @@ angular.module("makingQZ")
     	
     	make_categories_from_edit($scope.qz.items[$scope.qz.items.length-1]);
     };
-    $scope.add_item(); //fixme
+    //$scope.add_item(); //fixme
     
     $scope.show_item_all = function (){
     	for(var i=0; i<$scope.qz.items.length; i++){
@@ -404,8 +408,8 @@ angular.module("makingQZ")
         });
         $scope.qz.refs[$scope.qz.refs.length-1].finished = angular.fromJson(angular.toJson($scope.qz.refs[$scope.qz.refs.length-1].edit));
 	};
-	$scope.add_ref();
-	$scope.add_ref();
+	//$scope.add_ref();
+	//$scope.add_ref();
 	//$scope.add_ref();
 	
     $scope.show_ref_all = function (){
