@@ -463,13 +463,8 @@
                     문제 유형 : 
                     <select ng-model="item.edit.answerType" ng-disabled="!item.edit.editting_flag">
                     	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
-                    </select>
-                    참조글 번호 : 
-                    <select ng-model="item.edit.reference">
-                    	<option value="-1">사용안함</option>
-                    	<option ng-repeat="ref in qz.refs" value="{{ref.order}}">{{ref.order+1}}</option>
-                    	
                     </select><br />
+                    
                     질문 : <br />
                     <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
                     <div class="choices" ng-show="item.edit.answerType == 'choiceNumber'">
@@ -543,6 +538,25 @@
 						
 						<textarea width="100%" ng-show="item.edit.using_solution" ng-model="item.edit.solution" ng-disabled="!item.edit.editting_flag"></textarea>
 					</div>
+					<div class="using_ref">
+						참조글 번호 : 
+						<div class="btn-group">
+		                    <button type="button" class="btn btn-default dropdown-toggle btn-xs"  ng-disabled="!item.edit.editting_flag"
+			                  	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                    <span ng-show="item.edit.reference == -1">없음</span>
+			                    <span ng-hide="item.edit.reference == -1">{{item.edit.reference + 1}}</span> 
+			                    <span class="caret"></span>
+			                </button>
+			                <ul class="dropdown-menu">
+			                	<li>
+			                        <a href="" ng-click="item.edit.reference = -1">없음</a>
+			                    </li>
+			                    <li ng-repeat="ref in qz.refs">
+			                        <a href="" ng-click="item.edit.reference = ref.order">{{ref.order+1}}</a>
+			                    </li>
+			                </ul>
+		                </div>
+	                </div>
                     <div> 
                         카테고리 <br />
                         <div ng-repeat="category in item.edit.categories">
@@ -637,7 +651,7 @@
 <modal title="{{modal_title}}" visible="showModal">
     <!--form role="form" name="form"-->
         <div class="form-group">
-            <span class="modal_warning" ng-show="modal_warning_flag">{{modal_warning_msg}}</span>
+            <span class="modal_warning" ng-show="modal_warning_flag" ng-bind-html="trustAsHtml(modal_warning_msg)"></span>
             <input type="text" class="form-control" ng-hide="modal_warning_flag" 
                    name="text" id="modal_input" ng-model="$parent.modal_input"/>
         </div>

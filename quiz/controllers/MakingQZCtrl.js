@@ -432,6 +432,45 @@ angular.module("makingQZ")
     	ref.edit.show_edit_flag = true;
     };
     
+    $scope.del_ref = function(order){
+    	
+    	$scope.modal_title = (order+1)+'번의 참조글을 삭제하시겠습니까?';
+        $scope.modal_warning_msg = '해당 참조글을 참조한 문항의 참조 링크는 없어집니다.<br /> 변경되는 참조글 번호에 맞게 문항의 참조 링크는 변경됩니다.';
+        $scope.submit_btn_txt = const_str.delete;
+        $scope.modal_warning_flag = true;
+        
+        $scope.submitModal = function() {
+	        $scope.qz.refs.splice(order,1);
+	    	for(var i=order; i<$scope.qz.refs.length; i++){
+	    		$scope.qz.refs[i].order = i;
+	    	}
+	    	for(var i=order; i<$scope.qz.items.length; i++){
+	    		if($scope.qz.items[i].reference == order){
+	    			$scope.qz.items[i].reference = -1;
+	    		} else if($scope.qz.items[i].reference >= order){
+	    			$scope.qz.items[i].reference -= 1;
+	    		}
+	    		
+	    		if($scope.qz.items[i].edit.reference == order){
+	    			$scope.qz.items[i].edit.reference = -1;
+	    		} else if($scope.qz.items[i].edit.reference >= order){
+	    			$scope.qz.items[i].edit.reference -= 1;
+	    		}
+	    		
+	    		if($scope.qz.items[i].finished.reference == order){
+	    			$scope.qz.items[i].finished.reference = -1;
+	    		} else if($scope.qz.items[i].finished.reference >= order){
+	    			$scope.qz.items[i].finished.reference -= 1;
+	    		}
+	    	}
+	    	$scope.showModal = false;
+        };
+    	$scope.showModal = true; 
+    	
+    	
+    	
+    };
+    
 	$scope.apply_ref = function(ref){
 		ref.finished = angular.fromJson(angular.toJson(ref.edit));
         ref.content = ref.edit.content;
