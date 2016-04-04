@@ -210,6 +210,7 @@ angular.module("makingQZ")
     		order:$scope.qz.items.length,
     		question:"",
     		numOfChoicesEachRow:1,
+    		reference:-1,
     		edit:{
     			question:"",
     			answerType:"choiceNumber",
@@ -223,6 +224,7 @@ angular.module("makingQZ")
                 number_answer:'',
                 show_item_flag:true,
                 show_edit_flag:true,
+                reference:-1
     		}
     	});
     	//$scope.qz.items[$scope.qz.items.length-1].finished = $scope.qz.items[$scope.qz.items.length-1].edit;
@@ -230,7 +232,7 @@ angular.module("makingQZ")
     	
     	make_categories_from_edit($scope.qz.items[$scope.qz.items.length-1]);
     };
-    //$scope.add_item(); //fixme
+    $scope.add_item(); //fixme
     
     $scope.show_item_all = function (){
     	for(var i=0; i<$scope.qz.items.length; i++){
@@ -334,6 +336,7 @@ angular.module("makingQZ")
 		
 		item.finished = angular.fromJson(angular.toJson(item.edit));
 		
+		item.reference = item.edit.reference;
 		item.question = item.edit.question;
 		item.answerType = item.edit.answerType;
 		

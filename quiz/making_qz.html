@@ -429,6 +429,9 @@
                     
                     
                     <div class="preview">
+                    	<div class="printed_version" ng-show="item.reference != -1">
+                        	<span class="printed_ref_content" ng-bind-html="trustAsHtml(qz.refs[item.reference].content)"></span>
+                        </div>
                         <div class="printed_version" >
                         	{{item.order + 1}}. 
                         	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
@@ -462,8 +465,10 @@
                     	<option ng-repeat="candidate in answer_type_candidates" value="{{candidate.name}}">{{candidate.text}}</option>
                     </select>
                     참조글 번호 : 
-                    <select>
-                    	<option>사용안함</option>
+                    <select ng-model="item.edit.reference">
+                    	<option value="-1">사용안함</option>
+                    	<option ng-repeat="ref in qz.refs" value="{{ref.order}}">{{ref.order+1}}</option>
+                    	
                     </select><br />
                     질문 : <br />
                     <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
