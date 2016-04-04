@@ -19,6 +19,7 @@ angular.module("makingCT")
             
     $scope.select_order = [];
     $scope.selected_contents = [];
+    
             
     
     $scope.open_mpct_file = function(event){
@@ -56,8 +57,12 @@ angular.module("makingCT")
         reader.readAsText(file);
     };
     $scope.down_mpct_file = function(){
-        download($scope.down_dat = angular.toJson($scope.ct, true), 
-                 $scope.ct.name+".mpct", "text/plain");
+    	if($scope.ct.name.length == 0) {
+    		download($scope.down_dat = angular.toJson($scope.ct, true),"empty.mpct", "text/plain");
+    	} else {
+    		download($scope.down_dat = angular.toJson($scope.ct, true),$scope.ct.name+".mpct", "text/plain");
+    	}
+        
     };
     
     $scope.showModal = false;
@@ -74,7 +79,7 @@ angular.module("makingCT")
             $scope.select_order[i] = 0;
         }
         //test_dat = $scope.select_order[depth];
-        
+        //console.log($scope.selected_contents[depth][$scope.select_order[depth]]);
         if($scope.selected_contents[depth][$scope.select_order[depth]].sub_contents == undefined) {
             for(var i=depth+1;i<$scope.ct.level_label.length; i++){
                 $scope.selected_contents[i] = [];
@@ -85,6 +90,46 @@ angular.module("makingCT")
         }
 
     };
+    
+    function make_selected_contents_from_select_order () { 
+    	$scope.selected_contents = [];
+    	
+    	for(var i=0; i<$scope.select_order.length; i++){
+            if(i==0){
+                var selected_one = $scope.ct.contents;
+                $scope.selected_contents.push(selected_one);
+            } else {
+            	if(selected_one[$scope.select_order[i-1]] != undefined){
+            		var selected_one = selected_one[$scope.select_order[i-1]].sub_contents;
+                	$scope.selected_contents.push(selected_one);
+            	}
+            }
+        }
+    }
+    function add_ct_by_depth(depth, ct) {
+    	//console.log($scope.selected_contents[depth]);
+    	if(depth > 0 && $scope.selected_contents[depth-1][$scope.select_order[depth-1]].sub_contents === undefined){
+            $scope.selected_contents[depth-1][$scope.select_order[depth-1]].sub_contents = [];
+            $scope.selected_contents[depth] = $scope.selected_contents[depth-1][$scope.select_order[depth-1]].sub_contents;
+            ct.order = $scope.selected_contents[depth].length;
+            $scope.selected_contents[depth].push(ct);
+        } else if(depth == 0 && $scope.selected_contents[depth] == undefined){
+        	//console.log("low");
+            $scope.selected_contents[depth] = [];
+            ct.order = $scope.selected_contents[depth].length;
+            $scope.ct.contents.push(ct);
+            $scope.selected_contents[depth] = $scope.ct.contents;
+        } else if(depth == 0) {
+        	ct.order = $scope.selected_contents[depth].length;
+            $scope.ct.contents.push(ct);
+            $scope.selected_contents[depth] = $scope.ct.contents;
+        } else {
+        	ct.order = $scope.selected_contents[depth].length;
+            $scope.selected_contents[depth].push(ct);
+        }
+        $scope.select_order[depth] = ct.order;
+        //make_selected_contents_from_select_order();
+    }
     $scope.add_ct_select = function (depth) {
         $scope.modal_title = const_str.add_ct_modal_title;
         $scope.submit_btn_txt = const_str.okay;
@@ -92,33 +137,12 @@ angular.module("makingCT")
         $scope.changed_depth = depth;
         $scope.modal_input = "";
 
-
         $scope.submitModal = function() {
-            if($scope.changed_depth > 0 &&
-                $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents === undefined){
-
-                $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents = [];
-                $scope.selected_contents[$scope.changed_depth] = $scope.selected_contents[$scope.changed_depth-1][$scope.select_order[$scope.changed_depth-1]].sub_contents;
-                
-                $scope.selected_contents[$scope.changed_depth].push({
-                    "order":$scope.selected_contents[$scope.changed_depth].length,
-                    "name":$scope.modal_input
-                });
-            } else if($scope.changed_depth == 0 &&
-               $scope.selected_contents[$scope.changed_depth] == undefined){
-                $scope.selected_contents[$scope.changed_depth] = [];
-                $scope.ct.contents.push({
-                    "order":$scope.selected_contents[$scope.changed_depth].length,
-                    "name":$scope.modal_input
-                });
-                $scope.selected_contents[$scope.changed_depth] = $scope.ct.contents;
-                
-            } else {
-                $scope.selected_contents[$scope.changed_depth].push({
-                    "order":$scope.selected_contents[$scope.changed_depth].length,
-                    "name":$scope.modal_input
-                });
-            }
+        	var new_ct = {
+                "order":"",
+                "name":$scope.modal_input
+           	};
+        	add_ct_by_depth($scope.changed_depth, new_ct);
             
             $scope.showModal = false;
         };
@@ -138,6 +162,23 @@ angular.module("makingCT")
         $scope.showModal = true;
     };
 
+	function del_ct_by_depth(depth) {
+		var deleted_ct = $scope.selected_contents[depth].splice($scope.select_order[depth], 1);
+
+		if($scope.selected_contents[depth].length == 0 && depth > 0) {
+			delete $scope.selected_contents[depth-1][$scope.select_order[depth-1]].sub_contents;
+		}
+        for(var i=$scope.select_order[depth]; i<$scope.selected_contents[depth].length;i++) {
+            $scope.selected_contents[depth][i].order = i;
+        }
+
+        for(var i=depth; i<$scope.select_order.length; i++){
+            $scope.select_order[i] = undefined;
+            if (i != depth) $scope.selected_contents[i] = [];
+        }
+        return deleted_ct;
+	}
+	
     $scope.del_ct_select = function(depth){
         $scope.modal_title = const_str.del_ct_modal_title;
         $scope.modal_warning_msg = const_str.del_ct_warning_msg;
@@ -146,16 +187,8 @@ angular.module("makingCT")
         $scope.changed_depth = depth;
 
         $scope.submitModal = function() {
-            $scope.selected_contents[$scope.changed_depth].splice($scope.select_order[$scope.changed_depth], 1);
-
-            for(var i=$scope.select_order[$scope.changed_depth]; i<$scope.selected_contents[$scope.changed_depth].length;i++) {
-                $scope.selected_contents[$scope.changed_depth][i].order = i;
-            }
-
-            for(var i=$scope.changed_depth; i<$scope.select_order.length; i++){
-                $scope.select_order[i] = undefined;
-                if (i != $scope.changed_depth) $scope.selected_contents[i] = [];
-            }
+        	del_ct_by_depth($scope.changed_depth);
+        	
             $scope.showModal = false;
         };
         $scope.showModal = true;
@@ -302,5 +335,27 @@ angular.module("makingCT")
 
             $scope.select_order[depth] = $scope.select_order[depth]-1+2;
         }         
+    };
+    
+    $scope.change_order_left = function(depth) {
+    	//console.log(depth);
+    	if(depth == 0) return;
+    	var tmp = del_ct_by_depth(depth);
+    	//console.log(tmp);
+    	add_ct_by_depth(depth-1, tmp[0]);
+    };
+    
+    $scope.change_order_right = function(depth) {
+    	//console.log(depth);
+    	//console.log($scope.ct.level_label.length);
+    	var order = $scope.select_order[depth];
+    	
+    	if(depth == $scope.ct.level_label.length-1) return;
+    	if(order <= 0) return;
+    	var tmp = del_ct_by_depth(depth);
+    	
+    	order -= 1;
+    	$scope.select_order[depth] = order;
+    	add_ct_by_depth(depth+1, tmp[0]);
     };
 });
