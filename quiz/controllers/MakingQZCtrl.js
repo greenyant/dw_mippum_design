@@ -31,14 +31,14 @@ angular.module("makingQZ")
 	    $scope.candidates_for_num_of_choices.push(i);
 	}
     
-    $scope.using_math_flag = false;
-    
     $scope.qz = {
         "name":"",
+        "using_math_flag":false,
         "items": [],
         "refs":[]
     };
     
+    //$scope.using_math_flag = false;
     
     function make_categories_from_edit(item){
 		item.categories = [];
@@ -383,14 +383,12 @@ angular.module("makingQZ")
 					item.answerText += $scope.choice_mark_type.marks[item.answer[i]];
 				}
 			}
-			
-			
-			
 		}
 		item.edit.show_edit_flag = false;
-		//console.log(item.question);
-		//console.log(item);
-		
+		setTimeout(function(){
+		    MathJax.Hub.Typeset();
+		}, 10);
+		//MathJax.Hub.Typeset();
 	};
 	
 	// edit ref section
@@ -476,6 +474,10 @@ angular.module("makingQZ")
         ref.content = ref.edit.content;
         
         ref.edit.show_edit_flag = false;
+        setTimeout(function(){
+		    MathJax.Hub.Typeset();
+		}, 10);
+		//MathJax.Hub.Typeset();
 	};
 });
 

@@ -14,7 +14,33 @@
     <script src="../js/angular.js"></script>
     <script src="../js/bootstrap-filestyle.js"></script>
     <script src="../js/download.js"></script>
-    
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG-full"></script>
+		
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/SVG"],
+			tex2jax: {
+				inlineMath: [['$','$']],
+				displayMath: [ ['$$','$$']],
+				processEscapes: true,
+				processEnvironments: true,
+				ignoreClass: "no-mathjax",
+				processClass: "mathjax",
+				preview: "TeX"
+			},
+			"HTML-CSS": { 
+				availableFonts: ["STIX", "TeX"],
+				webFont: null 
+			},
+			"SVG": {
+				availableFonts: ["TeX"],
+				blacker: 0,
+				scale: 90
+			},
+			showMathMenu: false
+		});
+	</script>
+	
     <link href="css/making_ct.css" rel="stylesheet">
 
 	<style type="text/css">
@@ -196,7 +222,7 @@
     </script>
     <script src="controllers/MakingQZCtrl.js"></script>
 </head>
-<body ng-controller="MakingQZCtrl">
+<body ng-controller="MakingQZCtrl" class="no-mathjax">
 <nav class="navbar navbar-inverse">
 
   <div class="container-fluid">
@@ -348,11 +374,11 @@
                     수식 사용 : 
                     <div class="btn-group" data-toggle="buttons">
 					  <label class="btn btn-default btn-xs"
-					  	ng-class="{active:using_math_flag == true}" ng-click="using_math_flag = true">
+					  	ng-class="{active:qz.using_math_flag == true}" ng-click="qz.using_math_flag = true">
 					    <input type="radio" name="using_math_flag_options" autocomplete="off">on
 					  </label>
 					  <label class="btn btn-default btn-xs active"
-					  		ng-class="{active:using_math_flag == false}" ng-click="using_math_flag = false">
+					  		ng-class="{active:qz.using_math_flag == false}" ng-click="qz.using_math_flag = false">
 					    <input type="radio" name="using_math_flag_options" autocomplete="off">off
 					  </label>
 					</div>
@@ -413,7 +439,7 @@
                 
             </div>
             <div id="collapse-{{item.order}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-{{item.order}}">
-              <div class="panel-body" ng-show="item.edit.show_item_flag">
+              <div class="panel-body" ng-show="item.edit.show_item_flag" ng-class="{'mathjax':qz.using_math_flag}">
                 
                 
                 <div class="col-md-6">
@@ -619,7 +645,7 @@
                 </div>
 
             </div>
-            <div class="panel-body" ng-show="ref.edit.show_ref_flag">
+            <div class="panel-body" ng-show="ref.edit.show_ref_flag" ng-class="{'mathjax':qz.using_math_flag}">
                 <div class="col-md-6">
                     <button class="btn btn-default btn-sm" ng-show="ref.edit.show_edit_flag" ng-click="cancle_edit_ref(ref)">
                     	편집 취소
