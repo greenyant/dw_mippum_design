@@ -35,7 +35,8 @@ angular.module("makingQZ")
     
     $scope.qz = {
         "name":"",
-        "items": []
+        "items": [],
+        "refs":[]
     };
     
     
@@ -178,6 +179,7 @@ angular.module("makingQZ")
         //        $scope.ct.name+".mpct", "text/plain");
     };
     
+    // edit item sections
     
     $scope.add_item = function(){
     	//console.log("add itmes");
@@ -228,9 +230,6 @@ angular.module("makingQZ")
     	
     	make_categories_from_edit($scope.qz.items[$scope.qz.items.length-1]);
     };
-    $scope.add_item(); //fixme
-    //$scope.add_item(); //fixme
-    //$scope.add_item(); //fixme
     //$scope.add_item(); //fixme
     
     $scope.show_item_all = function (){
@@ -389,6 +388,52 @@ angular.module("makingQZ")
 		//console.log(item.question);
 		//console.log(item);
 		
+	};
+	
+	// edit ref section
+	$scope.add_ref = function(){
+        $scope.qz.refs.push({
+            order:$scope.qz.refs.length,
+            content:"",
+            edit:{
+                content:"",
+                show_edit_flag:true,
+                show_ref_flag:true,
+            }
+        });
+        $scope.qz.refs[$scope.qz.refs.length-1].finished = angular.fromJson(angular.toJson($scope.qz.refs[$scope.qz.refs.length-1].edit));
+	};
+	$scope.add_ref();
+	$scope.add_ref();
+	//$scope.add_ref();
+	
+    $scope.show_ref_all = function (){
+    	for(var i=0; i<$scope.qz.refs.length; i++){
+    		$scope.qz.refs[i].edit.show_ref_flag = true;
+    	}
+    };
+    $scope.close_ref_all = function(){
+    	for(var i=0; i<$scope.qz.refs.length; i++){
+    		$scope.qz.refs[i].edit.show_ref_flag = false;
+    	}
+    };
+    
+    $scope.cancle_edit_ref = function(ref){
+    	if(ref.finished != undefined){
+    		ref.edit = angular.fromJson(angular.toJson(ref.finished));
+    	}
+    	ref.edit.show_edit_flag = false;
+    };
+	
+    $scope.enable_edit_ref = function(ref){
+    	ref.edit.show_edit_flag = true;
+    };
+    
+	$scope.apply_ref = function(ref){
+		ref.finished = angular.fromJson(angular.toJson(ref.edit));
+        ref.content = ref.edit.content;
+        
+        ref.edit.show_edit_flag = false;
 	};
 });
 

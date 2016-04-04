@@ -374,9 +374,12 @@
           <div class="panel panel-default" ng-repeat="item in qz.items">
             <div class="panel-heading" role="tab" id="headingOne">
                 <div class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{item.order}}" aria-expanded="true" aria-controls="collapse-{{item.order}}">
-                     {{item.order+1}}. {{ item.question | limitTo:8 }}
+                    <a href="" ng-click="item.edit.show_item_flag = !item.edit.show_item_flag">
+                        {{item.order+1}}. {{ item.question | limitTo:8 }}
                     </a>
+                    <!--a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{item.order}}" aria-expanded="true" aria-controls="collapse-{{item.order}}">
+                     {{item.order+1}}. {{ item.question | limitTo:8 }}
+                    </a-->
                     <div class="btns">
                         <button class="btn btn-danger btn-sm" ng-click="del_item(item.order)">
                         	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -562,26 +565,68 @@
     <button class="btn btn-default" ng-click="add_item()">문항 추가</button>
     
 </div>
+<hr />
 <div class="container-fluid">
     <h3>참조글
-        <button class="btn btn-default btn-xs" ng-click="">모두 열기</button> 
-		<button class="btn btn-default btn-xs" ng-click="">모두 닫기</button>
+        <button class="btn btn-default btn-xs" ng-click="show_ref_all()">모두 열기</button> 
+		<button class="btn btn-default btn-xs" ng-click="close_ref_all()">모두 닫기</button>
     </h3>
     <div class="row">
-        <div class="panel panel-default">
+        <div class="panel panel-default"  ng-repeat="ref in qz.refs">
             <div class="panel-heading" role="tab" id="headingOne">
                 <div class="panel-title">
-                    title
+                    <a href="" ng-click="ref.edit.show_ref_flag = !ref.edit.show_ref_flag">
+                        {{ ref.order+1 }}. {{ ref.content | limitTo:8 }}
+                    </a>
+                    <div class="btns">
+                        <button class="btn btn-danger btn-sm" ng-click="del_ref(ref.order)">
+                        	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                        <div class="label label-success" ng-hide="ref.edit.show_edit_flag">
+                        	<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </div>
+                        <div class="label label-warning" ng-show="ref.edit.show_edit_flag">
+                        	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        </div>
+                        <button class="btn btn-default btn-sm" ng-click="ref.edit.show_ref_flag = !ref.edit.show_ref_flag">
+                        	<span ng-show="ref.edit.show_ref_flag">
+                        		<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        	</span>
+                        	<span ng-show="!ref.edit.show_ref_flag">
+                        		<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        	</span>
+                        </button>
+                    </div>
                 </div>
 
             </div>
-            <div class="panel-body">
-                body
+            <div class="panel-body" ng-show="ref.edit.show_ref_flag">
+                <div class="col-md-6">
+                    <button class="btn btn-default btn-sm" ng-show="ref.edit.show_edit_flag" ng-click="cancle_edit_ref(ref)">
+                    	편집 취소
+                    </button>
+                    <button class="btn btn-default btn-sm" ng-hide="ref.edit.show_edit_flag" ng-click="enable_edit_ref(ref)">
+                    	편집 활성화
+                    </button>
+                    
+                    <div class="preview">
+                        <div class="printed_version" >
+                            <span class="printed_ref_content" ng-bind-html="trustAsHtml(ref.content)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 edit-section" ng-show="ref.edit.show_edit_flag">
+                    내용 : <br />
+                    <textarea width="100%" ng-model="ref.edit.content"> </textarea>
+                    <div class="row text-right">
+                    	<button class="btn btn-primary btn-md btn-apply" ng-click="apply_ref(ref)">적용</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <button class="btn btn-default">참조글 추가</button>
+    <button class="btn btn-default" ng-click="add_ref()">참조글 추가</button>
     
 </div>
 <modal title="{{modal_title}}" visible="showModal">
