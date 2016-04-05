@@ -7,10 +7,10 @@
 			"question" :  "다음 중 아모스서 2장에서 하나님이 이스라엘을 꾸짖으신 내용이 <u>아닌</u> 것은?",
 			"answerType" : "choiceNumber",
 			"choices" : [ 
-				{ "order":0, "html":"단과 벧엘에 금송아지를 세운 것"}, 
-				{ "order":1, "html":"약자를 착취한 것"},
-				{ "order":2, "html":"나실 사람으로(the nazirites) 포도주를 마시게 한 것"},
-				{ "order":3, "html":"은을 받고 의인을 판 것"}
+				{ "order":0, "value":"단과 벧엘에 금송아지를 세운 것"}, 
+				{ "order":1, "value":"약자를 착취한 것"},
+				{ "order":2, "value":"나실 사람으로(the nazirites) 포도주를 마시게 한 것"},
+				{ "order":3, "value":"은을 받고 의인을 판 것"}
 			],
 			"answer" : 0,
 			"point" : 2

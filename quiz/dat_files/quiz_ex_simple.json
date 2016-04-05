@@ -8,10 +8,10 @@
 			"question" :  "다음 중 아모스서 2장에서 하나님이 이스라엘을 꾸짖으신 내용이 <u>아닌</u> 것은?",
 			"answerType" : "choiceNumber",
 			"choices" : [ 
-				{ "order":0, "html":"단과 벧엘에 금송아지를 세운 것"}, 
-				{ "order":1, "html":"약자를 착취한 것"},
-				{ "order":2, "html":"나실 사람으로(the nazirites) 포도주를 마시게 한 것"},
-				{ "order":3, "html":"은을 받고 의인을 판 것"}
+				{ "order":0, "value":"단과 벧엘에 금송아지를 세운 것"}, 
+				{ "order":1, "value":"약자를 착취한 것"},
+				{ "order":2, "value":"나실 사람으로(the nazirites) 포도주를 마시게 한 것"},
+				{ "order":3, "value":"은을 받고 의인을 판 것"}
 			],
 			"answer" : 0,
 			"point" : 2
@@ -34,8 +34,8 @@
 			"question" :  "스바냐에 대한 설명으로 옳고 그름을 판별하여라.<br /> \"므낫세와 아몬 시대의 타락을 지나며 침묵했던 이스라엘의 고대 예언을 부활시킨 사람이다\"",
 			"answerType" : "OX",
 			"choices" : [ 
-				{ "order":0, "html":"O"}, 
-				{ "order":1, "html":"X"}
+				{ "order":0, "value":"O"}, 
+				{ "order":1, "value":"X"}
 			],
 			"answer" : "X",
 			"point" : 3
@@ -52,10 +52,10 @@
 			"question" :  "어느 왕에게 하신 말씀인가?",
 			"answerType" : "choiceNumber",
 			"choices" : [ 
-				{ "order":0, "html":"여호아하스"},
-				{ "order":1, "html":"시드기야"},
-				{ "order":2, "html":"여호야긴"},
-				{ "order":3, "html":"여호야김"}
+				{ "order":0, "value":"여호아하스"},
+				{ "order":1, "value":"시드기야"},
+				{ "order":2, "value":"여호야긴"},
+				{ "order":3, "value":"여호야김"}
 			],
 			"answer" : 3,
 			"reference":0,
@@ -66,10 +66,10 @@
 			"question" :  "무엇에 관하여 꾸짖고 있는가?",
 			"answerType" : "choiceNumber",
 			"choices" : [ 
-				{ "order":0, "html":"영토 확장을 게을리 한 일"},
-				{ "order":1, "html":"건축 역사를 소홀히 한 일"},
-				{ "order":2, "html":"나라를 정의롭게 다스리지 않은 일"},
-				{ "order":3, "html":"율법 공부를 소홀히 한 일"}
+				{ "order":0, "value":"영토 확장을 게을리 한 일"},
+				{ "order":1, "value":"건축 역사를 소홀히 한 일"},
+				{ "order":2, "value":"나라를 정의롭게 다스리지 않은 일"},
+				{ "order":3, "value":"율법 공부를 소홀히 한 일"}
 			],
 			"answer" : 2,
 			"reference":0,
