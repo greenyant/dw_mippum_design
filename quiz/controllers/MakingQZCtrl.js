@@ -1,6 +1,9 @@
 var answer_type_candidates = [{
-	'name':'choiceNumber',
-	'text':'객관식'
+	'name':'choiceOne',
+	'text':'객관식일답'
+},{
+	'name':'choiceMulti',
+	'text':'객관식다답'
 },{
 	'name':'shortString',
 	'text':'문자단답형'
@@ -175,10 +178,18 @@ angular.module("makingQZ")
     //end of area for ct
      
     $scope.down_mpqz_file = function(){ 
+    	var down_dat = angular.fromJson(angular.toJson($scope.qz));
+    	for(i=0;i<down_dat.items.length;i++){
+    		console.log(down_dat.items[i]);
+    		//delete down_dat.items[i].edit; //fix me
+    		//delete down_dat.items[i].finished; //fix me
+    	}
+    	
     	if($scope.qz.name.length == 0){
-    		download(angular.toJson($scope.qz, true), "empty.mpqz", "text/plain");
+    		download(angular.toJson(down_dat, true), "empty.mpqz", "text/plain");
     	} else {
-        	download(angular.toJson($scope.qz, true), $scope.qz.name+".mpqz", "text/plain");
+        	//download(angular.toJson(down_dat, true), $scope.qz.name+".mpqz", "text/plain");
+        	download(angular.toJson(down_dat, true), $scope.qz.name+"_not_deleted.mpqz", "text/plain"); //fix me
     	}
         
     };
@@ -224,8 +235,11 @@ angular.module("makingQZ")
     			categories:default_edit_categories,
                 using_solution:false,
     			editting_flag:true,
+                
+                choiceOne_answer:'',
                 shortString_answer:'',
                 number_answer:'',
+                
                 show_item_flag:true,
                 show_edit_flag:true,
                 reference:-1
@@ -366,26 +380,36 @@ angular.module("makingQZ")
 			item.finished.choices = [];
 		} else if(item.answerType =="essay"){
 			item.finished.choices = [];
-		} else if(item.answerType =="choiceNumber"){
+		} else if(item.answerType =="choiceOne"){
 			item.numOfChoicesEachRow = item.edit.numOfChoicesEachRow;
 			
 			item.choices = [];
+			for(var i=0; i<item.edit.choices.length; i++){
+				item.choices.push({
+					order: item.edit.choices[i].order,
+					value:item.edit.choices[i].value
+				});
+			}
 			
+			item.answer = item.edit.choiceOne_answer;
+			item.answerText = $scope.choice_mark_type.marks[item.answer];
+		} else if(item.answerType =="choiceMulti"){
+			item.numOfChoicesEachRow = item.edit.numOfChoicesEachRow;
+			
+			item.choices = [];
 			item.answer = [];
 			for(var i=0; i<item.edit.choices.length; i++){
-				item.choices.push(item.edit.choices[i].value);
+				item.choices.push({
+					order: item.edit.choices[i].order,
+					value:item.edit.choices[i].value
+				});
 				if(item.edit.choices[i].answer == true){
 					item.answer.push(i);
 				}
 			}
-			if(item.answer.length==1){
-				item.answer = item.answer[0];
-				item.answerText = $scope.choice_mark_type.marks[item.answer];
-			} else {
-				item.answerText = '';
-				for(var i=0;i<item.answer.length;i++){
-					item.answerText += $scope.choice_mark_type.marks[item.answer[i]];
-				}
+			item.answerText = '';
+			for(var i=0;i<item.answer.length;i++){
+				item.answerText += $scope.choice_mark_type.marks[item.answer[i]];
 			}
 		}
 		item.edit.show_edit_flag = false;

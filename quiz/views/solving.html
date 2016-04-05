@@ -19,7 +19,7 @@
 	    
 	<div class="row">
 	  <div class="question col-centered col-xs-12 col-sm-10 col-md-8">
-	        <b>{{quiz.items[quiz.usr_index].order}}. </b>
+	        <b>{{quiz.items[quiz.usr_index].order+1}}. </b>
 	        <span ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].question)"></span>
 	    </div>
 	</div>
@@ -32,7 +32,7 @@
 	                ng-click="selectResponse(choice.order)"  class="btn btn-default"
 	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag, 'active':quiz.items[quiz.usr_index].response==choice.order}">
 	            <input type="radio" name="options" autocomplete="off" />
-	            <span ng-bind-html="trustAsHtml(choice.html)"></span>
+	            <span ng-bind-html="trustAsHtml(choice.value)"></span>
 	        </label>
 	      </div>
 	    </div>
@@ -43,10 +43,10 @@
 	    <div class="btn-group col-centered" role="group" 
 	            aria-label="Horizontal button group" data-toggle="buttons">
 	        <label data-ng-repeat="choice in quiz.items[quiz.usr_index].choices"
-	                ng-click="selectResponse(choice.html)"  class="btn btn-default btn-lg"
+	                ng-click="selectResponse(choice.value)"  class="btn btn-default btn-lg"
 	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}">
 	            <input type="radio" name="options" autocomplete="off" />
-	            <span ng-bind-html="trustAsHtml(choice.html)"></span>
+	            <span ng-bind-html="trustAsHtml(choice.value)"></span>
 	        </label>
 	    </div>   
 	  </div> 
@@ -100,7 +100,7 @@
 	                    {{const_str.correct}}</span>
 	        </div>
 	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceNumber'"
-	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].choices[quiz.items[quiz.usr_index].answer].html)"></div>
+	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].answerText)"></div>
 	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='shortString'">
 	                {{quiz.items[quiz.usr_index].answer}}</div>
 	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='number'">

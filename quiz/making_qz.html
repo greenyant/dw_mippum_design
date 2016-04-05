@@ -453,7 +453,6 @@
                     <!--button class="btn btn-primary btn-sm" ng-click="apply_item(item)">적용</button-->
                     <!--button class="btn btn-default">편집 활성화</button-->
                     
-                    
                     <div class="preview">
                     	<div class="printed_version" ng-show="item.reference != -1">
                         	<span class="printed_ref_content" ng-bind-html="trustAsHtml(qz.refs[item.reference].content)"></span>
@@ -463,11 +462,11 @@
                         	<span class="printed_question" ng-bind-html="trustAsHtml(item.question)">
                         		
                         	</span>
-                        	<div class="printed_choices row" ng-show="item.answerType == 'choiceNumber'">
+                        	<div class="printed_choices row" ng-show="item.answerType == 'choiceOne' || item.answerType == 'choiceMulti'">
                         		<div class="col-xs-{{12/item.numOfChoicesEachRow}}"
-                        			ng-repeat="choice in item.finished.choices">
+                        			ng-repeat="choice in item.choices">
                         			{{choice_mark_type.marks[choice.order]}}
-                        			<span ng-bind-html="trustAsHtml(item.choices[choice.order])"></span>
+                        			<span ng-bind-html="trustAsHtml(choice.value)"></span>
                         		</div>
                         	</div>
                         </div>
@@ -493,7 +492,7 @@
                     
                     질문 : <br />
                     <textarea width="100%" ng-model="item.edit.question" ng-disabled="!item.edit.editting_flag"></textarea>
-                    <div class="choices" ng-show="item.edit.answerType == 'choiceNumber'">
+                    <div class="choices" ng-show="item.edit.answerType == 'choiceOne' || item.edit.answerType == 'choiceMulti'">
                         <table class="text-center">
                             <tr>
                                 <td>정답</td>
@@ -524,13 +523,17 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="choice in item.edit.choices">
-                                <td><input type="checkbox" ng-model="choice.answer" ng-disabled="!item.edit.editting_flag" /></td>
+                                <td>
+                                	<input type="radio" ng-model="item.edit.choiceOne_answer" value="{{choice.order}}" name="choiceOne-{{ item.order }}" 
+                                			ng-show="item.edit.answerType == 'choiceOne'" ng-disabled="!item.edit.editting_flag" />
+                                	<input type="checkbox" ng-model="choice.answer" ng-show="item.edit.answerType == 'choiceMulti'"  ng-disabled="!item.edit.editting_flag" />
+                                </td>
                                 <td>{{choice_mark_type.marks[choice.order]}}</td>
                                 <td><input type="text" ng-model="choice.value" ng-disabled="!item.edit.editting_flag"/></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="answer" ng-hide="item.edit.answerType == 'choiceNumber' || item.edit.answerType == 'essay'">
+                    <div class="answer" ng-hide="item.edit.answerType == 'choiceMulti' || item.edit.answerType == 'essay'">
                         답 :
                         <input type="text" ng-disabled="!item.edit.editting_flag" ng-model="item.edit.shortString_answer" 
                         		ng-show="item.edit.answerType == 'shortString'"/>
