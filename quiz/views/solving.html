@@ -1,5 +1,31 @@
 <ng-include src="'views/nabvar.html'" ng-controller="solvingNabvarCtrl"></ng-include>
 <div class="container-fluid" ng-controller="solvingCtrl">
+	<script ng-if="quiz.using_math_flag" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG-full"></script>
+	<script ng-if="quiz.using_math_flag" type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			jax: ["input/TeX", "output/SVG"],
+			tex2jax: {
+				inlineMath: [['$','$']],
+				displayMath: [ ['$$','$$']],
+				processEscapes: true,
+				processEnvironments: true,
+				ignoreClass: "no-mathjax",
+				processClass: "mathjax",
+				preview: "TeX"
+			},
+			"HTML-CSS": { 
+				availableFonts: ["STIX", "TeX"],
+				webFont: null 
+			},
+			"SVG": {
+				availableFonts: ["TeX"],
+				blacker: 0,
+				scale: 90
+			},
+			showMathMenu: false
+		});
+	</script>
+	
 	<div class="row">
 	      <div class="col-centered col-xs-12 col-sm-10 col-md-8 status-bar">
 	          <div class="col-xs-4">
@@ -24,7 +50,7 @@
 	    </div>
 	</div>
 	
-	<div class="row" ng-show="quiz.items[quiz.usr_index].answerType=='choiceNumber'">
+	<div class="row" ng-show="quiz.items[quiz.usr_index].answerType=='choiceOne'">
 	  <div class="choices text-center">
 	      <div class="btn-group-vertical col-centered" role="group" 
 	            aria-label="Vertical button group" data-toggle="buttons">
@@ -32,6 +58,20 @@
 	                ng-click="selectResponse(choice.order)"  class="btn btn-default"
 	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag, 'active':quiz.items[quiz.usr_index].response==choice.order}">
 	            <input type="radio" name="options" autocomplete="off" />
+	            <span ng-bind-html="trustAsHtml(choice.value)"></span>
+	        </label>
+	      </div>
+	    </div>
+	</div>
+	
+	<div class="row" ng-show="quiz.items[quiz.usr_index].answerType=='choiceMulti'">
+	  <div class="choices text-center">
+	      <div class="btn-group-vertical col-centered" role="group" 
+	            aria-label="Vertical button group" data-toggle="buttons">
+	        <label data-ng-repeat="choice in quiz.items[quiz.usr_index].choices"
+	                ng-click="selectResponse(choice.order)"  class="btn btn-default"
+	                ng-class="{'display-only':quiz.items[quiz.usr_index].complete_flag}">
+	            <input type="checkbox" autocomplete="off" />
 	            <span ng-bind-html="trustAsHtml(choice.value)"></span>
 	        </label>
 	      </div>
@@ -86,7 +126,6 @@
 	            class="check-btn btn btn-md btn-default">{{const_str.next}}</button>
 	  </div>
 	</div>
-	
 	<div class="row" ng-show="quiz.items[quiz.usr_index].complete_flag && quiz.items[quiz.usr_index].answerType !='essay'"> 
 	    <div class="answer col-centered col-xs-12 col-sm-10 col-md-8">
 	      <div class="panel panel-default">
@@ -99,8 +138,13 @@
 	          <span class="answer-correct-mention" ng-show="quiz.items[quiz.usr_index].answer == quiz.items[quiz.usr_index].response">
 	                    {{const_str.correct}}</span>
 	        </div>
-	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceNumber'"
+	        
+	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceOne'"
 	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].answerText)"></div>
+	        
+	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceMulti'"
+	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].answerText)"></div>
+	        
 	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='shortString'">
 	                {{quiz.items[quiz.usr_index].answer}}</div>
 	        <div class="panel-body" ng-show="ans_show_flag && quiz.items[quiz.usr_index].answerType=='number'">
