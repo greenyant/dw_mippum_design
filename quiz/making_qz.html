@@ -591,12 +591,25 @@
                         <div ng-repeat="category in item.edit.categories">
                             {{qz.ct[category.order].name}} : 
                             <span ng-repeat="contents in category.selected_contents">
-                            	<select ng-model="category.select_order[contents.depth]"
-                                		ng-change="change_item_ct(category, contents.depth)">
-                                    <option value="-1"> </option>
-                                    <option ng-repeat="content in contents" value={{content.order}}>
-                                        {{content.name}}</option>
-                                </select>
+                                <div class="btn-group">
+				                    <button type="button" class="btn btn-default dropdown-toggle btn-xs"
+					                  	data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					                    <span>{{ contents[category.select_order[contents.depth]].name }}</span>
+					                    <span ng-show="category.select_order[contents.depth] == -1">없음</span>
+					                    <span class="caret"></span>
+					                </button>
+					                <ul class="dropdown-menu">
+					                	<li>
+					                        <a href="" ng-click="change_item_ct(category, contents.depth, -1)">없음</a>
+					                    </li>
+					                    <li ng-repeat="content in contents">
+					                        <a href="" ng-click="change_item_ct(category, contents.depth, content.order)">
+					                        	{{content.name}}
+					                        </a>
+					                    </li>
+					                </ul>
+				                </div>
+                                
                             </span>
                         </div>
                     </div>

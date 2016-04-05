@@ -93,14 +93,14 @@ angular.module("makingCT")
     
     function make_selected_contents_from_select_order () { 
     	$scope.selected_contents = [];
-    	
+    	var selected_one = $scope.ct.contents;
     	for(var i=0; i<$scope.select_order.length; i++){
             if(i==0){
-                var selected_one = $scope.ct.contents;
+                //var selected_one = $scope.ct.contents;
                 $scope.selected_contents.push(selected_one);
             } else {
             	if(selected_one[$scope.select_order[i-1]] != undefined){
-            		var selected_one = selected_one[$scope.select_order[i-1]].sub_contents;
+            		selected_one = selected_one[$scope.select_order[i-1]].sub_contents;
                 	$scope.selected_contents.push(selected_one);
             	}
             }

@@ -41,8 +41,6 @@ angular.module("makingQZ")
         "refs":[]
     };
     
-    //$scope.using_math_flag = false;
-    
     function make_categories_from_edit(item){
 		item.categories = [];
 		item.category_texts = [];
@@ -62,17 +60,116 @@ angular.module("makingQZ")
 		}
 	}
 	
+    function make_selected_contents_from_ct(ct, select_order){
+        var selected_contents = [];
+        
+        var selected_one = ct.contents;
+        //console.log(select_order);
+        //console.log(ct);
+        for(var i=0; i< select_order.length; i++){
+        	//console.log(selected_contents);
+            if(i==0){
+                //var selected_one = ct.contents;
+                selected_contents.push(selected_one);
+            } else {
+            	if(selected_one[select_order[i-1]] != undefined){
+            		selected_one = selected_one[select_order[i-1]].sub_contents;
+                	selected_contents.push(selected_one);
+            	}
+            }
+            selected_contents[i].depth = i;
+        }
+        return selected_contents;
+    }
+    
     $scope.open_mpqz_file = function(event){
         var file = event.target.files[0];
         var reader = new FileReader();
         
         
         reader.onload = function(progressEvent){
-            // Entire file
             $scope.qz = angular.fromJson(this.result);
+            //console.log($scope.qz.items.length);
+            for(var i=0; i<$scope.qz.items.length; i++){
+            	//console.log($scope.qz.items[i]);
+            	var this_item = angular.fromJson(angular.toJson($scope.qz.items[i]));
+            	
+            	
+            	if(this_item.solution == undefined || this_item.solution.length == 0){
+            		this_item.using_solution = false;
+            	} else this_item.using_solution = true;
+            	
+            	this_item.editting_flag = true;
+            	this_item.show_item_flag = false;
+            	this_item.show_edit_flag = false;
+            	
+                if(this_item.answerType == "shortString") {
+                    this_item.shortString_answer = this_item.answer;
+                } else if(this_item.answerType =="number"){
+                    this_item.number_answer = this_item.answer;
+                } else if(this_item.answerType =="OX"){
+                    this_item.OX_answer = this_item.answer;
+                } else if(this_item.answerType =="essay"){
+                } else if(this_item.answerType =="choiceOne"){
+                    this_item.choiceOne_answer = this_item.answer;
+                } else if(this_item.answerType =="choiceMulti"){ 
+                    for(var j=0; j<this_item.choices.length;j++){
+                    	this_item.choices[j].answer = false;
+                    	for(var k=0;k<this_item.answer.length;k++){
+                    		if(this_item.choices[j].order == this_item.answer[k])
+                    			this_item.choices[j].answer = true;
+                    	}
+                    }
+                }
+                
+                //var select_order = this_item.categories;
+                //console.log(this_item.categories);
+                var edit_categories = [];
+                for(var j=0; j<this_item.categories.length; j++){
+                	var select_order = this_item.categories[j];
+                	var selected_contents = make_selected_contents_from_ct($scope.qz.ct[j],select_order);
+                	//console.log(selected_contents);
+                	edit_categories.push({order:j, select_order:select_order, selected_contents:selected_contents});
+                }
+                this_item.categories = edit_categories;
+                //this_item.categories
+                //this_item.categories.selected_contents = make_selected_contents_from_ct($scope.qz.ct, this_item.categories.select_order);
+                
+            	$scope.qz.items[i].edit = this_item;
+            	$scope.qz.items[i].finished = angular.fromJson(angular.toJson(this_item));
+            	//console.log(this_item);
+            	//console.log($scope.qz.items[i]);
+            }
+            for(var i=0; i<$scope.qz.refs.length; i++){
+                var this_ref = angular.fromJson(angular.toJson($scope.qz.refs[i]));
+                $scope.qz.refs[i].edit = this_ref;
+            	$scope.qz.refs[i].finished = angular.fromJson(angular.toJson(this_ref));
+            }
+            
             $scope.$apply();
+            
+            setTimeout(function(){
+			    MathJax.Hub.Typeset();
+			}, 10);
         };
         reader.readAsText(file);
+    };
+    
+    $scope.down_mpqz_file = function(){ 
+    	var down_dat = angular.fromJson(angular.toJson($scope.qz));
+    	for(i=0;i<down_dat.items.length;i++){
+    		//console.log(down_dat.items[i]);
+    		delete down_dat.items[i].edit; //fix me
+    		delete down_dat.items[i].finished; //fix me
+    	}
+    	
+    	if($scope.qz.name.length == 0){
+    		download(angular.toJson(down_dat, true), "empty.mpqz", "text/plain");
+    	} else {
+        	download(angular.toJson(down_dat, true), $scope.qz.name+".mpqz", "text/plain");
+        	//download(angular.toJson(down_dat, true), $scope.qz.name+"_not_deleted.mpqz", "text/plain"); //fix me
+    	}
+        
     };
     
     //start of area for ct
@@ -177,22 +274,7 @@ angular.module("makingQZ")
     };
     //end of area for ct
      
-    $scope.down_mpqz_file = function(){ 
-    	var down_dat = angular.fromJson(angular.toJson($scope.qz));
-    	for(i=0;i<down_dat.items.length;i++){
-    		console.log(down_dat.items[i]);
-    		//delete down_dat.items[i].edit; //fix me
-    		//delete down_dat.items[i].finished; //fix me
-    	}
-    	
-    	if($scope.qz.name.length == 0){
-    		download(angular.toJson(down_dat, true), "empty.mpqz", "text/plain");
-    	} else {
-        	//download(angular.toJson(down_dat, true), $scope.qz.name+".mpqz", "text/plain");
-        	download(angular.toJson(down_dat, true), $scope.qz.name+"_not_deleted.mpqz", "text/plain"); //fix me
-    	}
-        
-    };
+    
     
     // edit item sections
     
@@ -334,20 +416,25 @@ angular.module("makingQZ")
 		}
 	};
 	
-	$scope.change_item_ct = function(category, depth){
+	$scope.change_item_ct = function(category, depth, value){
+		category.select_order[depth] = value;
+		if(depth >= category.select_order.length-1) return;
+		
 		if(category.select_order[depth] == -1){
 			category.selected_contents[depth+1] = [];
 			category.selected_contents[depth+1].depth = depth+1;
+			category.select_order[depth+1] = -1;
 		} else if(depth < category.selected_contents.length-1){
 			category.selected_contents[depth+1] = category.selected_contents[depth][category.select_order[depth]].sub_contents;
 			category.selected_contents[depth+1].depth = depth+1;
+			category.select_order[depth+1] = -1;
 		}
 		for(var i=depth+2; i<category.select_order.length;i++){
 			category.selected_contents[i] = [];
 			category.selected_contents[i].depth = i;
+			category.select_order[i] = -1;
 		}
 	};
-	
 	
 	
 	$scope.apply_item = function(item){
@@ -492,9 +579,6 @@ angular.module("makingQZ")
 	    	$scope.showModal = false;
         };
     	$scope.showModal = true; 
-    	
-    	
-    	
     };
     
 	$scope.apply_ref = function(ref){
