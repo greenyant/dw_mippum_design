@@ -1,0 +1,125 @@
+{
+  "name": "개념쎈수학중3상",
+  "level_label": [
+    {
+      "depth": 0,
+      "name": "대단원",
+      "mark_type": "BRPO",
+      "mark_example": "I. II. III."
+    },
+    {
+      "depth": 1,
+      "name": "중단원",
+      "mark_type": "NMPO",
+      "mark_example": "1. 2. 3."
+    },
+    {
+      "depth": 2,
+      "name": "",
+      "mark_type": "None",
+      "mark_example": "없음"
+    }
+  ],
+  "contents": [
+    {
+      "order": 0,
+      "name": "실수와 그 계산",
+      "sub_contents": [
+        {
+          "order": 0,
+          "name": "제곱근과 실수",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "제곱근과 그 성질"
+            },
+            {
+              "order": 1,
+              "name": "무리수와 실수"
+            },
+            {
+              "order": 2,
+              "name": "실수의 대소 관계"
+            }
+          ]
+        },
+        {
+          "order": 1,
+          "name": "근호를 포함한 식의 계산",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "제곱근의 곱셈과 나눗셈"
+            },
+            {
+              "order": 1,
+              "name": "제곱근의 덧셈과 뺄셈"
+            },
+            {
+              "order": 2,
+              "name": "제곱근의 근사값"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 1,
+      "name": "식의 계산",
+      "sub_contents": [
+        {
+          "order": 0,
+          "name": "다항식의 인수분해",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "인수분해의 뜻"
+            },
+            {
+              "order": 1,
+              "name": "인수분해 공식"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "name": "이차방정식",
+      "sub_contents": [
+        {
+          "order": 0,
+          "name": "이차방정식과 그 풀이",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "이차방정식과 그 해"
+            },
+            {
+              "order": 1,
+              "name": "이차방정식의 풀이"
+            }
+          ]
+        },
+        {
+          "order": 1,
+          "name": "이차방정식의 활용"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "name": "이차함수",
+      "sub_contents": [
+        {
+          "order": 0,
+          "name": "이차함수와 그 그래프"
+        },
+        {
+          "order": 1,
+          "name": "이차함수의 성질"
+        }
+      ]
+    }
+  ]
+}

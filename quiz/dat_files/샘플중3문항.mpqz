@@ -1,0 +1,3270 @@
+{
+  "name": "샘플중3문항",
+  "using_math_flag": true,
+  "items": [
+    {
+      "order": 0,
+      "question": "인수분해에 대한 다음 설명 중 옳지 <u>않은</u> 것을 모두 고르면?(정답 2개)",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "인수분해에 대한 다음 설명 중 옳지 <u>않은</u> 것을 모두 고르면?(정답 2개)",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "하나의 다항식을 2개의 인수의 곱으로 나타내는 것이 인수분해이다.",
+            "answer": true
+          },
+          {
+            "order": 1,
+            "value": "인수분해는 전개의 역이다.",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$(x+2)(x-3)$은 $x^2-x-6$을 인수분해 한 것이다.",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$(x+1)(x-1)=x^2-1$이므로 $x^2-1$의 인수는 $x+1$, $x-1$이다.",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$x^2+3x$는 $x^2+3x$의 인수이다.",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "하나의 다항식을 인수분해할 때, 인수는 2개 이상이다.<br />\n$x^2-1$의 인수는 $1$, $x+1$, $x-1$, $(x+1)(x-1)$이다."
+      },
+      "finished": {
+        "question": "인수분해에 대한 다음 설명 중 옳지 <u>않은</u> 것을 모두 고르면?(정답 2개)",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "하나의 다항식을 2개의 인수의 곱으로 나타내는 것이 인수분해이다.",
+            "answer": true
+          },
+          {
+            "order": 1,
+            "value": "인수분해는 전개의 역이다.",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$(x+2)(x-3)$은 $x^2-x-6$을 인수분해 한 것이다.",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$(x+1)(x-1)=x^2-1$이므로 $x^2-1$의 인수는 $x+1$, $x-1$이다.",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$x^2+3x$는 $x^2+3x$의 인수이다.",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "하나의 다항식을 인수분해할 때, 인수는 2개 이상이다.<br />\n$x^2-1$의 인수는 $1$, $x+1$, $x-1$, $(x+1)(x-1)$이다."
+      },
+      "categories": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 식의 계산 > 다항식의 인수분해 > 인수분해의 뜻",
+        "난이도 3단계 : 하"
+      ],
+      "answerType": "choiceNumber",
+      "solution": "하나의 다항식을 인수분해할 때, 인수는 2개 이상이다.<br />\n$x^2-1$의 인수는 $1$, $x+1$, $x-1$, $(x+1)(x-1)$이다.",
+      "choices": [
+        "하나의 다항식을 2개의 인수의 곱으로 나타내는 것이 인수분해이다.",
+        "인수분해는 전개의 역이다.",
+        "$(x+2)(x-3)$은 $x^2-x-6$을 인수분해 한 것이다.",
+        "$(x+1)(x-1)=x^2-1$이므로 $x^2-1$의 인수는 $x+1$, $x-1$이다.",
+        "$x^2+3x$는 $x^2+3x$의 인수이다."
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "answerText": "①④"
+    },
+    {
+      "order": 1,
+      "question": "두 다항식 $4x^2+ax+9$와 $(x-2)(x-6)+b$가 모두 완전제곱식으로 인수분해될 때, 두 양수 $a$, $b$에 대하여 $a-b$의 값은?",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "두 다항식 $4x^2+ax+9$와 $(x-2)(x-6)+b$가 모두 완전제곱식으로 인수분해될 때, 두 양수 $a$, $b$에 대하여 $a-b$의 값은?",
+        "answerType": "number",
+        "choices": [
+          {
+            "order": 0,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": 8,
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "$4x^2+ax+9=(2x)^2+ax+3^2$은 $(2x \\pm 3)^2$으로 인수분해될 수 있다.<br />\n이때 $a$는 양수이므로 $a=2 \\times 2 \\times 3 = 12$<br />\n또 $(x-2)(x-6)+b=x^2-8x+12+b=x^2-2 \\times x \\times 4 + 12 + b$는 $(x-4)^2$으로 인수분해될 수 있다.<br />\n이때 $12+b=16$에서 $b=4$<br />\n$\\therefore a-b=12-4=8 $"
+      },
+      "finished": {
+        "question": "두 다항식 $4x^2+ax+9$와 $(x-2)(x-6)+b$가 모두 완전제곱식으로 인수분해될 때, 두 양수 $a$, $b$에 대하여 $a-b$의 값은?",
+        "answerType": "number",
+        "choices": [],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": 8,
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "$4x^2+ax+9=(2x)^2+ax+3^2$은 $(2x \\pm 3)^2$으로 인수분해될 수 있다.<br />\n이때 $a$는 양수이므로 $a=2 \\times 2 \\times 3 = 12$<br />\n또 $(x-2)(x-6)+b=x^2-8x+12+b=x^2-2 \\times x \\times 4 + 12 + b$는 $(x-4)^2$으로 인수분해될 수 있다.<br />\n이때 $12+b=16$에서 $b=4$<br />\n$\\therefore a-b=12-4=8 $"
+      },
+      "categories": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 식의 계산 > 다항식의 인수분해 > 인수분해의 뜻",
+        "난이도 3단계 : 중"
+      ],
+      "answerType": "number",
+      "solution": "$4x^2+ax+9=(2x)^2+ax+3^2$은 $(2x \\pm 3)^2$으로 인수분해될 수 있다.<br />\n이때 $a$는 양수이므로 $a=2 \\times 2 \\times 3 = 12$<br />\n또 $(x-2)(x-6)+b=x^2-8x+12+b=x^2-2 \\times x \\times 4 + 12 + b$는 $(x-4)^2$으로 인수분해될 수 있다.<br />\n이때 $12+b=16$에서 $b=4$<br />\n$\\therefore a-b=12-4=8 $",
+      "answer": 8,
+      "answerText": 8
+    },
+    {
+      "order": 2,
+      "question": "$-2 &lt x &lt 2$일 때, $\\sqrt{ x^2+6x+9 } + \\sqrt{ x^2-4x+4}$를 간단히 하면?",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "$-2 &lt x &lt 2$일 때, $\\sqrt{ x^2+6x+9 } + \\sqrt{ x^2-4x+4}$를 간단히 하면?",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$-5$",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$1$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$5$",
+            "answer": true
+          },
+          {
+            "order": 3,
+            "value": "$-2x-1$",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "$2x+1$",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "2"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "$-2 &lt x &lt 2$이므로 $x+3>0$, $x-2 &lt 0$<br />\n$\\begin{align}\n  \\therefore (\\text {주어진 식})\n    &\\cssId{Step1}{= \\sqrt{ (x+3)^2} + \\sqrt{(x-2)^2} = (x+3)+\\{-(x-2)\\}} \\\\\n    &\\cssId{Step2}{= x+3-x+2=5}\\\\\n\\end{align}$"
+      },
+      "finished": {
+        "question": "$-2 &lt x &lt 2$일 때, $\\sqrt{ x^2+6x+9 } + \\sqrt{ x^2-4x+4}$를 간단히 하면?",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$-5$",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$1$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$5$",
+            "answer": true
+          },
+          {
+            "order": 3,
+            "value": "$-2x-1$",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "$2x+1$",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "2"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "$-2 &lt x &lt 2$이므로 $x+3>0$, $x-2 &lt 0$<br />\n$\\begin{align}\n  \\therefore (\\text {주어진 식})\n    &\\cssId{Step1}{= \\sqrt{ (x+3)^2} + \\sqrt{(x-2)^2} = (x+3)+\\{-(x-2)\\}} \\\\\n    &\\cssId{Step2}{= x+3-x+2=5}\\\\\n\\end{align}$"
+      },
+      "categories": [
+        [
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 식의 계산 > 다항식의 인수분해 > 인수분해의 뜻",
+        "난이도 3단계 : 상"
+      ],
+      "answerType": "choiceNumber",
+      "solution": "$-2 &lt x &lt 2$이므로 $x+3>0$, $x-2 &lt 0$<br />\n$\\begin{align}\n  \\therefore (\\text {주어진 식})\n    &\\cssId{Step1}{= \\sqrt{ (x+3)^2} + \\sqrt{(x-2)^2} = (x+3)+\\{-(x-2)\\}} \\\\\n    &\\cssId{Step2}{= x+3-x+2=5}\\\\\n\\end{align}$",
+      "choices": [
+        "$-5$",
+        "$1$",
+        "$5$",
+        "$-2x-1$",
+        "$2x+1$"
+      ],
+      "answer": 2,
+      "answerText": "③"
+    },
+    {
+      "order": 3,
+      "question": "$x^2$의 계수가 $1$인 어떤 이차식을 인수분해하는데 소영이는 $x$의 계수만 잘못 보고 풀어서 $(x-1)(x+3)$으로 인수분해하였고, 미정이는 상수항만 잘못 보고 풀어서 $(x-4)(x+2)$로 인수분해하였다. 처음 이차식을 바르게 인수분해하여라.",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "$x^2$의 계수가 $1$인 어떤 이차식을 인수분해하는데 소영이는 $x$의 계수만 잘못 보고 풀어서 $(x-1)(x+3)$으로 인수분해하였고, 미정이는 상수항만 잘못 보고 풀어서 $(x-4)(x+2)$로 인수분해하였다. 처음 이차식을 바르게 인수분해하여라.",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$x^2-2x-3$",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$x^2-2x+3$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$x^2+2x-3$",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$(x-3)(x+1)$",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$(x+3)(x-1)$",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "소영이는 상수항을 제대로 보았으므로 $(x-1)(x+3)=x^2+2x-3$에서 상수항은 $-3$이다.<br />\n미정이는 $x$의 계수를 제대로 보았으므로 $(x-4)(x+2)=x^2-2x-8$에서 $x$의 계수는 $-2$이다. <br />\n따라서 처음 이차식을 $x^2-2x-3$이므로 바르게 인수분해하면<br />\n$x^2-2x-3=(x-3)(x+1)$"
+      },
+      "finished": {
+        "question": "$x^2$의 계수가 $1$인 어떤 이차식을 인수분해하는데 소영이는 $x$의 계수만 잘못 보고 풀어서 $(x-1)(x+3)$으로 인수분해하였고, 미정이는 상수항만 잘못 보고 풀어서 $(x-4)(x+2)$로 인수분해하였다. 처음 이차식을 바르게 인수분해하여라.",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$x^2-2x-3$",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$x^2-2x+3$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$x^2+2x-3$",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$(x-3)(x+1)$",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$(x+3)(x-1)$",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "소영이는 상수항을 제대로 보았으므로 $(x-1)(x+3)=x^2+2x-3$에서 상수항은 $-3$이다.<br />\n미정이는 $x$의 계수를 제대로 보았으므로 $(x-4)(x+2)=x^2-2x-8$에서 $x$의 계수는 $-2$이다. <br />\n따라서 처음 이차식을 $x^2-2x-3$이므로 바르게 인수분해하면<br />\n$x^2-2x-3=(x-3)(x+1)$"
+      },
+      "categories": [
+        [
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 식의 계산 > 다항식의 인수분해 > 인수분해 공식",
+        "난이도 3단계 : 중"
+      ],
+      "answerType": "choiceNumber",
+      "solution": "소영이는 상수항을 제대로 보았으므로 $(x-1)(x+3)=x^2+2x-3$에서 상수항은 $-3$이다.<br />\n미정이는 $x$의 계수를 제대로 보았으므로 $(x-4)(x+2)=x^2-2x-8$에서 $x$의 계수는 $-2$이다. <br />\n따라서 처음 이차식을 $x^2-2x-3$이므로 바르게 인수분해하면<br />\n$x^2-2x-3=(x-3)(x+1)$",
+      "choices": [
+        "$x^2-2x-3$",
+        "$x^2-2x+3$",
+        "$x^2+2x-3$",
+        "$(x-3)(x+1)$",
+        "$(x+3)(x-1)$"
+      ],
+      "answer": 3,
+      "answerText": "④"
+    },
+    {
+      "order": 4,
+      "question": "다음을 계산하여라.<br />\n$169^2 + 2 \\times 169 \\times 31 + 31^2$",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "다음을 계산하여라.<br />\n$169^2 + 2 \\times 169 \\times 31 + 31^2$",
+        "answerType": "number",
+        "choices": [
+          {
+            "order": 0,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "2"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": 40000,
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "$169^2 + 2 \\times 169 \\times 31 + 31^2 = (169+31)^2=200^2=40000$"
+      },
+      "finished": {
+        "question": "다음을 계산하여라.<br />\n$169^2 + 2 \\times 169 \\times 31 + 31^2$",
+        "answerType": "number",
+        "choices": [],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "1",
+              "0",
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "다항식의 인수분해",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "인수분해의 뜻"
+                    },
+                    {
+                      "order": 1,
+                      "name": "인수분해 공식"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "2"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": 40000,
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "$169^2 + 2 \\times 169 \\times 31 + 31^2 = (169+31)^2=200^2=40000$"
+      },
+      "categories": [
+        [
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "2"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 식의 계산 > 다항식의 인수분해 > 인수분해 공식",
+        "난이도 3단계 : 상"
+      ],
+      "answerType": "number",
+      "solution": "$169^2 + 2 \\times 169 \\times 31 + 31^2 = (169+31)^2=200^2=40000$",
+      "answer": 40000,
+      "answerText": 40000
+    },
+    {
+      "order": 5,
+      "question": "다음 보기 중 $x$에 대한 이차방정식을 모두 골라라.",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "다음 보기 중 $x$에 대한 이차방정식을 모두 골라라.",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$(x-3)^2 = 2x+9$",
+            "answer": true
+          },
+          {
+            "order": 1,
+            "value": "$2x+1=5x-9$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$-x^2+8x-13$",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$2x^2+6x=7-x$",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$(x-1)(x+2)=x^2$",
+            "answer": false
+          },
+          {
+            "order": 5,
+            "value": "$x^3+x^2-2=x(x^2+7)$",
+            "answer": true
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "2",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 풀이",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 해"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 풀이"
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 활용"
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 해"
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 풀이"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1,
+        "solution": "① $(x-3)^2 = 2x+9$에서 $x^2-6x+9=2x+9$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-8x=0$<br />\n② $2x+1=5x-9$에서 $-3x+0=0$ [일차방정식] <br />\n③ $-x^2+8x-13$ [이차식]<br />\n④ $2x^2+6x=7-x$에서 $2x^2+7x-7=0$<br />\n⑤ $(x-1)(x+2)=x^2$에서 $x^2+x-2=x^2$ &nbsp;&nbsp;&nbsp; $\\therefore x-2=0$ [일차방정식]<br />\n⑥ $x^3+x^2-2=x(x^2+7)$에서 $x^3+x^2-2=x^3+7x$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-7x -2=0$"
+      },
+      "finished": {
+        "question": "다음 보기 중 $x$에 대한 이차방정식을 모두 골라라.",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$(x-3)^2 = 2x+9$",
+            "answer": true
+          },
+          {
+            "order": 1,
+            "value": "$2x+1=5x-9$",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$-x^2+8x-13$",
+            "answer": false
+          },
+          {
+            "order": 3,
+            "value": "$2x^2+6x=7-x$",
+            "answer": true
+          },
+          {
+            "order": 4,
+            "value": "$(x-1)(x+2)=x^2$",
+            "answer": false
+          },
+          {
+            "order": 5,
+            "value": "$x^3+x^2-2=x(x^2+7)$",
+            "answer": true
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "2",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 풀이",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 해"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 풀이"
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 활용"
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 해"
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 풀이"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "1"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": true,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1,
+        "solution": "① $(x-3)^2 = 2x+9$에서 $x^2-6x+9=2x+9$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-8x=0$<br />\n② $2x+1=5x-9$에서 $-3x+0=0$ [일차방정식] <br />\n③ $-x^2+8x-13$ [이차식]<br />\n④ $2x^2+6x=7-x$에서 $2x^2+7x-7=0$<br />\n⑤ $(x-1)(x+2)=x^2$에서 $x^2+x-2=x^2$ &nbsp;&nbsp;&nbsp; $\\therefore x-2=0$ [일차방정식]<br />\n⑥ $x^3+x^2-2=x(x^2+7)$에서 $x^3+x^2-2=x^3+7x$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-7x -2=0$"
+      },
+      "categories": [
+        [
+          "2",
+          "0",
+          "0"
+        ],
+        [
+          "1"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 이차방정식 > 이차방정식과 그 풀이 > 이차방정식과 그 해",
+        "난이도 3단계 : 중"
+      ],
+      "answerType": "choiceNumber",
+      "solution": "① $(x-3)^2 = 2x+9$에서 $x^2-6x+9=2x+9$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-8x=0$<br />\n② $2x+1=5x-9$에서 $-3x+0=0$ [일차방정식] <br />\n③ $-x^2+8x-13$ [이차식]<br />\n④ $2x^2+6x=7-x$에서 $2x^2+7x-7=0$<br />\n⑤ $(x-1)(x+2)=x^2$에서 $x^2+x-2=x^2$ &nbsp;&nbsp;&nbsp; $\\therefore x-2=0$ [일차방정식]<br />\n⑥ $x^3+x^2-2=x(x^2+7)$에서 $x^3+x^2-2=x^3+7x$ &nbsp;&nbsp;&nbsp; $\\therefore x^2-7x -2=0$",
+      "choices": [
+        "$(x-3)^2 = 2x+9$",
+        "$2x+1=5x-9$",
+        "$-x^2+8x-13$",
+        "$2x^2+6x=7-x$",
+        "$(x-1)(x+2)=x^2$",
+        "$x^3+x^2-2=x(x^2+7)$"
+      ],
+      "answer": [
+        0,
+        3,
+        5
+      ],
+      "answerText": "①④⑥"
+    },
+    {
+      "order": 6,
+      "question": "다음 중 [ &nbsp;&nbsp;&nbsp; ] 안의 수가 주어진 이차방정식의 해인 것은?",
+      "numOfChoicesEachRow": 1,
+      "reference": -1,
+      "edit": {
+        "question": "다음 중 [ &nbsp;&nbsp;&nbsp; ] 안의 수가 주어진 이차방정식의 해인 것은?",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$x^2+x-1=0$ &nbsp; [  $1$  ]",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$x^2-4x=0$ &nbsp; [  $2$  ]",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$2x^2+3x+1=0$ &nbsp; [  $-1$ ]",
+            "answer": true
+          },
+          {
+            "order": 3,
+            "value": "$-x^2+5x+2=0$ &nbsp; [  $-2$  ]",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "$x^2 -3 = 0$ &nbsp; [ $3$ ]",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "2",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 풀이",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 해"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 풀이"
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 활용"
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 해"
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 풀이"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": false,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": false,
+        "reference": -1
+      },
+      "finished": {
+        "question": "다음 중 [ &nbsp;&nbsp;&nbsp; ] 안의 수가 주어진 이차방정식의 해인 것은?",
+        "answerType": "choiceNumber",
+        "choices": [
+          {
+            "order": 0,
+            "value": "$x^2+x-1=0$ &nbsp; [  $1$  ]",
+            "answer": false
+          },
+          {
+            "order": 1,
+            "value": "$x^2-4x=0$ &nbsp; [  $2$  ]",
+            "answer": false
+          },
+          {
+            "order": 2,
+            "value": "$2x^2+3x+1=0$ &nbsp; [  $-1$ ]",
+            "answer": true
+          },
+          {
+            "order": 3,
+            "value": "$-x^2+5x+2=0$ &nbsp; [  $-2$  ]",
+            "answer": false
+          },
+          {
+            "order": 4,
+            "value": "$x^2 -3 = 0$ &nbsp; [ $3$ ]",
+            "answer": false
+          }
+        ],
+        "numOfChoicesEachRow": 1,
+        "numOfChoicesEachRow_candidates": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "categories": [
+          {
+            "order": 0,
+            "select_order": [
+              "2",
+              "0",
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "실수와 그 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "제곱근과 실수",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근과 그 성질"
+                        },
+                        {
+                          "order": 1,
+                          "name": "무리수와 실수"
+                        },
+                        {
+                          "order": 2,
+                          "name": "실수의 대소 관계"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "근호를 포함한 식의 계산",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "제곱근의 곱셈과 나눗셈"
+                        },
+                        {
+                          "order": 1,
+                          "name": "제곱근의 덧셈과 뺄셈"
+                        },
+                        {
+                          "order": 2,
+                          "name": "제곱근의 근사값"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "식의 계산",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "다항식의 인수분해",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "인수분해의 뜻"
+                        },
+                        {
+                          "order": 1,
+                          "name": "인수분해 공식"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "order": 2,
+                  "name": "이차방정식",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 풀이",
+                      "sub_contents": [
+                        {
+                          "order": 0,
+                          "name": "이차방정식과 그 해"
+                        },
+                        {
+                          "order": 1,
+                          "name": "이차방정식의 풀이"
+                        }
+                      ]
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 활용"
+                    }
+                  ]
+                },
+                {
+                  "order": 3,
+                  "name": "이차함수",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차함수와 그 그래프"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차함수의 성질"
+                    }
+                  ]
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 풀이",
+                  "sub_contents": [
+                    {
+                      "order": 0,
+                      "name": "이차방정식과 그 해"
+                    },
+                    {
+                      "order": 1,
+                      "name": "이차방정식의 풀이"
+                    }
+                  ]
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 활용"
+                }
+              ],
+              [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 해"
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 풀이"
+                }
+              ]
+            ]
+          },
+          {
+            "order": 1,
+            "select_order": [
+              "0"
+            ],
+            "selected_contents": [
+              [
+                {
+                  "order": 0,
+                  "name": "하"
+                },
+                {
+                  "order": 1,
+                  "name": "중"
+                },
+                {
+                  "order": 2,
+                  "name": "상"
+                }
+              ]
+            ]
+          }
+        ],
+        "using_solution": false,
+        "editting_flag": true,
+        "shortString_answer": "",
+        "number_answer": "",
+        "show_item_flag": true,
+        "show_edit_flag": true,
+        "reference": -1
+      },
+      "categories": [
+        [
+          "2",
+          "0",
+          "0"
+        ],
+        [
+          "0"
+        ]
+      ],
+      "category_texts": [
+        "개념쎈수학중3상 : 이차방정식 > 이차방정식과 그 풀이 > 이차방정식과 그 해",
+        "난이도 3단계 : 하"
+      ],
+      "answerType": "choiceNumber",
+      "choices": [
+        "$x^2+x-1=0$ &nbsp; [  $1$  ]",
+        "$x^2-4x=0$ &nbsp; [  $2$  ]",
+        "$2x^2+3x+1=0$ &nbsp; [  $-1$ ]",
+        "$-x^2+5x+2=0$ &nbsp; [  $-2$  ]",
+        "$x^2 -3 = 0$ &nbsp; [ $3$ ]"
+      ],
+      "answer": 2,
+      "answerText": "③"
+    }
+  ],
+  "refs": [],
+  "ct": [
+    {
+      "name": "개념쎈수학중3상",
+      "level_label": [
+        {
+          "depth": 0,
+          "name": "대단원",
+          "mark_type": "BRPO",
+          "mark_example": "I. II. III."
+        },
+        {
+          "depth": 1,
+          "name": "중단원",
+          "mark_type": "NMPO",
+          "mark_example": "1. 2. 3."
+        },
+        {
+          "depth": 2,
+          "name": "",
+          "mark_type": "None",
+          "mark_example": "없음"
+        }
+      ],
+      "contents": [
+        {
+          "order": 0,
+          "name": "실수와 그 계산",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "제곱근과 실수",
+              "sub_contents": [
+                {
+                  "order": 0,
+                  "name": "제곱근과 그 성질"
+                },
+                {
+                  "order": 1,
+                  "name": "무리수와 실수"
+                },
+                {
+                  "order": 2,
+                  "name": "실수의 대소 관계"
+                }
+              ]
+            },
+            {
+              "order": 1,
+              "name": "근호를 포함한 식의 계산",
+              "sub_contents": [
+                {
+                  "order": 0,
+                  "name": "제곱근의 곱셈과 나눗셈"
+                },
+                {
+                  "order": 1,
+                  "name": "제곱근의 덧셈과 뺄셈"
+                },
+                {
+                  "order": 2,
+                  "name": "제곱근의 근사값"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 1,
+          "name": "식의 계산",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "다항식의 인수분해",
+              "sub_contents": [
+                {
+                  "order": 0,
+                  "name": "인수분해의 뜻"
+                },
+                {
+                  "order": 1,
+                  "name": "인수분해 공식"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "name": "이차방정식",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "이차방정식과 그 풀이",
+              "sub_contents": [
+                {
+                  "order": 0,
+                  "name": "이차방정식과 그 해"
+                },
+                {
+                  "order": 1,
+                  "name": "이차방정식의 풀이"
+                }
+              ]
+            },
+            {
+              "order": 1,
+              "name": "이차방정식의 활용"
+            }
+          ]
+        },
+        {
+          "order": 3,
+          "name": "이차함수",
+          "sub_contents": [
+            {
+              "order": 0,
+              "name": "이차함수와 그 그래프"
+            },
+            {
+              "order": 1,
+              "name": "이차함수의 성질"
+            }
+          ]
+        }
+      ],
+      "order": 0
+    },
+    {
+      "name": "난이도 3단계",
+      "level_label": [
+        {
+          "depth": 0,
+          "name": "단계",
+          "mark_type": "None",
+          "mark_example": "없음"
+        }
+      ],
+      "contents": [
+        {
+          "order": 0,
+          "name": "하"
+        },
+        {
+          "order": 1,
+          "name": "중"
+        },
+        {
+          "order": 2,
+          "name": "상"
+        }
+      ],
+      "order": 1
+    }
+  ],
+  "basic_ct": {}
+}
