@@ -115,17 +115,17 @@
 	                    {{const_str.correct}}</span>
 	        </div>
 	        
-	        <div class="panel-body" ng-if="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceOne'"
+	        <div class="panel-body" ng-show="ans_show_flag" ng-if="quiz.items[quiz.usr_index].answerType=='choiceOne'"
 	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].answerText)"></div>
 	        
-	        <div class="panel-body" ng-if="ans_show_flag && quiz.items[quiz.usr_index].answerType=='choiceMulti'"
+	        <div class="panel-body" ng-show="ans_show_flag" ng-if="quiz.items[quiz.usr_index].answerType=='choiceMulti'"
 	            ng-bind-html="trustAsHtml(quiz.items[quiz.usr_index].answerText)"></div>
 	        
-	        <div class="panel-body" ng-if="ans_show_flag && quiz.items[quiz.usr_index].answerType=='shortString'">
+	        <div class="panel-body" ng-show="ans_show_flag" ng-if="quiz.items[quiz.usr_index].answerType=='shortString'">
 	                {{quiz.items[quiz.usr_index].answer}}</div>
-	        <div class="panel-body" ng-if="ans_show_flag && quiz.items[quiz.usr_index].answerType=='number'">
+	        <div class="panel-body" ng-show="ans_show_flag" ng-if="quiz.items[quiz.usr_index].answerType=='number'">
 	                {{quiz.items[quiz.usr_index].answer}}</div>
-	        <div class="panel-body" ng-if="ans_show_flag && quiz.items[quiz.usr_index].answerType=='OX'">
+	        <div class="panel-body" ng-show="ans_show_flag" ng-if="quiz.items[quiz.usr_index].answerType=='OX'">
 	                {{quiz.items[quiz.usr_index].answer}}</div>
 	        
 	      </div>

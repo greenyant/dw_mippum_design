@@ -27,6 +27,8 @@ angular.module("solve_quiz")
 		}
 		$scope.quiz = quiz.quizData;
 
+		
+		
 		if($scope.quiz.using_math_flag){
 			var script = document.createElement('script');
 			var head = document.getElementsByTagName("head")[0], script;
@@ -59,7 +61,16 @@ angular.module("solve_quiz")
 			script = document.createElement("script");
 			script.type = "text/javascript";
 			script.src = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG-full';
+			
+			//script.onload = function (){
+			//	console.log((window.unsafeWindow == null ? window : unsafeWindow).MathJax);
+			//}
+			
 			head.appendChild(script);
+			
+			//Mathjax = (window.unsafeWindow == null ? window : unsafeWindow).MathJax;
+			//console.log((window.unsafeWindow == null ? window : unsafeWindow).MathJax);
+			//console.log(Mathjax);
 		}		
 		
 		if($scope.quiz.usr_index == undefined) {
@@ -139,7 +150,9 @@ angular.module("solve_quiz")
 			} else if(item.answerType=='choiceOne'){
 				item.answerText = item.choices[item.answer].value;
 			}
-			if(typeof(MathJax)!== 'undefined' && $scope.quiz.using_math_flag) setTimeout(function(){ MathJax.Hub.Typeset();}, 10);
+			if(typeof(MathJax)!== 'undefined' && $scope.quiz.using_math_flag) {
+				setTimeout(function(){ MathJax.Hub.Typeset();}, 10);
+			}
 		};
 		$scope.clickShowAns = function(){
 			$scope.ans_show_flag = !$scope.ans_show_flag;
